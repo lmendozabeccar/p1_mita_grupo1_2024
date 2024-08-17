@@ -3,4 +3,5 @@ matriz = [
     [],
     []
     ]
-flag = 0
+flag = 1111
+ja = 0
