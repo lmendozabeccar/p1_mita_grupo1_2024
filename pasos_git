@@ -1,0 +1,17 @@
+#Pasos creación de repositorio: | COMANDO 
+1 - pwd (ver en qué carpeta estás) 
+2 - mkdir p1_mita_grupo1_2024 (crear carpeta) 
+3 - cd p1_mita_grupo1_2024 (seleccionar la carpeta) 
+4 - git config --global user.name "usuario_uade" 
+5 - git config --global user.email "mail_uade" 
+6 - git config --global --list (opcional para verificar los datos ingresados) 
+7 - git init (nuevo repositorio de git) 
+8 - git remote add https://github.com/TU_USUARIO_DE_UADE/p1_mita_grupo1_2024.git 
+#Cargar el nuevo repositorio (se hace sólo la primera vez): 
+Clonar el repositorio en tu computadora --> git clone https://github.com/lmendozabeccar/p1_mita_grupo1_2024.git 
+Ubicarse en la carpeta del proyecto --> cd p1_mita_grupo1_2024 
+#Manejo de comandos de git 
+Antes de comenzar a trabajar --> git pull (Va a cargar lo que está en Github a tu computadora) 
+Cuando agregas archivos --> git add . 
+Cuando modificas el archivo --> git commit -a -m "comentario" (Los cambios se van a guardar en la PC de forma local, no en el repositorio de Github. Lo mismo para el git add .) 
+Una vez finalizado todos los cambios --> git push -u origin main (Va a guardar todo lo modificado en la nube de Github)
