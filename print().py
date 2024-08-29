@@ -31,42 +31,29 @@ user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: 
 #Concatenación de cadenas
 ma = "@sistem.edu.ar"
 username = user + ma
+password=str (input("Ingresar contraseña de usuario: "))
 
-#Verificar si el usuario existe o no en el sistema
+#Verificar si la cuenta existe o no en el sistema
 flag=0
-while flag==0:
+cont=0
+while flag==0 and cont<5:
     i=0
     while len(ingreso_sistemas)>i and flag!=1:
-        if username==ingreso_sistemas[i][0]:
+        if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]:
+            print("Ingreso correcto a la aplicación.")
             flag=1
         else:
             i += 1
-    if flag==0: #En caso de no encontrar el usuario, vuelve a preguntar infinitas veces.
-        print("No se ha podido encontrar una cuenta con ese nombre de usuario.")
-        print()
-        user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: ")) 
-        ma = "@sistem.edu.ar"
-        username = user + ma
-
-#Verificación de contraseña, con maximo de 3 intentos.
-password=str (input("Ingresar contraseña de usuario: "))
-cont=0
-while flag==1 and cont<3:
-    if password==ingreso_sistemas[i][1]:
-        print("Ingreso correcto a la aplicación.")
-        flag=0
-        
-    else:        
-        cont += 1    
-        print("Su cuenta o contraseña no es correcta.")
-
-        print()
-        if cont<2:
+    if flag==0: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
+        cont += 1
+        if cont<5:
+            print("No se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.")
+            print()
+            user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: ")) 
+            ma = "@sistem.edu.ar"
+            username = user + ma
             password=str (input("Ingresar contraseña de usuario: "))
-
-        elif cont==2:
-            print("Precaución, solamente le queda 1 intento para lograr ingresar a la aplicación.")
-            password=str (input("Ingresar contraseña de usuario: "))
-
-        elif cont==3:
-            print("Numerosos intentos fallidos, ingreso incorrecto.")
+        else:
+            print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
+print()
+print("Fin de proceso")
