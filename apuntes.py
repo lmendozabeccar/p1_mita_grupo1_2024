@@ -9,8 +9,8 @@ num = [1, 2, 3, 4, 5]
 lista = [expresión(el calculo) for num in numeros]
 ## CON FILTROS
 lista = [expresión(el calculo) for num in numeros if num%2 == 0]
-
 lista = [expresión(el calculo) if num%2 == 0 else num for num in numeros]
+
 #METODOS
 lista.append(valor) (Agrega sólo un elemento)
 lista.extend([valor1, valor2, valor3]) (Agrega varios valores)
@@ -25,6 +25,7 @@ lista.count(parametro) (Te devuelve la cantidad de veces que aparece ese paramet
 lista.sort() (ordena la lista)
 lista.sort(reverse=True) (ordena la lista de forma al reves (descendente))
 lista.reverse() ()
+
 #FUNCIONES
 len() (largo)
 sum() (suma de toda la lista)
@@ -37,6 +38,7 @@ lista[2:4] = [10 , 15] (Reemplaza valores. No se agregan)
 lista[2:4] = [] (Elimina los valores dentro de ese intervalo)
 for i in lista[inicio:fin] (itera la lista con solo esas posiciones)
 #concatenar listas sumandolas entre si : lista1+lista2
+
 #Copiar listas
 listacopia = lista[:] (copia la lista)
 listacopia = list(lista)
@@ -44,10 +46,12 @@ listacopia = lista.copy()
 
 lista[funcion()] (Siempre que la funcion devuelva un entero)
 list("cadena") (convierte una cadena a una lista (caraceter por caracter))
+
 #Desempaquetado
 lista = [1, 2, 3, 4]
 num, num2, num3, num4 = lista (Cada numero es asignado por cada elemento de la lista. Tiene que coincidir con el largo de la lista)
 frase = 'hola "Lucas", buenas' (Usar las comillas dentro de un string)
+
 #Operaciones con cadenas 
 Concatenacion(+) (Concatena dos cadenas)
 Multiplicacion(*) 
@@ -57,6 +61,7 @@ is (Compara las cadenas para saber si son exactamente iguales, booleno)
 len() (largo de la cadena)
 max() (valor mas alto alfanumerico o numerico)
 min() (valor mas chico)
+
 #Metodos con cadenas
 cadena = "Hola mundo"
 cadena.index("mundo") (devuelve en que posicion está el parametro) --> 6
@@ -81,6 +86,7 @@ cadena.split(separador, cantidad) (hace una lista dividida por cada una de los s
 cadena.splitlines(keeplinebreaks) (divide una cadena en una lista en los saltos de linea) (Recomendado no usar)
 cadena.partition(separador) (Devuelve una tupla en lugar de una lista, con el separador)
 separador.join() ej: " ".join(cadena) --> Pasa una lista de cadenas de texto a una cadena sola, todo unido por el separador
+
 #Formato de cadenas
 print("Legajo {}, Nombre: {}, Nota: {}".format(legajo, nombre, nota)) 
 ##F Strings (lo mejor)
@@ -94,4 +100,26 @@ cad = f'|{num}ˆlargo|' (Lo centra, con el largo, o con > < se puede hacer un ma
 \n salto de linea
 \" comillas dobles
 \' comilla simple
+
+------CLASE4-------
+###Funciones
+def funcion(valor="hola") --> En caso de que la función no reciba un parámetro
+se puede no respetar el orden de los parametros de la funcion ----> funcion(edad=15, nombre="lucas")
+
+##Lambda --> Guarda la definición de la función
+funcion = lambda x, y: x + y
+print(funcion(3, 4)) (Salida: 7)
+#Map --> la x se reemplaza por cada elemento | operación | parametro
+numeros = [1, 2, 3, 4]
+cuadrados = list(map(lambda x: x**2, numeros))
+#Filter --> valor de cada elemento | condicion | parametro
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+#Reduce
+from functools import reduce
+producto = reduce(lambda x, y: x * y, numeros)
+print(producto) (Salida: 24)
+
+###Modularizar con archivos
+En el otro archivo, import nombre_de_archivo (solo el nombre)
+Una vez importado se puede usar, por ejemplo: nombre_de_archivo.suma() 
 '''
