@@ -15,10 +15,13 @@ ingreso_sistemas = [
     ["lautipadin@sistem.edu.ar","lautipadin01"]
                                 ]
 #Se recortan los nombres de los productos a un máximo de 8 caracteres.
-productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]
-
+productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes
+for mail, contraseña in ingreso_sistemas:
+    print([mail[:10], contraseña[:10]])
+username = "Username"
+passw = "Password"
 # Imprimir la lista con formato de f-strings
-print(f"|{"Username":^10}| |{"Password":^10}|")
+print(f"|{username:^10}| |{passw:^10}|")
 print("*" * 26)
 
 for mail, contraseña in productos_recortados:
@@ -27,7 +30,7 @@ for mail, contraseña in productos_recortados:
 print()
 
 # Proceso de Log-in
-user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: "))
+user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: "))  #######En la entrega final que sea con @sistem, los profesores no. Hacer segunda matriz para profesores
 #Concatenación de cadenas
 ma = "@sistem.edu.ar"
 username = user + ma
@@ -55,5 +58,4 @@ while flag==0 and cont<5:
             password=str (input("Ingresar contraseña de usuario: "))
         else:
             print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
-print()
-print("Fin de proceso")
+print(f"\nFin de proceso") ###########Usar expresiones regulares

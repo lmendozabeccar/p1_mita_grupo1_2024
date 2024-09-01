@@ -27,7 +27,7 @@ for mail, contraseña in productos_recortados:
 print()
 
 # Proceso de Log-in
-user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: "))
+user=str(input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: "))
 #Concatenación de cadenas
 ma = "@sistem.edu.ar"
 username = user + ma
@@ -44,7 +44,7 @@ while flag==0:
     if flag==0: #En caso de no encontrar el usuario, vuelve a preguntar infinitas veces.
         print("No se ha podido encontrar una cuenta con ese nombre de usuario.")
         print()
-        user=str (input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: ")) 
+        user=str(input("Por favor, ingresar su mail de usuario de alumno, sin @sistem: ")) 
         ma = "@sistem.edu.ar"
         username = user + ma
 
@@ -70,3 +70,6 @@ while flag==1 and cont<3:
 
         elif cont==3:
             print("Numerosos intentos fallidos, ingreso incorrecto.")
+
+
+
