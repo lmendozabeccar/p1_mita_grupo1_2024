@@ -55,7 +55,6 @@ while flag==1 and cont<3:
     if password==ingreso_sistemas[i][1]:
         print("Ingreso correcto a la aplicación.")
         flag=0
-        
     else:        
         cont += 1    
         print("Su cuenta o contraseña no es correcta.")
@@ -70,3 +69,4 @@ while flag==1 and cont<3:
 
         elif cont==3:
             print("Numerosos intentos fallidos, ingreso incorrecto.")
+            

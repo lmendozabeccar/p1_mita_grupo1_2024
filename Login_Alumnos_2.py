@@ -58,3 +58,4 @@ while flag==0 and cont<5:
         else:
             print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
 print(f"\nFin de proceso") ###########Usar expresiones regulares
+#### Hacer el procesamiento del login mediante una función que devuelva: 2 Si el usuario se loggeó como estudiante. 1 Si el usuario se loggeó como profesor y -1 si el usuario no se pudo registrar
