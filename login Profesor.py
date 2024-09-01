@@ -2,42 +2,38 @@ import random
 def crear(n,m):
     return [[0]*m for fill in range(n)]
 
-
-
-
 def llenar(m):
-    filas=len(m)
-    columnas=len(m[0])
+    filas = len(m)
     for fil in range(filas):
-        for col in range(filas):
-            num_aleatorio=random.randint(1,10)
-            m[fil][col]=num_aleatorio
+        m[fil][0] = random.randint(1, 9)
 
-def imprimir(matriz,contraseña,gmail):
-    filas=len(matriz)
-    columnas=len(matriz[0])
-    print(f"{'':<15}", end="")  # Espacio para alinear encabezado de filas
-    for nombre_col in contraseña:
-        print(f"|{nombre_col:^10}", end="")  # Alinear nombres de columnas centrados
-    print("|")  # Cerrar la línea de encabezados de columna
-    print("-" * (12 + (11 * len(contraseña))))  # Línea divisoria
+def imprimir(matriz, gmails):
+    filas = len(matriz)
+    print(f"{'':<20}", end="")  # Espacio para alinear encabezado de columnas
+    print("| Contraseña |")
+    print("-" * 14)  # Línea divisoria
 
-    
     for fil in range(filas):
-        print(f"{gmail[fil]:<12}", end="")  
-        for col in range(columnas):
-            print(f"|{matriz[fil][col]:^10}", end="")  
-        print("|")  
+        print(f"{gmails[fil]:<20}", end="")
+        print(f"|   {matriz[fil][0]:^10} |") 
   
     
-matriz=crear(4,4)
+matriz=crear(4,1)
 llenar(matriz)
-contraseña=["Juan", "Manolo", "Roberto", "Octuso"]
-gmail=["juan@gmail.com", "manolo@gmail.com", "roberto@gmail.com", "octuso@gmail.com"]
 
+gmail=["juan31", "manolo67", "roberto296", "octuso3478"]
+imprimir(matriz, gmail)
 
+def verificar_usuario(matriz, gmail, usuario, contraseña):
+    if usuario in gmail:
+        indice = gmail.index(usuario)
+        if contraseña == matriz[indice][0]:  # Compara la contraseña ingresada con el número en la fila
+            print("Acceso permitido")
+        else:
+            print("Acceso denegado")
+    else:
+        print("Acceso denegado")
 
-
-
-
-imprimir(matriz,contraseña,gmail)
+usuario=(input("Ingrese su usario:"))
+contraseña=int(input("Ingrese su contraseña:"))
+verificar_usuario(matriz, gmail, usuario, contraseña)
