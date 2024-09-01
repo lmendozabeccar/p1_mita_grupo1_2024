@@ -7,9 +7,11 @@
 6 - git config --global --list (opcional para verificar los datos ingresados) 
 7 - git init (nuevo repositorio de git) 
 8 - git remote add https://github.com/TU_USUARIO_DE_UADE/p1_mita_grupo1_2024.git 
+
 #Cargar el nuevo repositorio (se hace sólo la primera vez): 
 Clonar el repositorio en tu computadora --> git clone https://github.com/lmendozabeccar/p1_mita_grupo1_2024.git 
 Ubicarse en la carpeta del proyecto --> cd p1_mita_grupo1_2024 
+
 #Manejo de comandos de git 
 Antes de comenzar a trabajar --> git pull (Va a cargar lo que está en Github a tu computadora) 
 Cuando agregas archivos --> git add . 

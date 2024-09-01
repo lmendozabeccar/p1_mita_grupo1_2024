@@ -12,7 +12,7 @@ def aleatorio():
     return randint(1, 10)
 
 def llenar_matriz(lista):
-    for i in range(31):
+    for i in range(31): #######Simplificar
         lista.append([1000+i, aleatorio(), aleatorio(), aleatorio(), aleatorio(), aleatorio()])
     return lista
 
@@ -26,7 +26,7 @@ def agregar_alumno(lista):
                 flag_legajo = False
         if flag_legajo == False:
             print("Ese legajo ya existe, ingrese otro de vuelta.")
-        else:
+        else:#############
             legajo_nuevo=int(input("Ingrese el nuevo legajo: "))
             algebra =int(input("Ingrese la nueva nota de algebra: "))
             programacion =int(input("Ingrese la nueva nota de Programacion: "))
@@ -87,7 +87,7 @@ def eliminar_alumno(lista):
 def main(encabezado_calificaciones, encabezado_asistencias):
     alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
     flag = True
-    while flag== True:
+    while flag == True:
         print("-"*26)
         respuesta = int(input("1 Agregar alumno\n2 Mostrar calificaciones\n3 Modificar alumno\n4 Eliminar alumno\n5 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta == 1:
@@ -98,7 +98,7 @@ def main(encabezado_calificaciones, encabezado_asistencias):
             alumnos_calificaciones = actualizar_alumno(alumnos_calificaciones)
         elif respuesta == 4:
             alumnos_calificaciones = eliminar_alumno(alumnos_calificaciones)
-        elif respuesta==5:
+        elif respuesta == 5:
             flag = False
 main(encabezado_calificaciones, encabezado_asistencias)
 #Utilizar diccionarios para gestionar la información del alumno, tal como el nombre, apellido, carrera, email y otros datos
