@@ -26,7 +26,6 @@ for mail, contraseña in productos_recortados:
     print(f"|{mail:^10}| |{contraseña:^10}|")
 
 print()
-
 def registro(lista):
     flag = 0
     while flag == 0:
@@ -45,15 +44,5 @@ def registro(lista):
             lista.append([us, pas])
             flag = 1
     return lista
+print("¡Registrate!")
 registro(ingreso_sistemas)    
-productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]
-username = "Username"
-passw = "Password"
-# Imprimir la lista con formato de f-strings
-print(f"|{username:^10}| |{passw:^10}|")
-print("*" * 26)
-
-for mail, contraseña in productos_recortados:
-    print(f"|{mail:^10}| |{contraseña:^10}|")
-
-print()
