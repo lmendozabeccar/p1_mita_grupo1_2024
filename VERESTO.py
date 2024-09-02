@@ -1,7 +1,5 @@
-from main import main, encabezado_calificaciones, encabezado_asistencias
-print()
-print("Bienvenido al sector de Ingreso de la aplicación.")
 
+print()
 #Alumnos ya registrados en el sistema.
 ingreso_sistemas = [
     ["nicovera@sistem.edu.ar","nicovera01"],
@@ -70,7 +68,7 @@ def inicio():
             elif registero==2:
                 print("Saliendo..")
                 flag = False
-        
+
 # Proceso de Log-in
 def login():
     #Verificar si la cuenta existe o no en el sistema
@@ -95,7 +93,9 @@ def login():
                 if username==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
                     print("Ingreso correcto al apartado ADMIN")
                     flag = True
+                    from main import main, encabezado_calificaciones, encabezado_asistencias
                     main(encabezado_calificaciones, encabezado_asistencias)
+                    
                 j+=1
                 
         if flag==False: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.

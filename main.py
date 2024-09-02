@@ -102,5 +102,3 @@ def main(encabezado_calificaciones, encabezado_asistencias):
             flag = False
 main(encabezado_calificaciones, encabezado_asistencias)
 #Utilizar diccionarios para gestionar la información del alumno, tal como el nombre, apellido, carrera, email y otros datos
-
-
