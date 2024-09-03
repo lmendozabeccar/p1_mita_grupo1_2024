@@ -1,7 +1,5 @@
-from main import main, encabezado_calificaciones, encabezado_asistencias
-print()
-print("Bienvenido al sector de Ingreso de la aplicación.")
 
+print()
 #Alumnos ya registrados en el sistema.
 ingreso_sistemas = [
     ["nicovera@sistem.edu.ar","nicovera01"],
@@ -15,12 +13,6 @@ ingreso_sistemas = [
     ["fabrisuccar@sistem.edu.ar","fabrisuccar01"],
     ["lautipadin@sistem.edu.ar","lautipadin01"]
                                 ]
-'''<<<<<<< HEAD
-#Se recortan los nombres de los productos a un máximo de 8 caracteres.
-productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes
-for mail, contraseña in ingreso_sistemas:
-    print([mail[:10], contraseña[:10]])'''
-
 ingreso_profes = [
     ["pepi@sistem.edu.ar", "pepito10"],
     ["profe@sistem.edu.ar", "profeuade"],
@@ -28,11 +20,10 @@ ingreso_profes = [
 ]
 
 
-#Se recortan los nombres de los alumnos/profesores a un máximo de 8 caracteres.
+#Se recortan los nombres de los productos a un máximo de 8 caracteres.
 productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes
 for mail, contraseña in ingreso_sistemas:
     print([mail[:10], contraseña[:10]])
-
 username = "Username"
 passw = "Password"
 # Imprimir la lista con formato de f-strings
@@ -77,7 +68,7 @@ def inicio():
             elif registero==2:
                 print("Saliendo..")
                 flag = False
-        
+
 # Proceso de Log-in
 def login():
     #Verificar si la cuenta existe o no en el sistema
@@ -95,13 +86,16 @@ def login():
                 print("Ingreso correcto a la aplicación.")
                 flag=True
             i+=1
+
         if flag!=True:
             j = 0
             while j<len(ingreso_profes):
                 if username==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
                     print("Ingreso correcto al apartado ADMIN")
                     flag = True
+                    from main import main, encabezado_calificaciones, encabezado_asistencias
                     main(encabezado_calificaciones, encabezado_asistencias)
+                    
                 j+=1
                 
         if flag==False: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
