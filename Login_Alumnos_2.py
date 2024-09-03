@@ -22,10 +22,11 @@ ingreso_profes = [
 ]
 
 
-#Se recortan los nombres de los productos a un máximo de 8 caracteres.
+#Se recortan los nombres de los alumnos/profesores a un máximo de 8 caracteres.
 productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes
 for mail, contraseña in ingreso_sistemas:
     print([mail[:10], contraseña[:10]])
+
 username = "Username"
 passw = "Password"
 # Imprimir la lista con formato de f-strings
