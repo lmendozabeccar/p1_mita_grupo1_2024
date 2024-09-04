@@ -40,7 +40,7 @@ profesores = [[email[:10], contra[:10]] for email, contra in ingreso_profes]
 print(f"|{profeuser:^10}| |{contraprofe:^10}|")
 print("-" * 26)
 for email, contra in profesores:
-    print(f"|{email:^10}| |{contra:^10}|")
+    print(f"|{email:^10}| |{contra:^10}|") ###APLICAR EXPRESIONES REGULARES 
 
 # Proceso Register
 
@@ -85,7 +85,7 @@ def login():
             if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]:
                 print("Ingreso correcto a la aplicación.")
                 flag=True
-                estudiantes(i,encabezado_calificaciones, encabezado_asistencias)
+                estudiantes(i)
             i+=1
 
         if flag!=True:
@@ -94,7 +94,7 @@ def login():
                 if username==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
                     print("Ingreso correcto al apartado ADMIN")
                     flag = True
-                    profesores(encabezado_calificaciones, encabezado_asistencias)
+                    profesores()
                 j+=1
                 
         if flag==False: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
@@ -108,6 +108,7 @@ def login():
                 password=str (input("Ingresar contraseña de usuario: "))
             else:
                 print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
+
 def registro(lista):
     flag = 0
     while flag == 0:
@@ -126,7 +127,5 @@ def registro(lista):
             lista.append([us, pas])
             flag = 1
     return lista
-
-if __name__ == "__main__":
-    inicio()
+inicio()
 print(f"\nFin de proceso")
