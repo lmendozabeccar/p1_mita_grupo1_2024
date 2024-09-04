@@ -89,6 +89,7 @@ def login():
                 if user==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
                     print("Ingreso correcto al apartado profesor.")
                     flag = True
+                    main_1(encabezado_calificaciones, encabezado_asistencias)
                 j+=1
                 
         if flag==False: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.

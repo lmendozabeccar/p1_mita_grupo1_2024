@@ -1,4 +1,4 @@
-
+from main import profesores, estudiantes, encabezado_calificaciones
 print()
 #Alumnos ya registrados en el sistema.
 ingreso_sistemas = [
@@ -21,7 +21,7 @@ ingreso_profes = [
 
 
 #Se recortan los nombres de los productos a un máximo de 8 caracteres.
-productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes
+productos_recortados = [[mail[:10], contraseña[:10]] for mail, contraseña in ingreso_sistemas]#####Ver los recortes con expresiones regulares
 for mail, contraseña in ingreso_sistemas:
     print([mail[:10], contraseña[:10]])
 username = "Username"
@@ -85,6 +85,7 @@ def login():
             if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]:
                 print("Ingreso correcto a la aplicación.")
                 flag=True
+                estudiantes(i,encabezado_calificaciones, encabezado_asistencias)
             i+=1
 
         if flag!=True:
@@ -93,9 +94,7 @@ def login():
                 if username==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
                     print("Ingreso correcto al apartado ADMIN")
                     flag = True
-                    from main import main, encabezado_calificaciones, encabezado_asistencias
-                    main(encabezado_calificaciones, encabezado_asistencias)
-                    
+                    profesores(encabezado_calificaciones, encabezado_asistencias)
                 j+=1
                 
         if flag==False: #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
@@ -127,5 +126,7 @@ def registro(lista):
             lista.append([us, pas])
             flag = 1
     return lista
-inicio()
+
+if __name__ == "__main__":
+    inicio()
 print(f"\nFin de proceso")
