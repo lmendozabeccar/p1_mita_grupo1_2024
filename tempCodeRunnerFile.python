@@ -1,0 +1,21 @@
+import re
+cadena1 = "@uade.edu.ar"
+cadena2 = "@uade.edu.arrlucas"
+cadena3 = "l@uade.edu.arrar"
+cadena4 = "  lucas@uade.edu.ar  "
+cadena5 = "lu@uade.edu.ar"
+texto_buscar = "O"
+def mail_verification(mail):
+    return mail
+
+print(mail_verification(cadena1))
+#print(cadena4.split("@"))
+#print(re.findall(f"@uade.edu.ar$", cadena4))
+if re.findall(r"[a-z]{3,}@uade.edu.ar$", cadena5) != []:
+    print("Cadena chequeada")
+else:
+    print("Inchequeable")
+#print(re.findall(f"\S", cadena4))#\S --> Elimina espacios en blanco y devuelve lista (despues concatenar)
+#para el search:
+#.start
+#.end

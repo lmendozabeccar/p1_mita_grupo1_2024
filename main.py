@@ -1,9 +1,9 @@
 #######Acá se importarían los otros archivos de login y registro
 from random import randint
+#La primera variable de cada lista es el legajo
 encabezado_calificaciones = [
     ["Legajos", "Algebra", "Programación", "Análisis", "Sistemas", "Desarrollo web"]
 ]
-#La primera variable de cada lista es el legajo
 
 encabezado_asistencias = [
     ["Legajo", "Clase1", "Clase2", "Clase3", "Clase4", "Clase5", "Clase6", "Clase7", "Clase8"],
@@ -111,12 +111,12 @@ def main(encabezado_calificaciones, encabezado_asistencias):
         elif respuesta_prof == 5:
             flag_profes = False
     #### cambiar por módulos
-    legajo = 1028
-    ####
-    while flag_estudiantes == True:
+    '''legajo = 1028
+    ####No borrar
+    while flag_estudiantes == True:@
         respuesta_est = int(input("1 Ver tus calificaciones\n2 Ver tu promedio\n3 Ver promedio por materia\n4 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta_est == 1:
-            ver_calificacion(legajo, alumnos_calificaciones)
+            ver_calificacion(legajo, alumnos_calificaciones)'''
     
 main(encabezado_calificaciones, encabezado_asistencias)
 #Utilizar diccionarios para gestionar la información del alumno, tal como el nombre, apellido, carrera, email y otros datos
