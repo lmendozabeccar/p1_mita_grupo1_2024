@@ -1,5 +1,7 @@
-from main import profesores, encabezado_calificaciones
+
 print()
+print()
+print("Bienvenido a la aplicación.")
 import re
 #Alumnos ya registrados en el sistema.
 ingreso_sistemas = [
@@ -45,17 +47,21 @@ for email, contra in profesores:
 
 # Proceso Register
 
-def inicio():
+def menu_de_inicio():
     flag = True
     print(f"\n¡Bienvenidos a nuestra Gestion Academica!")
     while flag!=False:
         inicio=int(input("Quieres Iniciar sesion?\n1 Si\n2 No, deseo registrarme\n3 Salir \nElija un número: "))
+        while inicio<1 or inicio>3:
+            print()
+            print("Ingresar un número correcto para poder continuar.")
+            inicio=int(input("Quieres Iniciar sesion?\n1 Si\n2 No, deseo registrarme\n3 Salir \nElija un número: "))
         if inicio==1:
             login()
             flag = False
         elif inicio == 2:
             print("¡Registrate!")
-            registro(ingreso_sistemas)
+            registro(ingreso_sistemas,ingreso_profes)
             flag = False
             inicio_2=int(input("Quieres Iniciar sesion ahora?\n1 Si\n2 No\nElija un número: "))
             if inicio_2 == 1:
@@ -67,22 +73,34 @@ def inicio():
         elif inicio==3:
                 print("Saliendo..")
                 flag = False
-        
+
+#Validación del Mail.
+def validacionmail (mail):
+    patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"
+    busqarr = re.findall (patron, mail)
+    return busqarr
+  
 # Proceso de Log-in
 def login():
     #Verificar si la cuenta existe o no en el sistema
-    username=str(input("Por favor, ingresar su mail de usuario de alumno: "))  
+    username=str(input("Ingresar su mail de usuario de alumno: "))
     password=str (input("Ingresar contraseña de usuario: "))
     flag=False
     cont=0
-    flagwhile1=True
-    while flag==False and cont<5 and flagwhile1 ==True:
+
+    while flag==False and cont<5:
+        while validacionmail(username) == [] and cont<5:
+            print("Información incorrecta. Ingresar @sistem.edu.ar después de su nombre de usuario.")
+            cont += 1
+            username=str(input("Ingresar su mail de usuario: "))
+            password=str (input("Ingresar contraseña de usuario: "))           
         i=0
         while i<len(ingreso_sistemas) and flag!=True:
             if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]:
                 print("Ingreso correcto al apartado alumnos.")
                 flag=True
-                estudiantes(i)
+                """
+                estudiantes(i)"""
             i+=1
 
         if flag!=True:
@@ -104,31 +122,75 @@ def login():
                     username=str (input("Por favor, ingresar su mail de usuario de alumno: ")) 
                     password=str (input("Ingresar contraseña de usuario: "))
                 elif ini== 2:
-                    flagwhile1 = False
-                    inicio()
+                    menu_de_inicio()
             else:
                 print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
 
-def registro(lista):
-    flag = 0
-    while flag == 0:
-        flag_registro =True
-        user=str(input("ingresar su usuario nuevo, sin @sistem: "))
-        sis = "@sistem.edu.ar"
-        us = user + sis
-        for fil in lista:
-            if us == fil[0]:
-                print(us, fil[0])
-                flag_registro = False
+def registro(listaalumnos, listaprofesor):
+    flag = False
+    while flag == False:
+        flag_registro =True        
+        print()
+        inicio=int(input("Elija su opción correspondiente.\n1 Se quiere registrar como alumno.\n2 Se quiere registrar como profesor.\n3 Salir\nElija un número: "))
+        while inicio<1 or inicio>3:
+            print("Ingresar un número correcto para poder continuar con el registro.")
+        user=str(input("Ingresar su nombre de usuario nuevo: "))
+        while validacionmail(user) == []:
+            print("Información incorrecta. Ingresar @sistem.edu.ar después de su nombre de usuario.")
+            user=str(input("Ingresar su mail de usuario nuevo: "))
+        if inicio==1:
+            i=0
+            while i<len(listaalumnos) and flag_registro==True:
+                if user == listaalumnos[i][0]:
+                    flag_registro = False
+                i += 1
+            if flag_registro == False:
+                print("Ese usuario ya existe, intentelo de nuevo.")
+            else:
+                pas=str(input("Ingrese su contraseña: "))
+                nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
+                
+                #FALTA VALIDACIÓN DE ESTO.
+                while re.findall ("^[A-Z]", nom) == None:
+                    print("Iniciar su nombre y apellido con letras mayúsculas.")
+                
+                
+                listaalumnos.append([user, pas, nom])
+                flag = True
+
+        
+        if inicio==2:
+            i=0        
+            while i<len(listaprofesor) and flag_registro==True:                
+                if user == listaprofesor[i][0]:
+                    flag_registro = False
+                i += 1
+            if flag_registro == False:
+                print("Ese usuario ya existe, inténtelo de nuevo.")
+            else:
+                pas=str(input("Ingrese su contraseña: "))
+                listaprofesor.append([user, pas])
+                flag = True
+        
+        if inicio==3:
+            menu_de_inicio()
+            
         if flag_registro == False:
-            print("Ese usuario ya existe, intentelo de nuevo.")
-        else:
-            pas=str(input("Ingrese su contraseña: "))
-            lista.append([us, pas])
-            flag = 1
-    return lista
+            print()
+            ini=int(input("Elegir la opción que desee: \n1 Quiere volver a iniciar sesión. \n2 Quiere regresar al inicio \nElija un número: "))
+            while ini<1 or ini>2:
+                print("Ingresar una opción válida.")
+                ini=int(input("Elegir la opción que desee: \n1 Quiere volver a iniciar sesión. \n2 Quiere regresar al inicio \nElija un número: "))
+
+            if ini == 2:
+                menu_de_inicio ()                
+
+    return listaalumnos,listaprofesor
+            
+        
+    
 """
 if __name__ == "__main__":
 """
-inicio()
+menu_de_inicio()
 print(f"\nFin de proceso")
