@@ -1,4 +1,4 @@
-
+from main import profesores, estudiantes
 print()
 print()
 print("Bienvenido a la aplicación.")
@@ -44,7 +44,7 @@ print(f"|{profeuser:^10}| |{contraprofe:^10}|")
 print("-" * 26)
 for email, contra in profesores:
     print(f"|{email:^10}| |{contra:^10}|") ###APLICAR EXPRESIONES REGULARES 
-
+###HACER TODO CON FUNCIONES
 # Proceso Register
 
 def menu_de_inicio():
@@ -86,24 +86,23 @@ def login():
     username=str(input("Ingresar su mail de usuario de alumno: "))
     password=str (input("Ingresar contraseña de usuario: "))
     flag=False
-    cont=0
+    cont=0 #Intentos
 
     while flag==False and cont<5:
-        while validacionmail(username) == [] and cont<5:
+        while validacionmail(username) == [] and cont<5: #Se valida el mail
             print("Información incorrecta. Ingresar @sistem.edu.ar después de su nombre de usuario.")
             cont += 1
             username=str(input("Ingresar su mail de usuario: "))
             password=str (input("Ingresar contraseña de usuario: "))           
         i=0
         while i<len(ingreso_sistemas) and flag!=True:
-            if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]:
+            if username==ingreso_sistemas[i][0] and password==ingreso_sistemas[i][1]: #Verifica si el mail existe en la base de datos de alumnos
                 print("Ingreso correcto al apartado alumnos.")
                 flag=True
-                """
-                estudiantes(i)"""
+                estudiantes(i)
             i+=1
 
-        if flag!=True:
+        if flag!=True:##########################################
             j = 0
             while j<len(ingreso_profes):
                 if username==ingreso_profes[j][0] and password==ingreso_profes[j][1]:
@@ -132,23 +131,23 @@ def registro(listaalumnos, listaprofesor):
         flag_registro =True        
         print()
         inicio=int(input("Elija su opción correspondiente.\n1 Se quiere registrar como alumno.\n2 Se quiere registrar como profesor.\n3 Salir\nElija un número: "))
-        while inicio<1 or inicio>3:
-            print("Ingresar un número correcto para poder continuar con el registro.")
+        while inicio<1 or inicio>3: #En caso de que no se ingrese un número válido
+            print("Ingresar un número correcto para poder continuar con el registro.") 
         user=str(input("Ingresar su nombre de usuario nuevo: "))
         while validacionmail(user) == []:
             print("Información incorrecta. Ingresar @sistem.edu.ar después de su nombre de usuario.")
             user=str(input("Ingresar su mail de usuario nuevo: "))
-        if inicio==1:
+        if inicio==1: #Si se registra como alumno
             i=0
             while i<len(listaalumnos) and flag_registro==True:
-                if user == listaalumnos[i][0]:
+                if user == listaalumnos[i][0]: #Verifica si el usuario ya existe en la base de datos de alumnos
                     flag_registro = False
                 i += 1
             if flag_registro == False:
                 print("Ese usuario ya existe, intentelo de nuevo.")
             else:
+                nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))####### No hay un usuario (user)?
                 pas=str(input("Ingrese su contraseña: "))
-                nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
                 
                 #FALTA VALIDACIÓN DE ESTO.
                 while re.findall ("^[A-Z]", nom) == None:
@@ -156,13 +155,12 @@ def registro(listaalumnos, listaprofesor):
                 
                 
                 listaalumnos.append([user, pas, nom])
-                flag = True
-
-        
-        if inicio==2:
-            i=0        
+                flag = True        
+                
+        if inicio==2: #Si se registra como profesor
+            i=0 #Intentos
             while i<len(listaprofesor) and flag_registro==True:                
-                if user == listaprofesor[i][0]:
+                if user == listaprofesor[i][0]: #Verifica si el usuario ya existe en la base de datos de profesores
                     flag_registro = False
                 i += 1
             if flag_registro == False:
@@ -187,8 +185,6 @@ def registro(listaalumnos, listaprofesor):
 
     return listaalumnos,listaprofesor
             
-        
-    
 """
 if __name__ == "__main__":
 """

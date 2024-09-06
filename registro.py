@@ -57,3 +57,4 @@ for mail, contraseña in productos_recortados:
     print(f"|{mail:^10}| |{contraseña:^10}|")
 
 print()
+######################################## Hay que borrar este archivo?
