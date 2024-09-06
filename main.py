@@ -4,18 +4,18 @@ from random import randint
 encabezado_calificaciones = [
     ["Legajos", "Algebra", "Programación", "Análisis", "Sistemas", "Desarrollo web"]
 ]
-
-encabezado_asistencias = [
-    ["Legajo", "Clase1", "Clase2", "Clase3", "Clase4", "Clase5", "Clase6", "Clase7", "Clase8"],
-]
-# Presente = 1, Ausente = 0
+#La primera variable de cada lista es el legajo
 def aleatorio():
     return randint(1, 10)
 
 def llenar_matriz(lista):
-    for i in range(31): #######Simplificar
+    for i in range(10): #######Simplificar
         lista.append([1000+i, aleatorio(), aleatorio(), aleatorio(), aleatorio(), aleatorio()])
     return lista
+
+def devolver_matriz():
+    alumnos_calificaciones = llenar_matriz(encabezado_calificaciones) ##Se genera la matriz y la devuelve
+    return alumnos_calificaciones
 
 def agregar_alumno(lista):
     flag_while_1 = True
@@ -35,8 +35,7 @@ def agregar_alumno(lista):
 def mostrar_calificacion(lista):
     for legajo, algebra, programacion, analisis, sistemas, desarrollo in lista:
         print(f"|{legajo:^8}|{algebra:^12}|{programacion:^12}|{analisis:^8}|{sistemas:^8}|{desarrollo:^14}|")
-
-    return main(encabezado_calificaciones, encabezado_asistencias)
+    return 1
     
 def actualizar_alumno(lista):
     flag = True
@@ -86,15 +85,19 @@ def ver_calificacion(legajo, lista):
     lista_copy = lista[:] #Creo la copia de la lista para no afectar al original
     fila = lista_copy[posicion[0]]
     fila.remove(legajo) #Elimino el legajo en la lista para poder sacar el promedio de la fila (las materias)
-    promedio = sum(fila) / 54
+    promedio = sum(fila) / 5
     print(lista)
-    print(f"|{"legajo":^8}|{"algebra":^12}|{"programacion":^12}|{"analisis":^8}|{"sistemas":^8}|{"desarrollo":^14}|")
+    print(f'|{"legajo":^8}|{"algebra":^12}|{"programacion":^12}|{"analisis":^8}|{"sistemas":^8}|{"desarrollo":^14}|')
     print(f"|{legajo:^8}|{lista_copy[posicion[0]][0]:^12}|{lista_copy[posicion[0]][1]:^12}|{lista_copy[posicion[0]][2]:^8}|{lista_copy[posicion[0]][3]:^8}|{lista_copy[posicion[0]][4]:^14}|")
     print(f"Promedio = {promedio:.2f}") ##Limitar el promedio hasta dos decimales
     return lista
-
-def main(encabezado_calificaciones, encabezado_asistencias):
-    alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
+'''
+def ver_materias(lista):
+    algebra = (for fila in lista) #####################HACER
+    return 0
+'''
+def profesores():
+    alumnos_calificaciones = devolver_matriz()
     flag_profes = True
     flag_estudiantes = True
     while flag_profes == True:
@@ -110,15 +113,21 @@ def main(encabezado_calificaciones, encabezado_asistencias):
             alumnos_calificaciones = eliminar_alumno(alumnos_calificaciones)
         elif respuesta_prof == 5:
             flag_profes = False
-    #### cambiar por módulos
-    '''legajo = 1028
-    ####No borrar
-    while flag_estudiantes == True:@
-        respuesta_est = int(input("1 Ver tus calificaciones\n2 Ver tu promedio\n3 Ver promedio por materia\n4 Finalizar\nIngrese el numero para la operación que desee: "))
+            print("Saliendo..")
+
+def estudiantes(posicion):
+    alumnos_calificaciones = devolver_matriz()
+    legajo = alumnos_calificaciones[posicion][0]
+    while flag_estudiantes == True:
+        respuesta_est = int(input("1 Ver tus calificaciones y el promedio\n2 Ver promedio por materia\n3 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta_est == 1:
-            ver_calificacion(legajo, alumnos_calificaciones)'''
-    
-main(encabezado_calificaciones, encabezado_asistencias)
+            ver_calificacion(legajo, alumnos_calificaciones)
+        elif respuesta_est == 2:
+            ver_materias(alumnos_calificaciones)
+        elif respuesta_est == 3:
+            flag_estudiantes = False
+            print("Saliendo..")
+profesores()
 #Utilizar diccionarios para gestionar la información del alumno, tal como el nombre, apellido, carrera, email y otros datos
 ####Funcion exclusiva para verificar variable un una lista
 
