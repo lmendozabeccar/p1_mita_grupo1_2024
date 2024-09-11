@@ -1,18 +1,19 @@
 from main import profesores, estudiantes
 from Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
 import re
+print()
 #Alumnos ya registrados en el sistema.
 ingreso_alumnos = [
-    ["1000","nicovera@sistem.edu.ar","nicovera01","Nicolas Vera"],
-    ["1001","tomiweins@sistem.edu.ar","tomiweins01","Tomas Weinstelbaum"],
-    ["1002","santimatra@sistem.edu.ar","santimatra01","Santino Matra"],
-    ["1003","lucasmendo@sistem.edu.ar","lucasmendo01","Lucas Mendoza"],
-    ["1004","silvifalcon@sistem.edu.ar","silvifalcon01","Silvina Falcon"],
-    ["1005","alevera@sistem.edu.ar","alevera01","Alejandro Vera"],
-    ["1006","malecristaldi@sistem.edu.ar","malecristaldi01","Malena Cristaldi"],
-    ["1007","lucaspagli@sistem.edu.ar","lucaspagli01","Lucas Paglilla "],
-    ["1008","fabrisuccar@sistem.edu.ar","fabrisuccar01","Fabricio Succar"],
-    ["1009","lautipadin@sistem.edu.ar","lautipadin01","Lautaro Padin"]
+    ["1000","nicovera@sistem.edu.ar","nicovera01","Vera Alejandro"],
+    ["1001","tomiweins@sistem.edu.ar","tomiweins01","Weinstelbaum Tomás"],
+    ["1002","santimatra@sistem.edu.ar","santimatra01","Matra Santino"],
+    ["1003","lucasmendo@sistem.edu.ar","lucasmendo01","Mendoza Lucas"],
+    ["1004","silvifalcon@sistem.edu.ar","silvifalcon01","Falcón Silvina"],
+    ["1005","alevera@sistem.edu.ar","alevera01","Vera Alejandro"],
+    ["1006","malecristaldi@sistem.edu.ar","malecristaldi01","Cristaldi Malena"],
+    ["1007","lucaspagli@sistem.edu.ar","lucaspagli01","Paglilla Lucas"],
+    ["1008","fabrisuccar@sistem.edu.ar","fabrisuccar01","Succar Fabricio"],
+    ["1009","lautipadin@sistem.edu.ar","lautipadin01","Padin Lautaro"]
                                 ]
 ingreso_profes = [
     ["pepi@sistem.edu.ar", "pepito10"],
@@ -20,18 +21,21 @@ ingreso_profes = [
     ["uade@sistem.edu.ar",   "uade24"]
 ]
 #Se recortan los nombres de los productos a un máximo de 8 caracteres.
-productos_recortados = [[legajo[:6], mail[:10], contraseña[:10], nombre[:15]] for legajo, mail, contraseña,nombre in ingreso_alumnos]
+estudiantes_recortados = [[legajo[:6], mail[:10], contraseña[:10], nombre[:15]] for legajo, mail, contraseña,nombre in ingreso_alumnos]
 
 username = "Username"
 passw = "Password"
 nombre = "Nombre"
 legajo = "Legajo"
-# Imprimir la lista con formato de f-strings
-print(f"|{legajo:^6}||{username:^10}| |{passw:^10}| |{nombre:^15}|")
-print("*" * 44)
+# Lista ordenada por legajo (nombre) y luego por legajo (ascendente)
+estudiantes_ordenados = sorted(estudiantes_recortados, key=lambda x: (x[3], int(x[0])))
 
-for legajo, mail, contraseña, nombre in productos_recortados:
-    print(f"|{legajo:^10}| |{mail:^10}| |{contraseña:^10}| |{nombre:^15}|")
+# Imprimir la lista con formato de f-strings
+print(f"|{legajo:^10}||{username:^10}||{passw:^10}||{nombre:^15}|")
+print("*" * 53)
+
+for legajo, mail, contraseña, nombre in estudiantes_ordenados:
+    print(f"|{legajo:^10}||{mail:^10}||{contraseña:^10}||{nombre:^15}|")
 print()
 
 profeuser = "User-Prof"
