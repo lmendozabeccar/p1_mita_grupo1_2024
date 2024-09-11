@@ -1,104 +1,7 @@
-#######Acá se importarían los otros archivos de login y registro
-from random import randint
-encabezado_calificaciones = [
-    ["Legajos", "Algebra", "Programación", "Análisis", "Sistemas", "Desarrollo web"]
-]
-#La primera variable de cada lista es el legajo
-def aleatorio():
-    return randint(1, 10)
-
-def llenar_matriz(lista):
-    for i in range(10): #######Simplificar
-        lista.append([1000+i, aleatorio(), aleatorio(), aleatorio(), aleatorio(), aleatorio()])
-    return lista
-
-def devolver_matriz():
-    alumnos_calificaciones = llenar_matriz(encabezado_calificaciones) ##Se genera la matriz y la devuelve
-    return alumnos_calificaciones
-
-def agregar_alumno(lista):
-    flag_while_1 = True
-    while flag_while_1 == True: #Esto es solo para verificar si el legajo existe
-        legajo_nuevo = lista[-1][0] + 1
-        algebra =int(input("Ingrese la nueva nota de algebra: "))
-        programacion =int(input("Ingrese la nueva nota de Programacion: "))
-        analisis =int(input("Ingrese la nueva nota de analisis: "))
-        sistemas =int(input("Ingrese la nueva nota de sistemas: "))
-        desarrolloweb =int(input("Ingrese la nueva nota de desarrolloweb: "))
-        lista.append([legajo_nuevo,algebra,programacion,analisis,sistemas,desarrolloweb])
-        respuesta = int(input("Quiere agregar otro legajo?\n1 Si\n2 No\nElija un número: "))
-        if respuesta == 2:
-            flag_while_1 = False
-    return lista
-
-def mostrar_calificacion(lista):
-    for legajo, algebra, programacion, analisis, sistemas, desarrollo in lista:
-        print(f"|{legajo:^8}|{algebra:^12}|{programacion:^12}|{analisis:^8}|{sistemas:^8}|{desarrollo:^14}|")
-    return 1
-    
-def actualizar_alumno(lista):
-    flag = True
-    while flag == True:
-        flag_for = False
-        posicion = 0
-        legajo_actualizar = int(input("Ingrese el legajo que quiere actualizar: "))
-        for i in range(len(lista)):
-            if lista[i][0] == legajo_actualizar:
-                posicion = i
-                flag_for = True
-        if flag_for == True:
-            print("-"*26)
-            print(lista[posicion])
-            print("-"*26)
-            algebra =int(input("Ingrese la nueva nota de algebra: "))
-            programacion =int(input("Ingrese la nueva nota de Programacion: "))
-            analisis =int(input("Ingrese la nueva nota de analisis: "))
-            sistemas =int(input("Ingrese la nueva nota de sistemas: "))
-            desarrolloweb =int(input("Ingrese la nueva nota de desarrolloweb: "))
-            lista[posicion] = [legajo_actualizar, algebra, programacion, analisis, sistemas, desarrolloweb]
-            print("Legajo actualizado")
-            print("-"*26)
-        respuesta = int(input("Quiere actualizar otro legajo?\n1 Si\n2 No\nElija un número: "))
-        if respuesta == 2:
-            flag = False
-    return lista
-
-def eliminar_alumno(lista):
-    flag = True
-    while flag == True:
-        legajo_eliminar = int(input("Ingrese el legajo que quiere eliminar: "))
-        flag_for = [True for fila in lista if legajo_eliminar in fila]
-        if flag_for: ###si el flag existe
-            for i in range(0, len(lista)):
-                if legajo_eliminar == lista[i][0]:
-                    lista.pop(i)
-                    print("Legajo correctamente eliminado")
-                    print("-"*26)############################
-            respuesta = int(input("Quiere eliminar otro legajo?\n1 Si\n2 No\nElija un número: "))
-            if respuesta == 2:
-                flag = False
-    return lista
-
-def ver_calificacion(legajo, lista):
-    posicion = [i for i in range(len(lista)) if lista[i][0] == legajo]#Me devuelve la posición (en una lista)
-    lista_copy = lista[:] #Creo la copia de la lista para no afectar al original
-    fila = lista_copy[posicion[0]]
-    fila.remove(legajo) #Elimino el legajo en la lista para poder sacar el promedio de la fila (las materias)
-    promedio = sum(fila) / 5
-    print(lista)
-    print(f'|{"legajo":^8}|{"algebra":^12}|{"programacion":^12}|{"analisis":^8}|{"sistemas":^8}|{"desarrollo":^14}|')
-    print(f"|{legajo:^8}|{lista_copy[posicion[0]][0]:^12}|{lista_copy[posicion[0]][1]:^12}|{lista_copy[posicion[0]][2]:^8}|{lista_copy[posicion[0]][3]:^8}|{lista_copy[posicion[0]][4]:^14}|")
-    print(f"Promedio = {promedio:.2f}") ##Limitar el promedio hasta dos decimales
-    return lista
-
-def ver_materias(lista):
-    algebra = (for fila in lista) #####################HACER
-    return 0
-
+from crud_promedios import encabezado_calificaciones, aleatorio, seguir, posicion, mostrar_calificacion, promedio_materia, llenar_matriz, ingreso_notas, agregar_alumno, actualizar_alumno, eliminar_alumno, ver_calificacion, ver_materias
 def profesores():
-    alumnos_calificaciones = devolver_matriz()
+    alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
     flag_profes = True
-    flag_estudiantes = True
     while flag_profes == True:
         print("-"*26)
         respuesta_prof = int(input("1 Agregar alumno\n2 Mostrar calificaciones\n3 Modificar alumno\n4 Eliminar alumno\n5 Finalizar\nIngrese el numero para la operación que desee: "))
@@ -114,9 +17,10 @@ def profesores():
             flag_profes = False
             print("Saliendo..")
 
-def estudiantes(posicion):
-    alumnos_calificaciones = devolver_matriz()
+def estudiantes(posicion = 7):
+    alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
     legajo = alumnos_calificaciones[posicion][0]
+    flag_estudiantes = True
     while flag_estudiantes == True:
         respuesta_est = int(input("1 Ver tus calificaciones y el promedio\n2 Ver promedio por materia\n3 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta_est == 1:
@@ -126,8 +30,6 @@ def estudiantes(posicion):
         elif respuesta_est == 3:
             flag_estudiantes = False
             print("Saliendo..")
-
-profesores()
+#estudiantes()
 #Utilizar diccionarios para gestionar la información del alumno, tal como el nombre, apellido, carrera, email y otros datos
 ####Funcion exclusiva para verificar variable un una lista
-
