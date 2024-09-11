@@ -2,16 +2,16 @@ from main import profesores, estudiantes
 import re
 #Alumnos ya registrados en el sistema.
 ingreso_alumnos = [
-    ["nicovera@sistem.edu.ar","nicovera01","Nicolas Vera"],
-    ["tomiweins@sistem.edu.ar","tomiweins01","Tomas Weinstelbaum"],
-    ["santimatra@sistem.edu.ar","santimatra01","Santino Matra"],
-    ["lucasmendo@sistem.edu.ar","lucasmendo01","Lucas Mendoza"],
-    ["silvifalcon@sistem.edu.ar","silvifalcon01","Silvina Falcon"],
-    ["alevera@sistem.edu.ar","alevera01","Alejandro Vera"],
-    ["malecristaldi@sistem.edu.ar","malecristaldi01","Malena Cristaldi"],
-    ["lucaspagli@sistem.edu.ar","lucaspagli01","Lucas Paglilla "],
-    ["fabrisuccar@sistem.edu.ar","fabrisuccar01","Fabricio Succar"],
-    ["lautipadin@sistem.edu.ar","lautipadin01","Lautaro Padin"]
+    ["1000","nicovera@sistem.edu.ar","nicovera01","Nicolas Vera"],
+    ["1001","tomiweins@sistem.edu.ar","tomiweins01","Tomas Weinstelbaum"],
+    ["1002","santimatra@sistem.edu.ar","santimatra01","Santino Matra"],
+    ["1003","lucasmendo@sistem.edu.ar","lucasmendo01","Lucas Mendoza"],
+    ["1004","silvifalcon@sistem.edu.ar","silvifalcon01","Silvina Falcon"],
+    ["1005","alevera@sistem.edu.ar","alevera01","Alejandro Vera"],
+    ["1006","malecristaldi@sistem.edu.ar","malecristaldi01","Malena Cristaldi"],
+    ["1007","lucaspagli@sistem.edu.ar","lucaspagli01","Lucas Paglilla "],
+    ["1008","fabrisuccar@sistem.edu.ar","fabrisuccar01","Fabricio Succar"],
+    ["1009","lautipadin@sistem.edu.ar","lautipadin01","Lautaro Padin"]
                                 ]
 ingreso_profes = [
     ["pepi@sistem.edu.ar", "pepito10"],
@@ -19,17 +19,18 @@ ingreso_profes = [
     ["uade@sistem.edu.ar",   "uade24"]
 ]
 #Se recortan los nombres de los productos a un máximo de 8 caracteres.
-productos_recortados = [[mail[:10], contraseña[:10], nombre[:15]] for mail, contraseña,nombre in ingreso_alumnos]#####Ver los recortes con expresiones regulares
+productos_recortados = [[legajo[:6], mail[:10], contraseña[:10], nombre[:15]] for legajo, mail, contraseña,nombre in ingreso_alumnos]
 
 username = "Username"
 passw = "Password"
 nombre = "Nombre"
+legajo = "Legajo"
 # Imprimir la lista con formato de f-strings
-print(f"|{username:^10}| |{passw:^10}| |{nombre:^15}|")
+print(f"|{legajo:^6}||{username:^10}| |{passw:^10}| |{nombre:^15}|")
 print("*" * 44)
 
-for mail, contraseña, nombre in productos_recortados:
-    print(f"|{mail:^10}| |{contraseña:^10}| |{nombre:^15}|")
+for legajo, mail, contraseña, nombre in productos_recortados:
+    print(f"|{legajo:^10}| |{mail:^10}| |{contraseña:^10}| |{nombre:^15}|")
 print()
 
 profeuser = "User-Prof"
@@ -56,7 +57,6 @@ def validacion_3dig (texto):
     while re.match(patron,texto) == None:
         print("Por favor, ingresar un numero válido.")
         return False
-
 #Validación del Mail.
 def validacionmail (mail):
     patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"
@@ -97,20 +97,26 @@ def cuenta_existente_register (listaalumnos,listaprofes,usuario):
         if  usuario==listaprofes[j][0]:
             print("Usuario ya existente.")
             return False
-        j += 1
+        j += 1        
 #Verificar mayúsculas correspondientes a la hora de ingresar nombre (registro). FALTA
 def validar_mayus_nombre (nombre):
-    patron = "[]]"
+    patron = "^[A-Z][a-z]*\\s[A-Z][a-z]*$"
     busqueda = re.findall (patron,nombre)
     if busqueda == []:
         print("Ingresar mayúsculas al comienzo del nombre y del apellido.")
         return False
 #Verificar que la contraseña cumpla con requisitos. FALTA
 def validar_contraseña (contra):
-    patron = ""
-    busqueda = re.findall (patron,contra)
-    if busqueda == []:
-        print("Su contraseña no pudo ser validada. Por favor ingresar al menos una mayúscula, una minúscula, un caractér especial)")
+    if len(contra)<8:
+        print("Contraseña inválida, por favor ingresar al menos 8 caracteres.")
+        return False
+    if re.findall ("\\s",contra) != []:
+        print("Por favor, no ingresar espacios en blanco a la hora de ingresar su contraseña.")
+        return False        
+    if re.findall ("[A-Z]+[a-z]+[0-9]+",contra) == []:
+        print("Su contraseña no pudo ser validada. Por favor ingresar al menos una mayúscula, una minúscula y un número.)")
+        return False
+    return True
 #Menú de inicio.
 def menu_de_inicio():
     flag = True
@@ -125,8 +131,7 @@ def menu_de_inicio():
             print()
             inicio=input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
             while validar_num(inicio) == False:
-                inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
-                                
+                inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")                                
         if int (inicio)==1:
             login()
             flag = False
@@ -144,7 +149,6 @@ def menu_de_inicio():
                 inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
                 while validar_num (inicio_2) == False:
                     inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
-
             if  int (inicio_2) == 1:
                 login()
                 flag = False
@@ -154,9 +158,7 @@ def menu_de_inicio():
         else:
             print("Saliendo..")
             flag = False
-
-# Proceso de Log-in
-def login():
+def login():   # Proceso de Log-in
     usuario,contra = user()
     flag=False
     cont=0 #Intentos
@@ -177,8 +179,7 @@ def login():
                 print()
                 print("No se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.")
                 print()
-                inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
-
+                inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))                
                 #Validación de letra.
                 while validar_num(inicio_login) == False:
                     inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
@@ -187,22 +188,18 @@ def login():
                     print()
                     inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
                     while validar_num (inicio_login) == False:
-                        inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
-                
+                        inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))                
                 if int (inicio_login) == 1:
                     usuario,contra = user()
                 elif int (inicio_login) == 2:
                     menu_de_inicio()
             else:
                 print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
-
 def registro(listaalumnos, listaprofesor):
     flag = False
     while flag == False:
-        flag_registro =True        
         print()
         inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
-
         #Validación de letra.
         while validar_num(inicio_registro) == False:
             inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
@@ -211,44 +208,35 @@ def registro(listaalumnos, listaprofesor):
             print()
             inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
             while validar_num (inicio_registro) == False:
-                inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
-        
+                inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))        
         if int(inicio_registro) ==3:
                 menu_de_inicio()
-        
         #Validación Mail.
-        user=str(input("Ingresar su nombre de usuario nuevo: "))
+        user=str(input("Ingresar su mail de usuario nuevo: "))
         while validacionmail(user) == False:
-            user=str(input("Ingresar su mail de usuario nuevo: "))
-                
+            user=str(input("Ingresar su mail de usuario nuevo: "))                
         if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False:
             if int (inicio_registro)==1: #Si se registra como alumno
                 nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
                 while validar_mayus_nombre(nom) == False: 
                     print()
                     nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
-
                 pas=str(input("Ingrese su contraseña: "))        
                 while validar_contraseña (pas) == False:
                     print()
                     pas=str(input("Ingrese su contraseña: "))                            
-
                 listaalumnos.append([user, pas, nom])
-                flag = True        
-                
+                flag = True                        
             if int (inicio_registro)==2: #Si se registra como profesor
                 pas=str(input("Ingrese su contraseña: "))
                 while validar_contraseña (pas) == False:
                     print()
                     pas=str(input("Ingrese su contraseña: "))                            
-
                 listaprofesor.append([user, pas])
-                flag = True
-                    
+                flag = True                    
         else: #En caso de usuario ya existente.
             print()
             inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
-
             #Validación de letra.
             while validar_num(inicio_usuario_exist) == False:
                 inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
@@ -258,14 +246,8 @@ def registro(listaalumnos, listaprofesor):
                 inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
                 while validar_num (inicio_usuario_exist) == False:
                     inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
-
             if int(inicio_usuario_exist) == 2:
                 menu_de_inicio ()                
-
-    return listaalumnos,listaprofesor
-            
-"""
-if __name__ == "__main__":
-"""
+    return listaalumnos,listaprofesor            
 menu_de_inicio()
 print(f"\nFin de proceso")
