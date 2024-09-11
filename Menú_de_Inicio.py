@@ -1,23 +1,8 @@
-from main import estudiantes
-from main import profesores #No funciona con un solo import :(
 from main import profesores, estudiantes
 from Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
 import re
 print()
 #Alumnos ya registrados en el sistema.
-ingreso_alumnos = [
-    ["nicovera@sistem.edu.ar","nicovera01","Nicolas Vera"],
-    ["tomiweins@sistem.edu.ar","tomiweins01","Tomas Weinstelbaum"],
-    ["santimatra@sistem.edu.ar","santimatra01","Santino Matra"],
-    ["lucasmendo@sistem.edu.ar","lucasmendo01","Lucas Mendoza"],
-    ["silvifalcon@sistem.edu.ar","silvifalcon01","Silvina Falcon"],
-    ["alevera@sistem.edu.ar","alevera01","Alejandro Vera"],
-    ["malecristaldi@sistem.edu.ar","malecristaldi01","Malena Cristaldi"],
-    ["lucaspagli@sistem.edu.ar","lucaspagli01","Lucas Paglilla "],
-    ["fabrisuccar@sistem.edu.ar","fabrisuccar01","Fabricio Succar"],
-    ["lautipadin@sistem.edu.ar","lautipadin01","Lautaro Padin"]
-    ]
-ingreso_profes = [
 ingreso_alumnos = [   #Lista de alumnos ya ingresados.
     ["1000","nicovera@sistem.edu.ar","nicovera01","Vera Alejandro"],
     ["1001","tomiweins@sistem.edu.ar","tomiweins01","Weinstelbaum Tomás"],
@@ -57,25 +42,9 @@ print()
 print("Lista de profesores ya registrados en el sistema.")
 profeuser = "User-Prof"
 contraprofe = "Contraseña"
-profesor = [[email[:10], contra[:10]] for email, contra in ingreso_profes]
-print(f"|{profeuser:^10}| |{contraprofe:^10}|")
 profesores = [[email[:10], contra[:10]] for email, contra in ingreso_profes]  #Recortar.
 print(f"|{profeuser:^10}| |{contraprofe:^10}|")   # Mostrar encabezados, con reestricciones.
 print("-" * 26)
-for email, contra in profesor:
-    print(f"|{email:^10}| |{contra:^10}|") ###APLICAR EXPRESIONES REGULARES 
-
-#Validacion letras.
-def validar_num (car):    
-    return car.isnumeric() 
-  
-#Validación del Mail.
-def validacionmail (mail):
-    patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"
-    busqarr = re.findall (patron, mail)
-    if busqarr == []:
-        print("Ingresar @sistem.edu.ar junto con el nombre de usuario.")
-        return False
 for email, contra in profesores:
     print(f"|{email:^10}| |{contra:^10}|") # Mostrar información, con reestricciones.
 
@@ -122,12 +91,6 @@ def menu_de_inicio():
             elif  int (inicio_2)==2: #Se sale del programa.
                 print("Saliendo..")
                 flag = False
-        elif int(inicio) == 3:
-            print("Saliendo..")
-            flag = False
-# Proceso de Log-in
-def login():
-    usuario,contra = user()
         else:
             print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
             flag = False
@@ -143,11 +106,9 @@ def login():
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
             estudiantes(apart)
-        elif num == 2:
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
             profesores()
-            flag = True
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:

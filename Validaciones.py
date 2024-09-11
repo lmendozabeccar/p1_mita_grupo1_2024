@@ -47,7 +47,7 @@ def cuenta_existente_login (list_alumnos,list_profesores,user,contraseña):
     i=0
     a=0
     while i<len(list_alumnos):
-        if user==list_alumnos[i][0] and contraseña==list_alumnos[i][1]: 
+        if user==list_alumnos[i][1] and contraseña==list_alumnos[i][2]: 
             print("Ingreso correcto al apartado alumnos.")
             return 1,i
         i+=1
