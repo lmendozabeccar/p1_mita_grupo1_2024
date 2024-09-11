@@ -122,4 +122,9 @@ print(producto) (Salida: 24)
 ###Modularizar con archivos
 En el otro archivo, import nombre_de_archivo (solo el nombre)
 Una vez importado se puede usar, por ejemplo: nombre_de_archivo.suma() 
+
+#####DICCIONARIOS
+for key in diccionario:
+    print(f'{key}: {diccionario[key]}') --> recorrer un diccionario
+
 '''

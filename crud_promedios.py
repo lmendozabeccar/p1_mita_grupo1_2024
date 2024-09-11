@@ -16,7 +16,7 @@ posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] ==
 mostrar_calificacion = lambda lista: [print(f"|{legajo:^8}|{algebra:^12}|{programacion:^12}|{analisis:^8}|{sistemas:^8}|{desarrollo:^14}|") for legajo, algebra, programacion, analisis, sistemas, desarrollo in lista] 
 #Uso de corchetes solo para el print
 
-promedio_materia = lambda indice, lista: (sum(fila[indice] for fila in lista[1:]) / len(lista)) #lista[1:] --> Se necesita que el bucle "for" saltee el encabezado para calcular bien el promedio
+promedio_materia = lambda indice, lista: (sum(fila[indice] for fila in lista[1:-1]) / len(lista)) #lista[1:] --> Se necesita que el bucle "for" saltee el encabezado para calcular bien el promedio
 #La lista por comprensión devuelve un objeto (una lista). sum() va a sumar la lista, y luego es dividido por la cantidad de registros
 
 def llenar_matriz(lista):
