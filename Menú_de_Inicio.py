@@ -1,4 +1,5 @@
-from main import profesores, estudiantes
+from main import estudiantes
+from main import profesores #No funciona con un solo import :(
 import re
 #Alumnos ya registrados en el sistema.
 ingreso_alumnos = [
@@ -12,7 +13,7 @@ ingreso_alumnos = [
     ["lucaspagli@sistem.edu.ar","lucaspagli01","Lucas Paglilla "],
     ["fabrisuccar@sistem.edu.ar","fabrisuccar01","Fabricio Succar"],
     ["lautipadin@sistem.edu.ar","lautipadin01","Lautaro Padin"]
-                                ]
+    ]
 ingreso_profes = [
     ["pepi@sistem.edu.ar", "pepito10"],
     ["profe@sistem.edu.ar", "profeuade"],
@@ -34,15 +35,16 @@ print()
 
 profeuser = "User-Prof"
 contraprofe = "Contraseña"
-profesores = [[email[:10], contra[:10]] for email, contra in ingreso_profes]
+profesor = [[email[:10], contra[:10]] for email, contra in ingreso_profes]
 print(f"|{profeuser:^10}| |{contraprofe:^10}|")
 print("-" * 26)
-for email, contra in profesores:
+for email, contra in profesor:
     print(f"|{email:^10}| |{contra:^10}|") ###APLICAR EXPRESIONES REGULARES 
 
 #Validacion letras.
 def validar_num (car):    
-    return car.isnumeric()      
+    return car.isnumeric() 
+  
 #Validación del Mail.
 def validacionmail (mail):
     patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"
@@ -141,7 +143,9 @@ def menu_de_inicio():
             elif  int (inicio_2)==2:
                 print("Saliendo..")
                 flag = False
-  
+        elif int(inicio) == 3:
+            print("Saliendo..")
+            flag = False
 # Proceso de Log-in
 def login():
     usuario,contra = user()
@@ -156,8 +160,8 @@ def login():
             flag=True
             estudiantes(apart)
         elif num == 2:
-            flag = True
             profesores()
+            flag = True
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:

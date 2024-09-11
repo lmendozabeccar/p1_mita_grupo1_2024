@@ -20,7 +20,7 @@ promedio_materia = lambda indice, lista: (sum(fila[indice] for fila in lista[1:]
 #La lista por comprensión devuelve un objeto (una lista). sum() va a sumar la lista, y luego es dividido por la cantidad de registros
 
 def llenar_matriz(lista):
-    for i in range(9):
+    for i in range(10):
         lista.append([1000+i, aleatorio(), aleatorio(), aleatorio(), aleatorio(), aleatorio()])
     return lista
 
