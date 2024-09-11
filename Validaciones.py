@@ -1,12 +1,13 @@
 import re
-#Verificar mayúsculas correspondientes a la hora de ingresar nombre (registro). FALTA
+#Verificar mayúsculas correspondientes a la hora de ingresar nombre (registro). 
 def validar_mayus_nombre (nombre):
-    patron = "^[A-Z][a-z]*\\s[A-Z][a-z]*$"
-    busqueda = re.findall (patron,nombre)
-    if busqueda == []:
+    if re.findall ("[0-9]+",nombre) != []:
+        print("Por favor, no ingresar números en su nombre y apellido.") 
+        return False
+    if re.findall ("^[A-Z][a-z]*\\s[A-Z][a-z]*$",nombre) == []:
         print("Ingresar mayúsculas al comienzo del nombre y del apellido.")
         return False
-#Verificar que la contraseña cumpla con requisitos. FALTA
+#Verificar que la contraseña cumpla con requisitos. 
 def validar_contraseña (contra):
     if len(contra)<8:
         print("Contraseña inválida, por favor ingresar al menos 8 caracteres.")

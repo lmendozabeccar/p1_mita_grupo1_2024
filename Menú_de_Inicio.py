@@ -3,7 +3,7 @@ from Validaciones import validacion_2dig, validacion_3dig, validacionmail, valid
 import re
 print()
 #Alumnos ya registrados en el sistema.
-ingreso_alumnos = [
+ingreso_alumnos = [   #Lista de alumnos ya ingresados.
     ["1000","nicovera@sistem.edu.ar","nicovera01","Vera Alejandro"],
     ["1001","tomiweins@sistem.edu.ar","tomiweins01","Weinstelbaum Tomás"],
     ["1002","santimatra@sistem.edu.ar","santimatra01","Matra Santino"],
@@ -15,7 +15,7 @@ ingreso_alumnos = [
     ["1008","fabrisuccar@sistem.edu.ar","fabrisuccar01","Succar Fabricio"],
     ["1009","lautipadin@sistem.edu.ar","lautipadin01","Padin Lautaro"]
                                 ]
-ingreso_profes = [
+ingreso_profes = [ #Lista de profesores ya ingresados.
     ["pepi@sistem.edu.ar", "pepito10"],
     ["profe@sistem.edu.ar", "profeuade"],
     ["uade@sistem.edu.ar",   "uade24"]
@@ -23,28 +23,30 @@ ingreso_profes = [
 #Se recortan los nombres de los productos a un máximo de 8 caracteres.
 estudiantes_recortados = [[legajo[:6], mail[:10], contraseña[:10], nombre[:15]] for legajo, mail, contraseña,nombre in ingreso_alumnos]
 
+#Asignación para poder mostrar las listas con encabezados.
 username = "Username"
 passw = "Password"
 nombre = "Nombre"
 legajo = "Legajo"
-# Lista ordenada por legajo (nombre) y luego por legajo (ascendente)
+# Lista ordenada por nombre (alfabeticamente) y luego por legajo (ascendente).
 estudiantes_ordenados = sorted(estudiantes_recortados, key=lambda x: (x[3], int(x[0])))
 
 # Imprimir la lista con formato de f-strings
-print(f"|{legajo:^10}||{username:^10}||{passw:^10}||{nombre:^15}|")
+print("Lista de alumnos ya registrados en el sistema.")
+print(f"|{legajo:^10}||{username:^10}||{passw:^10}||{nombre:^15}|") #Mostrar encabezados, con reestricciones.
 print("*" * 53)
-
 for legajo, mail, contraseña, nombre in estudiantes_ordenados:
-    print(f"|{legajo:^10}||{mail:^10}||{contraseña:^10}||{nombre:^15}|")
+    print(f"|{legajo:^10}||{mail:^10}||{contraseña:^10}||{nombre:^15}|") #Mostrar información, con reestricciones.
 print()
 
+print("Lista de profesores ya registrados en el sistema.")
 profeuser = "User-Prof"
 contraprofe = "Contraseña"
-profesores = [[email[:10], contra[:10]] for email, contra in ingreso_profes]
-print(f"|{profeuser:^10}| |{contraprofe:^10}|")
+profesores = [[email[:10], contra[:10]] for email, contra in ingreso_profes]  #Recortar.
+print(f"|{profeuser:^10}| |{contraprofe:^10}|")   # Mostrar encabezados, con reestricciones.
 print("-" * 26)
 for email, contra in profesores:
-    print(f"|{email:^10}| |{contra:^10}|") ###APLICAR EXPRESIONES REGULARES 
+    print(f"|{email:^10}| |{contra:^10}|") # Mostrar información, con reestricciones.
 
 #Pedir usuario y contraseña
 def user ():
@@ -56,7 +58,7 @@ def menu_de_inicio():
     flag = True
     print(f"\n¡Bienvenidos a nuestra Gestion Academica!")
     while flag!=False:
-        inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
+        inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ") #Menú de inicio.
         #Validación para que no sea una letra.
         while validar_num(inicio) == False:
             inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
@@ -66,10 +68,10 @@ def menu_de_inicio():
             inicio=input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
             while validar_num(inicio) == False:
                 inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")                                
-        if int (inicio)==1:
+        if int (inicio)==1: #Se entra al inicio de sesión.
             login()
             flag = False
-        elif int (inicio) == 2:
+        elif int (inicio) == 2: #Se entra al registro.
             print("¡Registrate!")
             registro(ingreso_alumnos,ingreso_profes)
             flag = False
@@ -83,28 +85,28 @@ def menu_de_inicio():
                 inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
                 while validar_num (inicio_2) == False:
                     inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
-            if  int (inicio_2) == 1:
+            if  int (inicio_2) == 1: #Se entra al inicio de sesión.
                 login()
                 flag = False
-            elif  int (inicio_2)==2:
+            elif  int (inicio_2)==2: #Se sale del programa.
                 print("Saliendo..")
                 flag = False
         else:
-            print("Saliendo..")
+            print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
             flag = False
-def login():   # Proceso de Log-in
-    usuario,contra = user()
+def login():   
+    usuario,contra = user() #Pide usuario y contraseña
     flag=False
     cont=0 #Intentos
     while flag==False and cont<5:
         while validacionmail(usuario) == False and cont<5: #Se valida el mail
-            cont += 1
+            cont += 1 #Máximo de 5 intentos.
             usuario,contra = user()
-        num, apart = cuenta_existente_login(ingreso_alumnos,ingreso_profes,usuario,contra)
-        if num == 1:
+        num, apart = cuenta_existente_login(ingreso_alumnos,ingreso_profes,usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
+        if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
             estudiantes(apart)
-        elif num == 2:
+        elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
             profesores()
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
@@ -123,12 +125,12 @@ def login():   # Proceso de Log-in
                     inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
                     while validar_num (inicio_login) == False:
                         inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))                
-                if int (inicio_login) == 1:
+                if int (inicio_login) == 1: #Vuelve a intentar el inicio de sesión.
                     usuario,contra = user()
-                elif int (inicio_login) == 2:
+                elif int (inicio_login) == 2: #Vuelve atrás, al menú principal.
                     menu_de_inicio()
             else:
-                print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.")
+                print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.") #En caso de llegar al maximo de intentos (cinco).
 def registro(listaalumnos, listaprofesor):
     flag = False
     while flag == False:
@@ -143,30 +145,30 @@ def registro(listaalumnos, listaprofesor):
             inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
             while validar_num (inicio_registro) == False:
                 inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))        
-        if int(inicio_registro) ==3:
+        if int(inicio_registro) ==3: #Vuelve al menú de inicio.
                 menu_de_inicio()
         #Validación Mail.
         user=str(input("Ingresar su mail de usuario nuevo: "))
         while validacionmail(user) == False:
             user=str(input("Ingresar su mail de usuario nuevo: "))                
-        if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False:
+        if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False: #Se fija si hay una cuenta existente, en caso que sea True, entra . 
             if int (inicio_registro)==1: #Si se registra como alumno
                 nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
-                while validar_mayus_nombre(nom) == False: 
+                while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
                     print()
-                    nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "))
+                    nom=str(input("Ingresar su nombre y apellido, ambas comenzando con mayúsculas: ")) 
                 pas=str(input("Ingrese su contraseña: "))        
-                while validar_contraseña (pas) == False:
+                while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
                     print()
                     pas=str(input("Ingrese su contraseña: "))                            
-                listaalumnos.append([user, pas, nom])
+                listaalumnos.append([user, pas, nom]) #En caso de superar todas las validaciones, agrega a la lista de alumnos al nuevo alumno.
                 flag = True                        
             if int (inicio_registro)==2: #Si se registra como profesor
                 pas=str(input("Ingrese su contraseña: "))
-                while validar_contraseña (pas) == False:
+                while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
                     print()
                     pas=str(input("Ingrese su contraseña: "))                            
-                listaprofesor.append([user, pas])
+                listaprofesor.append([user, pas]) #En caso de superar todas las validaciones, agrega a la lista de profesores al nuevo profesor.
                 flag = True                    
         else: #En caso de usuario ya existente.
             print()
@@ -180,7 +182,7 @@ def registro(listaalumnos, listaprofesor):
                 inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
                 while validar_num (inicio_usuario_exist) == False:
                     inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
-            if int(inicio_usuario_exist) == 2:
+            if int(inicio_usuario_exist) == 2: #Vuelve al menú de inicio, en caso de elegir la opción 2.
                 menu_de_inicio ()                
     return listaalumnos,listaprofesor            
 menu_de_inicio()
