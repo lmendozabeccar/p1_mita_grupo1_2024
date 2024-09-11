@@ -42,7 +42,21 @@ for email, contra in profesores:
 
 #Validacion letras.
 def validar_num (car):    
-    return car.isnumeric()      
+    if car.isnumeric()==False:
+        print("Por favor, ingresar un número.")
+    return car.isnumeric()
+#Validacion de que los numeros esten bien.
+def validacion_2dig (texto):                 
+    patron = "[1-2]{1}"
+    while re.match(patron,texto) == None:
+        print("Por favor, ingresar un numero válido.")
+        return False
+def validacion_3dig (texto):                 
+    patron = "[1-3]{1}"
+    while re.match(patron,texto) == None:
+        print("Por favor, ingresar un numero válido.")
+        return False
+
 #Validación del Mail.
 def validacionmail (mail):
     patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"
@@ -107,9 +121,7 @@ def menu_de_inicio():
         while validar_num(inicio) == False:
             inicio= input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
         #Validacion del número.
-        patron = "[1-3]{1}"
-        while re.match(patron,inicio) == None:
-            print("Por favor, ingresar un numero válido.")
+        while validacion_3dig (inicio)== False:
             print()
             inicio=input("\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: ")
             while validar_num(inicio) == False:
@@ -126,10 +138,8 @@ def menu_de_inicio():
             #Validación de letra.
             while validar_num(inicio_2) == False:
                 inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
-            #Validación de número. 
-            patron = "[1-2]{1}"
-            while re.match(patron,inicio_2) == None:
-                print("Por favor, ingresar un numero válido.")
+            #Validación de número.            
+            while validacion_2dig (inicio_2) == False: 
                 print()
                 inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
                 while validar_num (inicio_2) == False:
@@ -141,7 +151,10 @@ def menu_de_inicio():
             elif  int (inicio_2)==2:
                 print("Saliendo..")
                 flag = False
-  
+        else:
+            print("Saliendo..")
+            flag = False
+
 # Proceso de Log-in
 def login():
     usuario,contra = user()
@@ -170,9 +183,7 @@ def login():
                 while validar_num(inicio_login) == False:
                     inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
                 #Validación de número.
-                patron = "[1-2]{1}"
-                while re.match(patron,inicio_login) == None:
-                    print("Por favor, ingresar un numero válido.")
+                while validacion_2dig(inicio_login) == False:
                     print()
                     inicio_login=(input("\n1 Iniciar sesión.\n2 Volver atrás.\nElija un número: "))
                     while validar_num (inicio_login) == False:
@@ -196,9 +207,7 @@ def registro(listaalumnos, listaprofesor):
         while validar_num(inicio_registro) == False:
             inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
         #Validación de número.
-        patron = "[1-3]{1}"
-        while re.match(patron,inicio_registro) == None:
-            print("Por favor, ingresar un numero válido.")
+        while validacion_3dig (inicio_registro) == False:
             print()
             inicio_registro=(input("\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "))
             while validar_num (inicio_registro) == False:
@@ -244,9 +253,7 @@ def registro(listaalumnos, listaprofesor):
             while validar_num(inicio_usuario_exist) == False:
                 inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
             #Validación de número.
-            patron = "[1-2]{1}"
-            while re.match(patron,inicio_registro) == None:
-                print("Por favor, ingresar un numero válido.")
+            while validacion_2dig (inicio_usuario_exist) == False:
                 print()
                 inicio_usuario_exist=(input("\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "))
                 while validar_num (inicio_usuario_exist) == False:
