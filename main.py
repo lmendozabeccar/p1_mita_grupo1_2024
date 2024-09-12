@@ -17,11 +17,12 @@ def profesores():
             flag_profes = False
             print("Saliendo..")
 
-def estudiantes(posicion = 7):
+def estudiantes(posicion):
     alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
-    legajo = alumnos_calificaciones[posicion][0]
+    legajo = alumnos_calificaciones[posicion+1][0]
     flag_estudiantes = True
     while flag_estudiantes == True:
+        print("*"*26)
         respuesta_est = int(input("1 Ver tus calificaciones y el promedio\n2 Ver promedio por materia\n3 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta_est == 1:
             ver_calificacion(legajo, alumnos_calificaciones)
