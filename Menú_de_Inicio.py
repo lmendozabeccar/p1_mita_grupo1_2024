@@ -1,7 +1,7 @@
 from main import profesores
 from main import estudiantes
 from Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
-import re
+
 print()
 #Alumnos ya registrados en el sistema.
 ingreso_alumnos = [   #Lista de alumnos ya ingresados.
@@ -76,7 +76,8 @@ def menu_de_inicio():
             print("¡Registrate!")
             registro(ingreso_alumnos,ingreso_profes)
             flag = False
-            inicio_2=input("Qué desea realizar ahora?\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
+            print()
+            inicio_2=input("Finalizado su registro, qué desea realizar ahora?\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
             #Validación de letra.
             while validar_num(inicio_2) == False:
                 inicio_2=input("\n1 Iniciar sesión.\n2 No iniciar sesión.\nElija un número: ")
