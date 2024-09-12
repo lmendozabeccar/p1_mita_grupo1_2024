@@ -81,7 +81,7 @@ def eliminar_alumno(lista):
     return lista
 
 def ver_calificacion(legajo, lista):
-    posicion = [i for i in range(len(lista)) if lista[i][0] == legajo]#Me devuelve la posición (en una lista)
+    posicion = [i for i in range(len(lista)) if lista[i][0] == legajo]#Me devuelve la posición de la matriz(devolviendo posicion como una lista)
     fila = lista[posicion[0]] #Saco la fila donde quiero ver las calificaciones, con posicion[0] ya que es una lista, y se desea leer el entero
     fila.remove(legajo) #Elimino el legajo en la lista para poder sacar el promedio de la fila (las materias)
     promedio = sum(fila) / 5
