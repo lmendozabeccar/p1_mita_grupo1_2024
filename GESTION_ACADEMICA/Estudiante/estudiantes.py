@@ -15,6 +15,10 @@ def estudiantes(posicion):
         respuesta_est = int(respuesta_est) 
         if respuesta_est == 1:
             ver_calificacion(legajo, alumnos_calificaciones)
+            inic = int (input("\nQué desea realizar ahora? \n1 Ver promedio por materia. \n2 Volver al menú inicial. \n3 Salir de la aplicación. \nPor favor, elegir una opción: "))
+            if inic ==  1:
+                ver_materias (alumnos_calificaciones)
+   
         elif respuesta_est == 2:
             ver_materias(alumnos_calificaciones)
         elif respuesta_est == 3:

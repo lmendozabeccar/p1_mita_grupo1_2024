@@ -9,7 +9,7 @@ def ver_calificacion(legajo, lista):
     promedio = sum(calificaciones) / 5
     print(f'|{"legajo":^8}|{"algebra":^12}|{"programacion":^12}|{"analisis":^8}|{"sistemas":^8}|{"desarrollo":^14}|')
     print(f"|{legajo:^8}|{lista[posicion[0]][0]:^12}|{lista[posicion[0]][1]:^12}|{lista[posicion[0]][2]:^8}|{lista[posicion[0]][3]:^8}|{lista[posicion[0]][4]:^14}|")
-    print(f"Promedio = {promedio:.2f}") #Limitar el promedio hasta dos decimales
+    print(f"Su promedio final fue de: = {promedio:.2f}") #Limitar el promedio hasta dos decimales
     return 1
 
 def ver_materias(lista):
@@ -18,7 +18,7 @@ def ver_materias(lista):
     analisis = promedio_materia(3, lista)
     sistemas = promedio_materia(4, lista)
     desarrollo = promedio_materia(5, lista)
-    print(f'|{"algebra":^12}|{"programacion":^12}|{"analisis":^8}|{"sistemas":^8}|{"desarrollo":^14}|')
+    print(f'|{"Álgebra":^12}|{"Programación":^12}|{"Análisis":^8}|{"Sistemas":^8}|{"Desarrollo":^14}|')
     print(f'|{algebra:^12.2f}|{programacion:^12.2f}|{analisis:^8.2f}|{sistemas:^8.2f}|{desarrollo:^14.2f}|') #.2f limita el numero decimal a 2 dígitos
     return 1
 
