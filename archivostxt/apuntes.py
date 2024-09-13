@@ -1,5 +1,4 @@
-listac = ["a", "1", "3", "rere", "Juan", "llll"]
-listan = [30, 12, 32, 5, 65, 7, 4]
+
 '''
 Potencias
 lista[-1]
