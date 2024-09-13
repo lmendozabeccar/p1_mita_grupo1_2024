@@ -22,4 +22,4 @@ def ver_materias(lista):
     print(f'|{algebra:^12.2f}|{programacion:^12.2f}|{analisis:^8.2f}|{sistemas:^8.2f}|{desarrollo:^14.2f}|') #.2f limita el numero decimal a 2 dígitos
     return 1
 
-########## Vincular tabla de registros / Arreglar crud de estudiantes
+########## Vincular tabla de registros
