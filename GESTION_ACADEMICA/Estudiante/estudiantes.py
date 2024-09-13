@@ -5,10 +5,14 @@ def estudiantes(posicion):
     legajo = alumnos_calificaciones[posicion+1][0]
     flag_estudiantes = True
     while flag_estudiantes == True:
-        print("*"*26)
-        respuesta_est = int(input("1 Ver tus calificaciones y el promedio\n2 Ver promedio por materia\n3 Finalizar\nIngrese el numero para la operación que desee: "))
+        print()
+        respuesta_est = int(input("\n1 Ver tus calificaciones y el promedio\n2 Ver promedio por materia\n3 Finalizar\nIngrese el numero para la operación que desee: "))
         if respuesta_est == 1:
             ver_calificacion(legajo, alumnos_calificaciones)
+            inic = int (input("\nQué desea realizar ahora? \n1 Ver promedio por materia. \n2 Volver al menú inicial. \n3 Salir de la aplicación. \nPor favor, elegir una opción: "))
+            if inic ==  1:
+                ver_materias (alumnos_calificaciones)
+   
         elif respuesta_est == 2:
             ver_materias(alumnos_calificaciones)
         elif respuesta_est == 3:
