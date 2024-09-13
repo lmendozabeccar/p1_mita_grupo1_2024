@@ -47,7 +47,6 @@ def menu_de_inicio():
             print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
             flag = False       
 if __name__ == "__main__":     
-    menu_de_inicio()
-
+    menu_de_inicio() #PQ?
 
 print(f"\nFin de proceso")
