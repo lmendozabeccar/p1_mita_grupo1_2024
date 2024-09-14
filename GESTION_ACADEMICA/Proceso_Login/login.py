@@ -1,5 +1,5 @@
-from Estudiante.estudiantes import estudiantes
-from Profesor.profesor import profesores
+from Estudiantes.estudiantes import estudiantes
+from Profesores.profesor import profesores
 from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes, user
