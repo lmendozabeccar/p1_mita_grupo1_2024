@@ -8,9 +8,9 @@ def estudiantes(posicion):
     while flag_estudiantes == True:      
         respuesta_est = input("\nQué desea realizar ahora? \n1 Ver mis calificaciones y mi promedio\n2 Ver mi promedio por materia\n3 Salir de la aplicación. \nIngrese el numero para la operación que desee: ")
         #Se desea que sea una cadena para luego poder verificar si es un número
-        while validar_num(respuesta_est) == False:
+        while validar_num(respuesta_est) == False: #Validacion numero
             respuesta_est = input("\nQué desea realizar ahora? \n1 Ver mis calificaciones y mi promedio\n2 Ver mi promedio por materia\n3 Salir de la aplicación. \nIngrese el numero para la operación que desee: ")
-        while validacion_3dig (respuesta_est)== False:
+        while validacion_3dig (respuesta_est)== False: #Validacion numero entre 1 y 3
             respuesta_est = input("\nQué desea realizar ahora? \n1 Ver mis calificaciones y mi promedio\n2 Ver mi promedio por materia\n3 Salir de la aplicación. \nIngrese el numero para la operación que desee: ")
             while validar_num(respuesta_est) == False:
                 respuesta_est = input("\nQué desea realizar ahora? \n1 Ver mis calificaciones y mi promedio\n2 Ver mi promedio por materia\n3 Salir de la aplicación. \nIngrese el numero para la operación que desee: ")

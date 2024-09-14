@@ -11,7 +11,7 @@ def ingreso_notas():
     analisis =(input("Ingrese la nueva nota de Análisis: "))
     sistemas =(input("Ingrese la nueva nota de Sistemas: "))
     desarrolloweb =(input("Ingrese la nueva nota de Desarrollo web: "))
-    while validacion_notas (algebra,programacion,analisis,sistemas,desarrolloweb) == False:
+    while validacion_notas (algebra,programacion,analisis,sistemas,desarrolloweb) == False: #Validacion de las notas.
         print("Por favor, ingresar notas entre 0 y 10 en cada materia, con solamente 1 número decimal posible.")
         print()
         algebra =(input("Ingrese la nueva nota de Álgebra: "))        
@@ -29,7 +29,7 @@ def agregar_alumno(lista):
         lin = (input("\n1 Desea continuar agregando alumnos. \n2 No desea continuar agregando alumnos \nPor favor, elegir una opción: "))
         while seguir_texto(lin) == False:
             lin = (input("\n1 Desea continuar agregando alumnos. \n2 No desea continuar agregando alumnos \nPor favor, elegir una opción: "))
-        if int (lin) ==2:
+        if int (lin) ==2: #Pregunta si quiere seguir agregando.
             flag_while = False    
     return lista
 
@@ -54,7 +54,7 @@ def actualizar_alumno(lista):
         lin = (input("\n1 Desea continuar actualizando alumnos. \n2 No desea continuar actualizando alumnos \nPor favor, elegir una opción: "))
         while seguir_texto(lin) == False:
             lin = (input("\n1 Desea continuar actualizando alumnos. \n2 No desea continuar actualizando alumnos \nPor favor, elegir una opción: "))
-        if int (lin) == 2:
+        if int (lin) == 2: #Pregunta si quiere seguir.
             flag = False
     return lista
 
@@ -76,7 +76,7 @@ def eliminar_alumno(lista):
         while seguir_texto(lin) == False:
             lin = (input("\n1 Desea continuar eliminando alumnos. \n2 No desea continuar eliminando alumnos \nPor favor, elegir una opción: "))
         print()
-        if int (lin) == 2:
+        if int (lin) == 2: #Pregunta si quiere seguir.
             flag = False
             
     return lista
