@@ -7,7 +7,6 @@ def profesores():
     while flag_profes == True:
         print()
         respuesta_prof = input("1 Agregar alumno\n2 Mostrar calificaciones\n3 Modificar alumno\n4 Eliminar alumno\n5 Finalizar\nIngrese el numero para la operación que desee: ")
-
         while validar_num(respuesta_prof) == False:
             respuesta_prof = input("1 Agregar alumno\n2 Mostrar calificaciones\n3 Modificar alumno\n4 Eliminar alumno\n5 Finalizar\nIngrese el numero para la operación que desee: ")
         while validacion_5dig (respuesta_prof)== False:
@@ -19,7 +18,8 @@ def profesores():
         if respuesta_prof == 1:
             alumnos_calificaciones = agregar_alumno(alumnos_calificaciones)
         elif respuesta_prof == 2:
-            print(mostrar_calificacion(alumnos_calificaciones))
+            print()
+            mostrar_calificacion(alumnos_calificaciones)
         elif respuesta_prof == 3:
             alumnos_calificaciones = actualizar_alumno(alumnos_calificaciones)
         elif respuesta_prof == 4:

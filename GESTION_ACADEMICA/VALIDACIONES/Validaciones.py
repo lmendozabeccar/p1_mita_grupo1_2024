@@ -80,3 +80,23 @@ def cuenta_existente_register (listaalumnos,listaprofes,usuario):
             print("Usuario ya existente.")
             return False
         j += 1        
+def seguir_texto (text):
+    patron = "[1-2]{1}"
+    while re.match(patron,text) == None:
+        print()
+        print("Por favor, ingresar un numero válido.")
+        return False
+
+def validacion_notas (x,b,c,d,e):
+    patron = "[1-9]{1}|10" 
+    while re.match (patron,(x,b,c,d,e)) == None:
+        print()
+        print("Por favor, ingresar un número valido para las notas.")
+        return False
+    
+def validacion_notas(x, b, c, d, e):
+    pattern = "^(10|[0-9](\.\d{1})?)$"
+    for nota in [x, b, c, d, e]:
+        if not re.match(pattern, str(nota)):
+            return False  # Si alguna nota no es válida, retornamos False.
+    
