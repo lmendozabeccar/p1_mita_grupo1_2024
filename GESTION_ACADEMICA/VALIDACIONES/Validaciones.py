@@ -22,6 +22,7 @@ def validar_contraseña (contra):
 #Validacion letras.
 def validar_num (car):    
     if car.isnumeric()==False:
+        print()
         print("Por favor, ingresar un número.")
     return car.isnumeric()
 #Validacion de que los numeros esten bien.
@@ -33,8 +34,16 @@ def validacion_2dig (texto):
 def validacion_3dig (texto):                 
     patron = "[1-3]{1}"
     while re.match(patron,texto) == None:
+        print()
         print("Por favor, ingresar un numero válido.")
         return False
+def  validacion_5dig (texto):
+    patron = "[1-5]{1}"
+    while re.match(patron,texto) == None:
+        print()
+        print("Por favor, ingresar un numero válido.")
+        return False
+        
 #Validación del Mail.
 def validacionmail (mail):
     patron = "[a-zA-Z0-9]+@[sistem]+\.[edu]+\.[ar]"

@@ -5,11 +5,13 @@ posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] ==
 mostrar_calificacion = lambda lista: [print(f"|{legajo:^8}|{algebra:^12}|{programacion:^12}|{analisis:^8}|{sistemas:^8}|{desarrollo:^14}|") for legajo, algebra, programacion, analisis, sistemas, desarrollo in lista] 
 #Uso de corchetes solo para el print
 def ingreso_notas():
-    algebra =int(input("Ingrese la nueva nota de algebra: "))
-    programacion =int(input("Ingrese la nueva nota de Programacion: "))
-    analisis =int(input("Ingrese la nueva nota de analisis: "))
-    sistemas =int(input("Ingrese la nueva nota de sistemas: "))
-    desarrolloweb =int(input("Ingrese la nueva nota de desarrolloweb: "))
+    print()
+    print("Por favor, introducir las materias del nuevo alumno.")
+    algebra =int(input("Ingrese la nueva nota de Álgebra: "))        
+    programacion =int(input("Ingrese la nueva nota de Programación: "))
+    analisis =int(input("Ingrese la nueva nota de Análisis: "))
+    sistemas =int(input("Ingrese la nueva nota de Sistemas: "))
+    desarrolloweb =int(input("Ingrese la nueva nota de Desarrollo web: "))
     return algebra, programacion, analisis, sistemas, desarrolloweb
 
 def agregar_alumno(lista):
