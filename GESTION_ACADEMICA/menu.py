@@ -1,8 +1,8 @@
-from loading.login import logeandose
+from Proceso_Login.login import logeandose
 from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
-from REGISTRO.Register import registro
+from Proceso_Registro.Register import registro
 print()
 #Alumnos ya registrados en el sistema.
 #Menú de inicio.
