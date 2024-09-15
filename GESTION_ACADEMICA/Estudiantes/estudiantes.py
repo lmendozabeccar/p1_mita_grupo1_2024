@@ -140,8 +140,8 @@ def ingreso_materias (i):
             calificacion = aleatorio()
             estudiantes_materias[0].append(calificacion)
 
-            calificaciones = str (calificacion)
             ingreso_alumnos[i][4].append(materia_nombre)
+            ingreso_alumnos[i][5].append(calificacion)
             print()
             print(f"La materia {materia_nombre} fue agregada con una calificación de: {calificacion}.")
             print()
@@ -159,4 +159,5 @@ def ingreso_materias (i):
                 continuar = input("¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: ")
         if int(continuar) == 2:
             flag = 1 
-    print("Estás inscripto a",contmaterias,"materias, las cuales son",ingreso_alumnos[i][4],"y tus respectivas calificaciones fueron",estudiantes_materias[0])
+    print("Estás inscripto a",contmaterias,"materias, las cuales son",ingreso_alumnos[i][4],"con unas calificaciones de",ingreso_alumnos[i][5],"respectivamente.")
+
