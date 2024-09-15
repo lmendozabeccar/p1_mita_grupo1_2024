@@ -1,4 +1,4 @@
-from Estudiantes.estudiantes import estudiantes
+from Estudiantes.estudiantes import estudiantes, ingreso_materias
 from Profesores.profesor import profesores
 from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_login, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
@@ -14,6 +14,7 @@ def logeandose():
         num, apart = cuenta_existente_login(ingreso_alumnos,ingreso_profes,usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
+            ingreso_materias (apart)
             estudiantes(apart)
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True

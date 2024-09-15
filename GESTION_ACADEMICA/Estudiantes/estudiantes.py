@@ -1,6 +1,7 @@
 from MATRICES.matriz_calificaciones import llenar_matriz, encabezado_calificaciones
-from VALIDACIONES.Validaciones import validar_num, validacion_3dig, validacion_2dig
+from VALIDACIONES.Validaciones import validar_num, validacion_3dig, validacion_2dig, validacion_5dig
 from CRUDS.crudEstudiantes import ver_calificacion, ver_materias
+from MATRICES.matriz_alumnos import ingreso_alumnos
 def estudiantes(posicion):
     alumnos_calificaciones = llenar_matriz(encabezado_calificaciones)
     legajo = alumnos_calificaciones[posicion+1][0]
@@ -101,3 +102,61 @@ def estudiantes(posicion):
         elif respuesta_est == 3:
             flag_estudiantes = False
             print("Saliendo de la aplicación")
+            
+def ingreso_materias (i):
+    from random import randint
+    # Función lambda para generar calificaciones aleatorias
+    aleatorio = lambda: randint(1, 10)
+
+    # Diccionario de materias
+    materias_dic = {
+        "1": "Álgebra",
+        "2": "Sistemas",
+        "3": "Desarrollo",
+        "4": "Inglés",
+        "5": "Programación"
+    }
+
+    # Inicialización de la lista de materias de estudiantes
+    estudiantes_materias = [[ingreso_alumnos[i]]  # Lista inicial con información del estudiante 1    
+                            ]
+
+    flag = 0
+    contmaterias = 0
+    while flag == 0:
+        print()
+        materia = input("Ingrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: ")
+        while validar_num(materia) == False:
+            materia = input("Ingrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: ")
+        while validacion_5dig (materia)== False:
+            materia = input("Ingrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: ")
+            while validar_num(materia) == False:
+                materia = input("Ingrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: ")
+        # Obtener el nombre de la materia desde el mapeo
+        materia_nombre = materias_dic.get(materia)
+
+        if materia_nombre != None:
+            # Agregar la calificación de la materia seleccionada al estudiante 1
+            calificacion = aleatorio()
+            estudiantes_materias[0].append(calificacion)
+
+            calificaciones = str (calificacion)
+            ingreso_alumnos[i][4].append(materia_nombre)
+            print()
+            print(f"La materia {materia_nombre} fue agregada con una calificación de: {calificacion}.")
+            print()
+            contmaterias += 1
+        else:
+            print("Opción no válida. Por favor ingrese un número entre 1 y 5.")
+        
+        # Preguntar si el usuario desea agregar otra materia
+        continuar = input("¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: ")
+        while validar_num(continuar) == False:
+            continuar = input("¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: ")
+        while validacion_2dig (continuar)== False:
+            continuar = input("¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: ")
+            while validar_num(continuar) == False:
+                continuar = input("¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: ")
+        if int(continuar) == 2:
+            flag = 1 
+    print("Estás inscripto a",contmaterias,"materias, las cuales son",ingreso_alumnos[i][4],"y tus respectivas calificaciones fueron",estudiantes_materias[0])
