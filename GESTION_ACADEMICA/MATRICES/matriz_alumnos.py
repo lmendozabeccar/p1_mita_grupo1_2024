@@ -11,24 +11,6 @@ materias_dic = {
     "4": "ingles",
     "5": "programacion"
 }
-"""
-# Diccionario de estudiantes
-estudiantes = {
-    1: {
-        'nombre': "Lucas",
-        'apellido': "info",
-        "lugar": "buenos aires",
-        "materias": []
-    },
-    2: {
-        'nombre': "Elian",
-        'apellido': "pep",
-        "lugar": "buenos aires",
-        "materias": []
-    }
-}
-
-"""
 ingreso_alumnos = [   #Lista de alumnos ya ingresados.
     ["1000","nicovera@sistem.edu.ar","nicovera01","Vera Alejandro", []],
     ["1001","tomiweins@sistem.edu.ar","tomiweins01","Weinstelbaum Tomás", []],
@@ -40,15 +22,25 @@ ingreso_alumnos = [   #Lista de alumnos ya ingresados.
     ["1007","lucaspagli@sistem.edu.ar","lucaspagli01","Paglilla Lucas", []],
     ["1008","fabrisuccar@sistem.edu.ar","fabrisuccar01","Succar Fabricio", []],
     ["1009","lautipadin@sistem.edu.ar","lautipadin01","Padin Lautaro", []]
-                                ]
+    ]
 
+estudiantes_materias = [
+    [ingreso_alumnos[0]],
+    [ingreso_alumnos[1]],
+    [ingreso_alumnos[2]],
+    [ingreso_alumnos[3]],
+    [ingreso_alumnos[4]],
+    [ingreso_alumnos[5]],
+    [ingreso_alumnos[6]],
+    [ingreso_alumnos[7]],
+    [ingreso_alumnos[8]],
+]
+      # Lista inicial con información del estudiante 1
 # Inicialización de la lista de materias de estudiantes
 
-
+##### LOGIN DE ALUMNO
 for estudiantes_materias in ingreso_alumnos:
     print(estudiantes_materias)
-
-
 flag = 0
 while flag == 0:
     materia = input("Ingrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n")
