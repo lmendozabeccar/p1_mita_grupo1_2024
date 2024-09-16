@@ -8,15 +8,14 @@ def registro(listaalumnos, listaprofesor):
         print()
         menu = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
         inicio_registro=(input(menu)) #Modularizacion menú.
-        #Validación de letra.
         while validar_num(inicio_registro) == False: #Valida que sea un numero.
             inicio_registro=(input(menu)) 
-        #Validación de número.
         while validacion_3dig (inicio_registro) == False: #Valida que el numero sea entre 1 y 3
             print()
             inicio_registro=(input(menu))
             while validar_num (inicio_registro) == False: #Valida que sea un numero
-                inicio_registro=(input(menu))        
+                inicio_registro=(input(menu)) 
+                       
         if int(inicio_registro) ==3: #Vuelve al menú de inicio.
             return
         #Validación Mail.
