@@ -43,5 +43,5 @@ def mostrar_notas (lista,posicion):
 
     # Imprimir la fila con los valores formateados
     print(f"|{sublista[0]:^10}||{notas_formateadas[0]:^10}||{notas_formateadas[1]:^10}||{notas_formateadas[2]:^15}||{notas_formateadas[3]:^10}||{notas_formateadas[4]:^15}|")
-    print("El usuario cursó ",cont,"materias y obtuvo un promedio de",promedio)
+    print(f"El usuario cursó {cont} materias y obtuvo un promedio de {promedio:.2f}")
     
