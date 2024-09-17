@@ -1,6 +1,6 @@
-from VALIDACIONES.Validaciones import validar_num, validacion_4dig
+from VALIDACIONES.Validaciones import validacion_4dig
 from CRUDS.crudEstudiantes import ver_calificacion_nuevo
-from MATRICES.matriz_calificaciones import matriz_notas, mostrar_notas
+from MATRICES.matriz_calificaciones import matriz_notas
 from MATRICES.Diccionario_Materias import agregar_materias
 
 def estudiantes(matriz_notas_register, pos): 
@@ -21,12 +21,7 @@ def estudiantes(matriz_notas_register, pos):
             agregar_materias (matriz_notas_usar, pos) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
         if respuesta_est == 2:
-            valor = sum(matriz_notas_usar[pos][1]) #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
-            #todos -1, quiere decir que no está inscripto a ninguna materia
-            if valor == -5:
-                print("No está inscripto a ninguna materia, por favor inscribirse en el menú anterior.")
-            else: #No son TODOS = -1      
-                mostrar_notas(matriz_notas_usar,pos)
+            ver_calificacion_nuevo (pos,matriz_notas_usar)
         
         elif respuesta_est == 3:
             print("Volviendo al menú principal.") #Vuelve al menú principal.

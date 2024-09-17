@@ -1,5 +1,5 @@
 from loading.login import logeandose
-from VALIDACIONES.Validaciones import validacion_3dig, validar_num
+from VALIDACIONES.Validaciones import validacion_3dig
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 from REGISTRO.Register import registro

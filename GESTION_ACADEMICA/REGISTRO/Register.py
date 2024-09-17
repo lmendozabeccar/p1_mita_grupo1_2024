@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, validar_num, cuenta_existente_register
+from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña,validar_num, validar_mayus_nombre, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 from MATRICES.matriz_calificaciones import matriz_notas
@@ -12,18 +12,19 @@ def registro(listaalumnos, listaprofesor):
     while flag == False:
         print()
         inicio_registro=(input(menu)) #Modularizacion menú.
-        #Validación de letra.
         while validacion_3dig (inicio_registro) == False: #Valida que el numero sea entre 1 y 3
             print()
             inicio_registro=(input(menu))
             while validar_num (inicio_registro) == False: #Valida que sea un numero
-                inicio_registro=(input(menu))        
+                inicio_registro=(input(menu))       
+                 
         if int(inicio_registro) ==3: #Vuelve al menú de inicio.
             return [], [], [] 
         #Validación Mail.
         user=str(input(menu2)) #Modularización de menú
         while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.
-            user=str(input(menu2))                
+            user=str(input(menu2))   
+                         
         if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False: #Se fija si hay una cuenta existente, en caso que sea True, entra . 
             if int (inicio_registro)==1: #Si se registra como alumno
                 nom=str(input(menu3))

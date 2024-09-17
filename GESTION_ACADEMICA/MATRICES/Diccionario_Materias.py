@@ -26,8 +26,8 @@ def agregar_materias(matriz_notas_usar, posicion):
         materia = input(menu)
         while validacion_5dig (materia)== False: #Valida que sea un numero del 1 al 5
             materia = input(menu)
-        if matriz_notas_usar[posicion][1][int(materia)-1] != -1:
-                print("La materia ya fue seleccionada anteriormente, Ingrese otra")
+        if sublista[int(materia)-1] != -1:
+                print("La materia ya fue seleccionada anteriormente, ingrese otra")
         else: 
             # Obtener el nombre de la materia desde el mapeo
             materia_nombre = materias_dic.get(materia) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)

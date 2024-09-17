@@ -93,7 +93,7 @@ def cuenta_existente_login (list_alumnos,list_profesores,user,contraseña):
 def cuenta_existente_register (listaalumnos,listaprofes,usuario):
     i,j=0,0    
     while i<len(listaalumnos):
-        if usuario==listaalumnos[i][0]: 
+        if usuario==listaalumnos[i][1]: 
             print("Usuario ya existente.")
             return False
         i += 1
