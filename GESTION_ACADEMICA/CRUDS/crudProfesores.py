@@ -1,6 +1,7 @@
 from VALIDACIONES.Validaciones import seguir_texto, validar_legajo, validar_num
 from MATRICES.matriz_calificaciones import matriz_notas, mostrar_notas
 from MATRICES.Diccionario_Materias import agregar_materias
+from MATRICES.matriz_alumnos import ingreso_alumnos
 
 posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
 
@@ -59,6 +60,7 @@ def eliminar_alumno(matriz_notas_register):
             else:
                 flag_2 = False #Si se pudo encontrar.
 
+        ingreso_alumnos.pop(indice[0])
         matriz_notas_usar.pop(indice[0]) #"indice" es una lista, entonces me fijo en la posición 0 para sacar el índice como entero, y luego borrar esa posicion
         print()
         lin = (input(menu2)) #Mismo menú, pero modularizado.
