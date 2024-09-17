@@ -27,7 +27,7 @@ estudiantes_ordenados = sorted(estudiantes_recortados, key=lambda x: (x[3], int(
 # Imprimir la lista con formato de f-strings
 print("Lista de alumnos ya registrados en el sistema.")
 print(f"|{legajo:^10}||{username:^10}||{passw:^10}||{nombre:^15}|")  # Mostrar encabezados, con restricciones.
-print("*" * 73)
+print("*" * 53)
 for legajo, mail, contraseña, nombre in estudiantes_ordenados:
     print(f"|{legajo:^10}||{mail:^10}||{contraseña:^10}||{nombre:^15}|")  # Mostrar información, con restricciones.
 print()

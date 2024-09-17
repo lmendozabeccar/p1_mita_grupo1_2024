@@ -30,13 +30,13 @@ def mostrar_notas (lista,posicion):
     sublista = lista[posicion]
 
     # Convertir el -1 en un guion para cada valor de la fila
-    notas_formateadas = ["-" if valor == -1 else valor for valor in sublista[1]]
+    notas_formateadas = ["-" if valor == -1 or valor== -2 else valor for valor in sublista[1]]
     for i in range (len (notas_formateadas)): 
         if notas_formateadas[i] != "-":
             suma += notas_formateadas[i]
             cont += 1
     if suma == 0 or cont == 0:
-        print("No hay notas cargadas de ese legajo.")
+        print("No hay notas cargadas en este legajo.")
     else:
         # Imprimir la lista con formato de f-strings
         print("Listado de notas:")

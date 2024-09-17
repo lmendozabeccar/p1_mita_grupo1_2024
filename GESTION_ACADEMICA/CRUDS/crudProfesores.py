@@ -1,6 +1,6 @@
 from VALIDACIONES.Validaciones import seguir_texto, validar_legajo, validar_num
 from MATRICES.matriz_calificaciones import matriz_notas, mostrar_notas
-from MATRICES.Diccionario_Materias import agregar_materias
+from MATRICES.Diccionario_Materias import agregar_materias, actualizar_notas
 from MATRICES.matriz_alumnos import ingreso_alumnos
 
 posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
@@ -15,8 +15,8 @@ def actualizar_notas_alumno(matriz_notas_register): #Matriz notas proveniente de
     matriz_notas_usar = matriz_a_usar(matriz_notas_register)
     print()
     flag = True
-    menu = "Ingrese el legajo que quiere actualizar: " #Ingresar el legajo
-    menu2 = "\n1 Desea continuar actualizando alumnos. \n2 No desea continuar actualizando alumnos \nPor favor, elegir una opción: "
+    menu = "Ingrese el legajo del cual quiere agregar las notas: " #Ingresar el legajo
+    menu2 = "\n1 Desea continuar agregando notas. \n2 No desea continuar agregando notas. \nPor favor, elegir una opción: "
     while flag == True:
         print()
         flag_2 = True
@@ -31,7 +31,7 @@ def actualizar_notas_alumno(matriz_notas_register): #Matriz notas proveniente de
                 flag_2 = False #Si se pudo encontrar.
         print()
         
-        agregar_materias(matriz_notas_usar, indice[0]) #Encontro el legajo, y va a agregar materias.
+        actualizar_notas(matriz_notas_usar, indice[0]) #Encontro el legajo, y va a agregar materias.
         
         lin = (input(menu2)) #Menu2, si desea continuar actualizando alumnos, pero modularizado.
         while seguir_texto(lin) == False: #Valida que variable lin sea = a 1 o 2
@@ -89,7 +89,7 @@ def mostrar_calificacion_grupal (matriz_notas_register):
 
     for username in matriz_notas_usar:
         # Convertir el -1 en un guion para cada valor de la fila
-        notas_formateadas = [ "-" if valor == -1 else valor for valor in username[1]]
+        notas_formateadas = [ "-" if valor == -1 or valor == -2 else valor for valor in username[1]]
         # Imprimir la fila con los valores formateados
         print(f"|{username[0]:^10}||{notas_formateadas[0]:^10}||{notas_formateadas[1]:^10}||{notas_formateadas[2]:^15}||{notas_formateadas[3]:^10}||{notas_formateadas[4]:^15}|")       
 

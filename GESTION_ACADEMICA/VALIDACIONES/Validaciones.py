@@ -122,3 +122,11 @@ def validar_legajo (lista, pos):
         i += 1
     return posicion_alumno
 #R STRING --> PARA QUE PYTHON INTERPRETE LOS CARACTERES DE ESCAPE, COMO \s
+
+def validar_nota (car):
+    patron = "^(10(\.0)?|[0-9](\.\d)?)$"
+    nota_valida= re.match(patron,car)
+    if nota_valida == None:
+        print("Nota incorrecta, por favor ingresar una nota válida.")
+        return False
+    

@@ -9,6 +9,6 @@ profeuser = "Usuario-Profesor"
 contraprofe = "Contraseña"
 profesores = [[email[:16], contra[:10]] for email, contra in ingreso_profes]  #Recortar.
 print(f"|{profeuser:^16}| |{contraprofe:^10}|")   # Mostrar encabezados, con reestricciones.
-print("-" * 30)
+print("-" * 31)
 for email, contra in profesores:
     print(f"|{email:^16}| |{contra:^10}|") # Mostrar información, con reestricciones.
