@@ -9,27 +9,26 @@ print()
 def menu_de_inicio():
     flag = True
     print(f"\n¡Bienvenidos a nuestra Gestion Academica!")
-    while flag!=False:
+    matriz_notas, matriz_alumnos, matriz_profesores = [], [], []
+    while flag == True:
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
         inicio= input(menu) #Menú de inicio.
-        while validar_num(inicio) == False: #Validacion para que sea un numero
-            inicio= input(menu)
         while validacion_3dig (inicio)== False: #Validacion que sea un numero entre 1 y 3
             print()
             inicio=input(menu)
-            while validar_num(inicio) == False: #Validacion para que sea un numero.
-                inicio= input(menu)     
                                            
         if int (inicio)==1: #Se entra al inicio de sesión.
-            if logeandose () == True:
+            valor = logeandose (matriz_notas, matriz_alumnos, matriz_profesores)
+            if valor == True: #Se mandan como parametro las nuevas matrices del register
                 flag = False
                 
         elif int (inicio) == 2: #Se entra al registro.
             print("¡Registrate!")
-            registro(ingreso_alumnos,ingreso_profes)
+            matriz_notas, matriz_alumnos, matriz_profesores = registro(ingreso_alumnos,ingreso_profes) #Se asignan las dos nuevas matrices formadas
         else:
             print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
             flag = False       
+               
 if __name__ == "__main__":     
     menu_de_inicio() 
 

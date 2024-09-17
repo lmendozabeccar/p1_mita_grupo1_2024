@@ -26,10 +26,6 @@ def mostrar_notas (lista,posicion):
     ingles = "Inglés"
     programacion = "Programación"
 
-    # Imprimir la lista con formato de f-strings
-    print("Listado de notas:")
-    print(f"|{username:^10}||{algebra:^10}||{sistemas:^10}||{desarrollo:^15}||{ingles:^10}||{programacion:^15}|")  # Mostrar encabezados, con restricciones.
-
     # Elige la sublista en la posición deseada, por ejemplo, la segunda fila (índice 1)
     sublista = lista[posicion]
 
@@ -39,9 +35,15 @@ def mostrar_notas (lista,posicion):
         if notas_formateadas[i] != "-":
             suma += notas_formateadas[i]
             cont += 1
-    promedio = suma / cont
+    if suma == 0 or cont == 0:
+        print("No hay notas cargadas de ese legajo.")
+    else:
+        # Imprimir la lista con formato de f-strings
+        print("Listado de notas:")
+        print(f"|{username:^10}||{algebra:^10}||{sistemas:^10}||{desarrollo:^15}||{ingles:^10}||{programacion:^15}|")  # Mostrar encabezados, con restricciones.
 
-    # Imprimir la fila con los valores formateados
-    print(f"|{sublista[0]:^10}||{notas_formateadas[0]:^10}||{notas_formateadas[1]:^10}||{notas_formateadas[2]:^15}||{notas_formateadas[3]:^10}||{notas_formateadas[4]:^15}|")
-    print(f"El usuario cursó {cont} materias y obtuvo un promedio de {promedio:.2f}")
+        promedio = suma / cont
+        # Imprimir la fila con los valores formateados
+        print(f"|{sublista[0]:^10}||{notas_formateadas[0]:^10}||{notas_formateadas[1]:^10}||{notas_formateadas[2]:^15}||{notas_formateadas[3]:^10}||{notas_formateadas[4]:^15}|")
+        print(f"El usuario cursó {cont} materias y obtuvo un promedio de {promedio:.2f}") #Hasta 2 dígitos
     
