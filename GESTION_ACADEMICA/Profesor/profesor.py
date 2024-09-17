@@ -8,6 +8,7 @@ def profesores(matriz_notas_register):
     else:
         matriz_notas_usar = matriz_notas_register
     flag_profes = True
+    matriz_notas_actualizadas = []
     menu="Qué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\nIngrese el numero para la operación que desee: "
     while flag_profes == True:
         print()

@@ -19,7 +19,7 @@ def registro(listaalumnos, listaprofesor):
             while validar_num (inicio_registro) == False: #Valida que sea un numero
                 inicio_registro=(input(menu))        
         if int(inicio_registro) ==3: #Vuelve al menú de inicio.
-            return [], [], []
+            return [], [], [] 
         #Validación Mail.
         user=str(input(menu2)) #Modularización de menú
         while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.

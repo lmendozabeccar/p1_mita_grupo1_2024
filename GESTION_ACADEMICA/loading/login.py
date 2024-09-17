@@ -19,7 +19,7 @@ def logeandose(matriz_notas_register, matriz_a_register, matriz_p_register):
         matriz_profesores_usar = ingreso_profes
     else:
         matriz_profesores_usar = matriz_p_register 
-    print("matriz, ",matriz_alumnos_usar)
+        
     matriz_notas_actualizadas = True#Esta matriz se va a usar cuando ésta sea modificada por el crud de profesores    
     
     usuario,contra = user() #Pide usuario y contraseña

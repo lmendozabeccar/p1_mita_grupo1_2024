@@ -48,33 +48,3 @@ def agregar_materias(matriz_notas_usar, posicion):
                     #Ingresa 2, sale del apartado y vuelve atras.
     return matriz_notas_usar, posicion
 
-'''def agregar_materias_profesor (posicion):
-    flag = 0
-    seleccionada_profesores = []
-    while flag == 0:
-        print()
-        menu = "Ingrese qué materia desea agregar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: "
-        materia = input(menu) #Modularizacion de menu
-        while validacion_5dig (materia)== False: #Valida que sea un numeroentre 1 y 5 
-            materia = input(menu)
-        if matriz_notas[1][materia-1] != -1:
-            print("La materia ya fue seleccionada anteriormente, Ingrese otra")
-        else:
-            # Obtener el nombre de la materia desde el mapeo
-            materia_nombre = materias_dic.get(materia)
-            if materia_nombre != None:
-                # Agregar la calificación de la materia seleccionada al estudiante 1
-                calificacion = aleatorio()
-                matriz_notas[posicion][1][int(materia)-1] = calificacion #Agrega en la matriz la nota.
-                seleccionada_profesores.append(materia)
-                print(f"\nLa materia {materia_nombre} fue agregada con una calificación de: {calificacion}.") #Aviso al usuario.
-                print()
-            # Preguntar si el usuario desea agregar otra materia
-            menu2 = "¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
-            continuar = input(menu2) #Modularizacion de menu
-            while validacion_2dig (continuar)== False: # Valida que sea 1 o 2.
-                continuar = input(menu2)
-            if int(continuar) == 2:
-                flag = 1 
-                #Vuelve atrás.
-    return matriz_notas, posicion    '''
