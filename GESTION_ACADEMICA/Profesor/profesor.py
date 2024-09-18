@@ -1,4 +1,4 @@
-from CRUDS.crudProfesores import  mostrar_calificacion_grupal, mostrar_calificacion_individual, eliminar_alumno, actualizar_notas_alumno
+from CRUDS.crudProfesores import  *
 from VALIDACIONES.Validaciones import validacion_6dig
 from MATRICES.matriz_calificaciones import matriz_notas
 
