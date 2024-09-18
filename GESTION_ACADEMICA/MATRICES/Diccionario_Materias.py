@@ -55,7 +55,8 @@ def actualizar_notas (matriz_notas_usar, posicion):
     menu_agregar_nota = "¿Desea agregar la nota de otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
     menu_calificacion = "Ingresar nota de la respectiva materia: "
     while flag == 0:
-        if -2 not in sublista:
+        valor = sum(sublista) #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
+        if valor == -5:
             print()
             print("\nEl alumno no está inscripto en ninguna materia.")
             return matriz_notas_usar, posicion
