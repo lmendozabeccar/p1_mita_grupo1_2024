@@ -8,7 +8,9 @@ print()
 #Menú de inicio.
 def menu_de_inicio():
     flag = True
-    print(f"\n¡Bienvenidos a nuestra Gestion Academica!")
+    titulo = "¡Bienvenidos a nuestra Gestion Academica!"
+    print(titulo.title().center(80))
+
     matriz_notas, matriz_alumnos, matriz_profesores = [], [], []
     while flag == True:
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
