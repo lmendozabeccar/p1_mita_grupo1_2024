@@ -4,38 +4,35 @@ from MATRICES.matriz_profesor import ingreso_profes
 from MATRICES.matriz_calificaciones import matriz_notas
 def registro(listaalumnos, listaprofesor):
     flag = False
-    menu = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
-    menu2 = "Ingresar su mail de usuario nuevo: "
-    menu3 = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
-    menu4 = "Ingrese su contraseña: "
-    menu5 = "\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "
+    menu_registro = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
+    menu_mail = "Ingresar su mail de usuario nuevo: "
+    menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
+    menu_contraseña = "Ingrese su contraseña: "
+    menu_error = "\n1 Volver a intentar el inicio de sesión. \n2 Volver al inicio \nElija un número: "
     while flag == False:
-        print()
-        inicio_registro=(input(menu)) #Modularizacion menú.
+        inicio_registro=(input(menu_registro)) #Modularizacion menú.
         while validacion_3dig (inicio_registro) == False: #Valida que el numero sea entre 1 y 3
-            print()
-            inicio_registro=(input(menu))
+            inicio_registro=(input(menu_registro))
             while validar_num (inicio_registro) == False: #Valida que sea un numero
-                inicio_registro=(input(menu))       
+                inicio_registro=(input(menu_registro))       
                  
         if int(inicio_registro) ==3: #Vuelve al menú de inicio.
             return [], [], [] 
+        print()
         #Validación Mail.
-        user=str(input(menu2)) #Modularización de menú
+        user=str(input(menu_mail)) #Modularización de menú
         while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.
-            user=str(input(menu2))   
+            user=str(input(menu_mail))   
                          
         if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False: #Se fija si hay una cuenta existente, en caso que sea True, entra . 
             if int (inicio_registro)==1: #Si se registra como alumno
-                nom=str(input(menu3))
+                nom=str(input(menu_nombre))
                 while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
-                    print()
-                    nom=str(input(menu3)) 
+                    nom=str(input(menu_nombre)) 
                     
-                pas=str(input(menu4))        
+                pas=str(input(menu_contraseña))        
                 while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
-                    print()
-                    pas=str(input(menu4))       
+                    pas=str(input(menu_contraseña))       
 
                 legajo = (matriz_notas[-1][0] + 1) #Legajo= ultimo legajo +1
                 listaalumnos.append([str(legajo), user, pas, nom]) #Append en la lista de alumnos.                          
@@ -46,19 +43,20 @@ def registro(listaalumnos, listaprofesor):
                 flag = True                 
                        
             if int (inicio_registro)==2: #Si se registra como profesor
-                pas=str(input(menu4))
+                nom=str(input(menu_nombre))
+                while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
+                    nom=str(input(menu_nombre)) 
+
+                pas=str(input(menu_contraseña))
                 while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
-                    print()
-                    pas=str(input(menu4))                            
-                listaprofesor.append([user, pas]) #En caso de superar todas las validaciones, agrega a la lista de profesores al nuevo profesor.
+                    pas=str(input(menu_contraseña))                            
+                listaprofesor.append([user, pas, nom]) #En caso de superar todas las validaciones, agrega a la lista de profesores al nuevo profesor.
                 flag = True                
                     
         else: #En caso de usuario ya existente.
-            print()
-            inicio_usuario_exist=(input(menu5))
+            inicio_usuario_exist=(input(menu_error))
             while validacion_2dig (inicio_usuario_exist) == False: #Validacion que sea un numero entre 1 y 2.
-                print()
-                inicio_usuario_exist=(input(menu5))
+                inicio_usuario_exist=(input(menu_error))
 
             if int(inicio_usuario_exist) == 2: #Vuelve al menú de inicio, en caso de elegir la opción 2.
                 return [], [], []       

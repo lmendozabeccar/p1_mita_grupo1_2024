@@ -48,15 +48,14 @@ def logeandose(matriz_notas_register, matriz_a_register, matriz_p_register):
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:
-                print()
                 print("No se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.")
                 print()
-                menu = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
-                inicio_login=(input(menu)) #Menu de arriba, modularizado       
+                menu_error = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
+                inicio_login=(input(menu_error)) #Menu de arriba, modularizado       
                 #Validación de letra.
                 while validacion_2dig(inicio_login) == False: #Valida que el número sea 1 o 2
-                    print()
-                                    
+                    inicio_login=(input(menu_error)) #Menu de arriba, modularizado                                           
+
                 if int (inicio_login) == 1: #Vuelve a intentar el inicio de sesión.
                     usuario,contra = user()
                 elif int (inicio_login) == 2: #Vuelve atrás, al menú principal.

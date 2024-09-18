@@ -36,14 +36,16 @@ def mostrar_notas (lista,posicion):
             suma += notas_formateadas[i]
             cont += 1
     if suma == 0 or cont == 0:
+        print()
         print("No hay notas cargadas en este legajo.")
     else:
         # Imprimir la lista con formato de f-strings
+        print()
         print("Listado de notas:")
         print(f"|{username:^10}||{algebra:^10}||{sistemas:^10}||{desarrollo:^15}||{ingles:^10}||{programacion:^15}|")  # Mostrar encabezados, con restricciones.
 
         promedio = suma / cont
         # Imprimir la fila con los valores formateados
         print(f"|{sublista[0]:^10}||{notas_formateadas[0]:^10}||{notas_formateadas[1]:^10}||{notas_formateadas[2]:^15}||{notas_formateadas[3]:^10}||{notas_formateadas[4]:^15}|")
-        print(f"El usuario cursó {cont} materias y obtuvo un promedio de {promedio:.2f}") #Hasta 2 dígitos
-    
+        print()
+        print(f"El usuario cursó {cont} materias y obtuvo un promedio de {promedio:.2f}") #Hasta 2 dígitos    

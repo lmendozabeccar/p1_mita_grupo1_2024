@@ -14,7 +14,6 @@ def menu_de_inicio():
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
         inicio= input(menu) #Menú de inicio.
         while validacion_3dig (inicio)== False: #Validacion que sea un numero entre 1 y 3
-            print()
             inicio=input(menu)
                                            
         if int (inicio)==1: #Se entra al inicio de sesión.

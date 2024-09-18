@@ -6,8 +6,6 @@ def ver_calificacion_nuevo  (leg, lista):
 
     if valor == -5:
         print("No está inscripto a ninguna materia, por favor inscribirse en el menú anterior.")
-    for i in range (len(lista[leg][1])):
-        if lista[leg][1][i] >= 0:
-            mostrar_notas (lista,leg)
+        
     else:
-        print("Está inscripto a alguna/s materias, pero sus notas no han sido cargadas.")
+        mostrar_notas (lista,leg)

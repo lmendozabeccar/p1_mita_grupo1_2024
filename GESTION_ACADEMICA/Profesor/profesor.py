@@ -9,12 +9,12 @@ def profesores(matriz_notas_register):
         matriz_notas_usar = matriz_notas_register
     flag_profes = True
     matriz_notas_actualizadas = []
-    menu="Qué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\nIngrese el numero para la operación que desee: "
+    menu_profesor="Qué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\nIngrese el numero para la operación que desee: "
     while flag_profes == True:
         print()
-        respuesta_prof = input(menu) #Modularizacion de menu.
+        respuesta_prof = input(menu_profesor) #Modularizacion de menu.
         while validacion_6dig (respuesta_prof)== False: #Valida que el numero sea entre 1 y 6
-            respuesta_prof = input(menu)
+            respuesta_prof = input(menu_profesor)
             
         respuesta_prof = int(respuesta_prof)
         if respuesta_prof == 1:
@@ -22,16 +22,13 @@ def profesores(matriz_notas_register):
 
         elif respuesta_prof == 2:
             mostrar_calificacion_grupal (matriz_notas_usar) #Muestra calificacion de todos los alumnos.
-            print()
-
+ 
         elif respuesta_prof == 3:
             matriz_notas_actualizadas = actualizar_notas_alumno (matriz_notas_usar) #Puede cambiar las notas de un alumno YA EXISTENTE.
-            print()
             
         elif respuesta_prof == 4:
             matriz_notas_actualizadas = eliminar_alumno (matriz_notas_usar) #Elimina alumnos 
-            print()
-
+ 
         elif respuesta_prof == 5:
             print("Volviendo al menú principal.") #Vuelve al menú
             return matriz_notas_actualizadas

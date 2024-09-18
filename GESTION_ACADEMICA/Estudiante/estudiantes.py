@@ -9,15 +9,14 @@ def estudiantes(matriz_notas_register, pos):
     else:
         matriz_notas_usar = matriz_notas_register 
     flag_estudiantes = True
-    menu="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal. \n4 Salir de la aplicación.  \nIngrese el numero para la operación que desee: "
+    menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal. \n4 Salir de la aplicación.  \nIngrese el numero para la operación que desee: "
     while flag_estudiantes == True:    
-        respuesta_est = input(menu) #Menú modularizado.
+        respuesta_est = input(menu_estudiantes) #Menú modularizado.
         while validacion_4dig (respuesta_est) == False: #Validacion numero entre 1 y 4 
-            respuesta_est = input(menu)
+            respuesta_est = input(menu_estudiantes)
         
         respuesta_est = int(respuesta_est) 
         if respuesta_est == 1:
-            print()
             agregar_materias (matriz_notas_usar, pos) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
         if respuesta_est == 2:
