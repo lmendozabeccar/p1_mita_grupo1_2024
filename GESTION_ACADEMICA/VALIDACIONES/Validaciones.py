@@ -87,14 +87,14 @@ def cuenta_existente_login (list_alumnos,list_profesores,user,contraseña):
         if user==list_alumnos[i][1] and contraseña==list_alumnos[i][2]: 
             print("Ingreso correcto al apartado alumnos.")
             print()
-            return 1,i
+            return 1, list_alumnos[i][0] 
         i+=1
     j = 0
     while j<len(list_profesores):
         if user==list_profesores[j][0] and contraseña==list_profesores[j][1]:
             print("Ingreso correcto al apartado profesores.")
             print()
-            return 2,j
+            return 2, list_profesores[j][0]
         j += 1
     return 3,a
 

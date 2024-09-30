@@ -10,7 +10,7 @@ def user ():
     password=str(input("Ingresar contraseña: "))
     return username,password
 
-def logeandose(matriz_notas_register, matriz_a_register, matriz_p_register):
+def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
     if matriz_a_register == []: #Estos condicionales verifican si la lista fue modificada por el registro. En tal caso, se usa la matriz nueva o la preestablecida
         matriz_alumnos_usar = ingreso_alumnos
     else:
@@ -19,29 +19,28 @@ def logeandose(matriz_notas_register, matriz_a_register, matriz_p_register):
         matriz_profesores_usar = ingreso_profes
     else:
         matriz_profesores_usar = matriz_p_register 
-        
-    matriz_notas_actualizadas = [] #Esta matriz se va a usar cuando ésta sea modificada por el crud de profesores    
-    
+
     usuario,contra = user() #Pide usuario y contraseña
     flag=False
     cont=0 #Intentos
     while flag==False and cont<5:
-        if matriz_notas_actualizadas != []:    
-            matriz_notas_register = matriz_notas_actualizadas
         while validacionmail(usuario) == False and cont<5: #Se valida el mail
             cont += 1 #Máximo de 5 intentos.
             usuario,contra = user()
         
-        num, apart = cuenta_existente_login(matriz_alumnos_usar,matriz_profesores_usar,usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
+        num, legajo = cuenta_existente_login(matriz_alumnos_usar,matriz_profesores_usar,usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
-            if estudiantes(matriz_notas_register, apart) == True:
+            valor, matriz_legajos_notas_act = estudiantes(matriz_legajos_notas, legajo)
+            if valor == True:
                 return True
+            else:
+                return matriz_legajos_notas_act
                 
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
-            matriz_notas_actualizadas = profesores(matriz_notas_register) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
-            if matriz_notas_actualizadas == True:
+            matriz_legajos_notas_act = profesores(matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
+            if matriz_legajos_notas_act == True:
                 return True
             
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
