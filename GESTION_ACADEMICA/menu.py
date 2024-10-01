@@ -2,7 +2,7 @@ from loading.login import logeandose
 from VALIDACIONES.Validaciones import validacion_3dig
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
-from REGISTRO.Register import registro
+from Registro.Register import registro
 print()
 #Alumnos ya registrados en el sistema.
 #Menú de inicio.
