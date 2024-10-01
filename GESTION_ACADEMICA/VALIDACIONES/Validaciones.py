@@ -1,11 +1,13 @@
 import re
 #Verificar mayúsculas correspondientes a la hora de ingresar nombre (registro). 
 def validar_mayus_nombre (nombre):
-    if re.findall ("[0-9]+",nombre) != []:
+    busq = re.findall ("[0-9]+",nombre) 
+    if len(busq) != 0:
         print("Por favor, no ingresar números en su nombre y apellido.") 
         print()
         return False
-    if re.findall ("^[A-Z][a-z]*\\s[A-Z][a-z]*$",nombre) == []:
+    busq2 = re.findall ("^[A-Z][a-z]*\\s[A-Z][a-z]*$",nombre)
+    if len(busq2) != 0:
         print("Ingresar mayúsculas al comienzo del nombre y del apellido.") #####FUNCIONES: En caso de que la cadena cumpla, la función devuelve "None"
         print()
         return False
@@ -16,11 +18,13 @@ def validar_contraseña (contra):
         print("Contraseña inválida, por favor ingresar al menos 8 caracteres.")
         print()
         return False
-    if re.findall ("\\s",contra) != []: #Que no haya espacios en blanco
+    busq = re.findall ("\\s",contra)
+    if len(busq) != 0: #Que no haya espacios en blanco
         print("Por favor, no ingresar espacios en blanco a la hora de ingresar su contraseña.")
         print()
         return False        
-    if re.findall ("[A-Z]+[a-z]+[0-9]+",contra) == []: #Contraseña segura
+    busq2 = re.findall ("[A-Z]+[a-z]+[0-9]+",contra)
+    if len(busq2) != 0: #Contraseña segura
         print("Su contraseña no pudo ser validada. Por favor ingresar al menos una mayúscula, una minúscula y un número.)")
         print()
         return False
@@ -74,8 +78,8 @@ def validacion_6dig (texto):
 #Validación del Mail.
 def validacionmail (mail):
     patron = r"[a-zA-Z0-9]{3,}@sistem+\.edu+\.ar" # R String --> Para que tome las secuencias de escape bien (Daba un warning)
-    busqarr = re.findall (patron, mail)
-    if busqarr == []:
+    busq = re.findall (patron, mail)
+    if len(busq) != 0:
         print('Ingresar @sistem.edu.ar junto con el nombre de usuario, con un mínimo de tres caracteres antes del "@"')
         print()
         return False

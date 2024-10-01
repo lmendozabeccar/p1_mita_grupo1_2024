@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña,validar_num, validar_mayus_nombre, cuenta_existente_register
+from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 def registro(listaalumnos, listaprofesor):

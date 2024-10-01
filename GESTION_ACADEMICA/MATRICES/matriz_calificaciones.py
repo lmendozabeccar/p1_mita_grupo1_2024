@@ -6,7 +6,6 @@ def mostrar_notas (matriz_legajos_notas, legajo):
         print("Para ver sus calificaciones, primero debe anotarse a una")
         return 0
     else:
-        print(matriz_legajos_notas)
         sublista_cursa = matriz_legajos_notas[legajo]["cursa"]
         sublista_notas = matriz_legajos_notas[legajo]["notas"]
         suma,cont = 0,0
