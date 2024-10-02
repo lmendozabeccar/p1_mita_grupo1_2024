@@ -1,6 +1,6 @@
 from VALIDACIONES.Validaciones import seguir_texto, validar_legajo, validar_num
 from MATRICES.matriz_calificaciones import mostrar_notas
-from MATRICES.Diccionario_Materias import actualizar_notas
+from MATRICES.diccionario_materias import actualizar_notas
 from MATRICES.matriz_alumnos import ingreso_alumnos
 
 #posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
