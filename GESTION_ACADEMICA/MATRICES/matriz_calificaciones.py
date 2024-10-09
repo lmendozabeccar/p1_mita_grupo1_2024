@@ -24,4 +24,9 @@ def mostrar_notas (matriz_legajos_notas, legajo):
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
                 print(f"Cursa {cursa}, Nota: {nota}")
+                if nota>=0 and nota<=3:
+                    print(f"El alumno Recurso {cursa} con una nota de {nota}")
+                else:
+                    print("El alumno aprobo todas las materias")
             print(f"Promedio: {suma/cont:.2f}") #Maximo dos decimales
+            
