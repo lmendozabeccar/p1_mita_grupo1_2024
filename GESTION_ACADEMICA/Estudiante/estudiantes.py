@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_digitos
+from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.diccionario_materias import agregar_materias
 
@@ -8,7 +8,7 @@ def estudiantes(matriz_legajos_notas, legajo):
     menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal. \n4 Salir de la aplicación.  \nIngrese el numero para la operación que desee: "
     while flag_estudiantes == True:    
         respuesta_est = input(menu_estudiantes) #Menú modularizado.
-        while validacion_digitos (respuesta_est, 4) == False: #Validacion numero entre 1 y 4 
+        while validacion_dig (respuesta_est, 4) == False: #Validacion numero entre 1 y 4 
             respuesta_est = input(menu_estudiantes)
         
         respuesta_est = int(respuesta_est) 

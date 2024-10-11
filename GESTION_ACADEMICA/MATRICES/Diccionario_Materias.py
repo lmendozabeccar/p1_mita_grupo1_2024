@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_digitos, validar_nota
+from VALIDACIONES.Validaciones import validacion_dig, validar_nota
 
 # Diccionario de materias
 materias_dic = {
@@ -33,7 +33,7 @@ def agregar_materias(matriz_legajos_notas, legajo):
             print()
         
         materia = input(menu_materia)
-        while validacion_digitos (materia, 5)== False: #Valida que sea un numero del 1 al 5
+        while validacion_dig (materia, 5)== False: #Valida que sea un numero del 1 al 5
             materia = input(menu_materia)
             
         materia_nombre = materias_dic.get(materia) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)
@@ -55,7 +55,7 @@ def agregar_materias(matriz_legajos_notas, legajo):
                 
             # Preguntar si el usuario desea agregar otra materia
             continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
-            while validacion_digitos(continuar, 2)== False: #Valida que ingrese 1 o 2.
+            while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
                 continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
             if int(continuar) == 2:
                 flag = 1 
@@ -80,7 +80,7 @@ def actualizar_notas (matriz_legajos_notas, legajo):
     menu_calificacion = "Ingresar nota de la respectiva materia: "
     while flag == 0:
         materia = input(menu_nota)
-        while validacion_digitos(materia, 5)== False: #Valida que sea un numero del 1 al 5
+        while validacion_dig(materia, 5)== False: #Valida que sea un numero del 1 al 5
             materia = input(menu_nota)
 
         materia_nombre = dic_materias_inscriptas.get(int(materia)) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)
@@ -95,7 +95,7 @@ def actualizar_notas (matriz_legajos_notas, legajo):
                 print()
                 # Preguntar si el usuario desea agregar otra materia
                 continuar = input(menu_agregar_nota) #Modularizacion de menú anterior.
-                while validacion_digitos(continuar, 2)== False: #Valida que ingrese 1 o 2.
+                while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
                     continuar = input(menu_agregar_nota) #Modularizacion de menú anterior.
                 if int(continuar) == 2:
                     flag = 1                  #Ingresa 2, sale del apartado y vuelve atras.

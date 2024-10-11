@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_2dig, validacion_3dig, validacionmail, validar_contraseña, validar_mayus_nombre, cuenta_existente_register
+from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, cuenta_existente_register
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 def registro(listaalumnos, listaprofesor):
@@ -10,7 +10,7 @@ def registro(listaalumnos, listaprofesor):
     menu_error = "\n1 Volver a intentar el registro. \n2 Volver al inicio \nElija un número: "
     while flag == False:
         inicio_registro=(input(menu_registro)) #Modularizacion menú.
-        while validacion_3dig (inicio_registro) == False: #Valida que el numero sea entre 1 y 3
+        while validacion_dig (inicio_registro, 3) == False: #Valida que el numero sea entre 1 y 3
             inicio_registro=(input(menu_registro))  
                  
         if int(inicio_registro) ==3: #Vuelve al menú de inicio.
@@ -50,7 +50,7 @@ def registro(listaalumnos, listaprofesor):
                     
         else: #En caso de usuario ya existente.
             inicio_usuario_exist=(input(menu_error))
-            while validacion_2dig (inicio_usuario_exist) == False: #Validacion que sea un numero entre 1 y 2.
+            while validacion_dig (inicio_usuario_exist, 2) == False: #Validacion que sea un numero entre 1 y 2.
                 inicio_usuario_exist=(input(menu_error))
 
             if int(inicio_usuario_exist) == 2: #Vuelve al menú de inicio, en caso de elegir la opción 2.

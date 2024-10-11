@@ -1,5 +1,5 @@
 from CRUDS.crudProfesores import  *
-from VALIDACIONES.Validaciones import validacion_6dig
+from VALIDACIONES.Validaciones import validacion_dig
 
 def profesores(matriz_alumnos, matriz_legajos_notas):
     flag_profes = True
@@ -9,7 +9,7 @@ def profesores(matriz_alumnos, matriz_legajos_notas):
     while flag_profes == True:
         print()
         respuesta_prof = input(menu_profesor) #Modularizacion de menu.
-        while validacion_6dig (respuesta_prof)== False: #Valida que el numero sea entre 1 y 6
+        while validacion_dig (respuesta_prof, 6)== False: #Valida que el numero sea entre 1 y 6
             respuesta_prof = input(menu_profesor)
         respuesta_prof = int(respuesta_prof)
         

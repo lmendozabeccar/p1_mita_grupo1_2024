@@ -1,6 +1,6 @@
 from Estudiante.estudiantes import estudiantes
 from Profesor.profesor import profesores
-from VALIDACIONES.Validaciones import validacion_digitos, validacionmail, cuenta_existente_login
+from VALIDACIONES.Validaciones import validacion_dig, validacionmail, cuenta_existente_login
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 
@@ -53,7 +53,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
                 menu_error = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
                 inicio_login=(input(menu_error)) #Menu de arriba, modularizado       
                 #Validación de letra.
-                while validacion_digitos(inicio_login, 2) == False: #Valida que el número sea 1 o 2
+                while validacion_dig(inicio_login, 2) == False: #Valida que el número sea 1 o 2
                     inicio_login=(input(menu_error)) #Menu de arriba, modularizado                                           
 
                 if int (inicio_login) == 1: #Vuelve a intentar el inicio de sesión.
