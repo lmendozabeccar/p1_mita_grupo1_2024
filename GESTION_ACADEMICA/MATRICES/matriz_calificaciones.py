@@ -25,6 +25,6 @@ def mostrar_notas (matriz_legajos_notas, legajo):
                 print(f"Cursa {cursa}, Nota: {nota}")
                 if nota != "-":
                     if nota>=0 and nota<=3:
-                        print(f"El alumno recursó {cursa} con una nota de {nota}")
+                        print(f"Cursa {cursa}, Nota: {nota} (recursa)")
             print(f"Promedio: {suma/cont:.2f}") #Maximo dos decimales
             

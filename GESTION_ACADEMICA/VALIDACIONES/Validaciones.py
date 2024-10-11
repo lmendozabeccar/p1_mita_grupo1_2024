@@ -43,8 +43,7 @@ def validar_num (car):
 def validacion_dig (texto, numero_opciones):                  
     patron = f"^[1-{numero_opciones}]$" #Tiene que empezar y terminar con 1 digito
     while re.match(patron,texto) == None:
-        print("Por favor, ingresar un numero válido.")
-        print()
+        print("\nPor favor, ingresar un numero válido.n\n")
         return False 
     
 #Validación del Mail.

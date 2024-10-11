@@ -34,7 +34,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
             flag=True
             valor, matriz_legajos_notas_act = estudiantes(matriz_legajos_notas, legajo)
             if valor == True:
-                return (True, True) #Devuelve una tupla con dos True ya que esta funcion debe devolver siempre dos valores, sino se rompe el programa.
+                return True, True #Devuelve una tupla con dos True ya que esta funcion debe devolver siempre dos valores, sino se rompe el programa.
             else:
                 return matriz_alumnos_usar, matriz_legajos_notas_act
                 
@@ -42,7 +42,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
             flag = True
             matriz_alumnos_act, matriz_legajos_notas_act = profesores(matriz_alumnos_usar, matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
             if matriz_legajos_notas_act == True:
-                return (True, True)
+                return True, True
             else:
                 return matriz_alumnos_act, matriz_legajos_notas_act
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
@@ -60,6 +60,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
                     usuario,contra = user()
                 elif int (inicio_login) == 2: #Vuelve atrás, al menú principal.
                    flag = True
+                   return True, True
             else:
                 print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
                 return False, False

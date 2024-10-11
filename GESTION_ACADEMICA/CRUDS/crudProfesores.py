@@ -47,6 +47,9 @@ def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
     while flag == True:
         flag_2 = True
         while flag_2 == True:
+            if len(matriz_alumnos) == 0: #Si no hay alumnos en la matriz, no se puede eliminar
+                print("No hay alumnos en la base de datos.")
+                flag_2 = False
             legajo_eliminar = input(menu_legajo_eliminar) #Mismo menu que arriba
             while validar_num(legajo_eliminar) == False:
                 legajo_eliminar = input(menu_legajo_eliminar)
@@ -55,7 +58,9 @@ def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
                 matriz_alumnos.pop(indice[0]) #como "indice" es una lista, entonces me fijo en la posición 0 para sacar el índice como entero, y luego borrar esa posicion
                 if int(legajo_eliminar) in matriz_legajos_notas:
                     matriz_legajos_notas.pop(int(legajo_eliminar))
-            except KeyError or IndexError: #En caso de que el legajo no exista en la matriz de alumnos
+            except KeyError: #En caso de que el legajo no exista en la matriz de alumnos
+                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datos.")
+            except IndexError: 
                 print(f"Error: El legajo {legajo_eliminar} no existe en la base de datos.")
             else:
                 print("Base de datos de alumnos actualizada")
