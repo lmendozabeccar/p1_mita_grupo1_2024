@@ -1,6 +1,6 @@
 from Estudiante.estudiantes import estudiantes
 from Profesor.profesor import profesores
-from VALIDACIONES.Validaciones import validacion_2dig, validacionmail, cuenta_existente_login
+from VALIDACIONES.Validaciones import validacion_digitos, validacionmail, cuenta_existente_login
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 
@@ -15,6 +15,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
         matriz_alumnos_usar = ingreso_alumnos
     else:
         matriz_alumnos_usar = matriz_a_register 
+        
     if matriz_p_register == []:
         matriz_profesores_usar = ingreso_profes
     else:
@@ -33,16 +34,17 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
             flag=True
             valor, matriz_legajos_notas_act = estudiantes(matriz_legajos_notas, legajo)
             if valor == True:
-                return True
+                return (True, True) #Devuelve una tupla con dos True ya que esta funcion debe devolver siempre dos valores, sino se rompe el programa.
             else:
-                return matriz_legajos_notas_act
+                return matriz_alumnos_usar, matriz_legajos_notas_act
                 
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
-            matriz_legajos_notas_act = profesores(matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
+            matriz_alumnos_act, matriz_legajos_notas_act = profesores(matriz_alumnos_usar, matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
             if matriz_legajos_notas_act == True:
-                return True
-            
+                return (True, True)
+            else:
+                return matriz_alumnos_act, matriz_legajos_notas_act
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:
@@ -51,7 +53,7 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
                 menu_error = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
                 inicio_login=(input(menu_error)) #Menu de arriba, modularizado       
                 #Validación de letra.
-                while validacion_2dig(inicio_login) == False: #Valida que el número sea 1 o 2
+                while validacion_digitos(inicio_login, 2) == False: #Valida que el número sea 1 o 2
                     inicio_login=(input(menu_error)) #Menu de arriba, modularizado                                           
 
                 if int (inicio_login) == 1: #Vuelve a intentar el inicio de sesión.
@@ -60,4 +62,5 @@ def logeandose(matriz_legajos_notas, matriz_a_register, matriz_p_register):
                    flag = True
             else:
                 print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
+                return False, False
                 #En caso de llegar al maximo de intentos (cinco), sale y vuelve al menú

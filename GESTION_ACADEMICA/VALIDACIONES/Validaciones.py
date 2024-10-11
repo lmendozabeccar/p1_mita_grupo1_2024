@@ -7,8 +7,8 @@ def validar_mayus_nombre (nombre):
         print()
         return False
     busq2 = re.findall ("^[A-Z][a-z]*\\s[A-Z][a-z]*$",nombre)
-    if len(busq2) != 0:
-        print("Ingresar mayúsculas al comienzo del nombre y del apellido.") #####FUNCIONES: En caso de que la cadena cumpla, la función devuelve "None"
+    if len(busq2) == 0:
+        print("Ingresar mayúsculas al comienzo del nombre y del apellido.")
         print()
         return False
     
@@ -24,7 +24,7 @@ def validar_contraseña (contra):
         print()
         return False        
     busq2 = re.findall ("[A-Z]+[a-z]+[0-9]+",contra)
-    if len(busq2) != 0: #Contraseña segura
+    if len(busq2) == 0: #Contraseña segura
         print("Su contraseña no pudo ser validada. Por favor ingresar al menos una mayúscula, una minúscula y un número.)")
         print()
         return False
@@ -40,46 +40,18 @@ def validar_num (car):
     return car.isnumeric()
 
 #Validacion de que los numeros esten bien. Valida que la respuesta sea "1" o "2",etc respectivamente
-def validacion_2dig (texto):                  
-    patron = "^[1-2]$" #Tiene que empezar y terminar con 1 digito
+def validacion_dig (texto, numero_opciones):                  
+    patron = f"^[1-{numero_opciones}]$" #Tiene que empezar y terminar con 1 digito
     while re.match(patron,texto) == None:
         print("Por favor, ingresar un numero válido.")
         print()
-        return False
-
-def validacion_3dig (texto):                 
-    patron = "^[1-3]$"
-    while re.match(patron,texto) == None:
-        print("Por favor, ingresar un numero válido.")
-        print()
-        return False
-
-def validacion_4dig (texto):
-    patron = "^[1-4]$"
-    while re.match(patron,texto) == None:
-        print("Por favor, ingresar un numero válido.")
-        print()
-        return False
-    
-def  validacion_5dig (texto):
-    patron = "^[1-5]$"
-    while re.match(patron,texto) == None:
-        print("Por favor, ingresar un numero válido.")
-        print()
-        return False
-
-def validacion_6dig (texto):
-    patron = "^[1-6]$"
-    while re.match(patron,texto) == None:
-        print("Por favor, ingresar un numero válido.")
-        print()
-        return False
+        return False 
     
 #Validación del Mail.
 def validacionmail (mail):
     patron = r"[a-zA-Z0-9]{3,}@sistem+\.edu+\.ar" # R String --> Para que tome las secuencias de escape bien (Daba un warning)
     busq = re.findall (patron, mail)
-    if len(busq) != 0:
+    if len(busq) == 0:
         print('Ingresar @sistem.edu.ar junto con el nombre de usuario, con un mínimo de tres caracteres antes del "@"')
         print()
         return False
@@ -141,7 +113,7 @@ def validar_legajo (lista, pos):
 
 #Validación de nota, entre 0 y 10 y con 
 def validar_nota (car):
-    patron = "^(10(\.0)?|[0-9](\.\d)?)$"
+    patron = r"^(10(\.0)?|[0-9](\.\d)?)$" # ()? Quiere decir que es opcional que haya un punto y un 0, | es operador OR
     nota_valida= re.match(patron,car)
     if nota_valida == None:
         print("Nota incorrecta, por favor ingresar una nota válida.")

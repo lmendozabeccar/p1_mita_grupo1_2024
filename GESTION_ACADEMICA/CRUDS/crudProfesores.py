@@ -1,9 +1,8 @@
-from VALIDACIONES.Validaciones import seguir_texto, validar_legajo, validar_num
+from VALIDACIONES.Validaciones import seguir_texto, validar_num
 from MATRICES.matriz_calificaciones import mostrar_notas
-from MATRICES.Diccionario_Materias import actualizar_notas
-from MATRICES.matriz_alumnos import ingreso_alumnos
+from MATRICES.diccionario_materias import actualizar_notas
 
-#posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
+posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
 
 def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del registro
     print()
@@ -26,7 +25,7 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
                 flag_2 = False #Si se pudo encontrar.
         print()
         
-        matriz_legajos_notas_act = actualizar_notas(matriz_legajos_notas, legajo_actualizar) #Encontro el legajo, y va a agregar materias.
+        matriz_legajos_notas_act = actualizar_notas(matriz_legajos_notas, legajo_actualizar) #Encontro el legajo, y va a actualizar las materias
         matriz_legajos_notas = matriz_legajos_notas_act
         
         lin = (input(menu_agregar_notas)) #Menu2, si desea continuar actualizando alumnos, pero modularizado.
@@ -38,26 +37,29 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
             #En caso de ingresar 1, sigue actualizando alumnos.
     return matriz_legajos_notas
 
-def eliminar_alumno(matriz_legajos_notas):
+def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
     print()
+    legajos_formateados = ", ".join(str(subfila[0]) for subfila in matriz_alumnos) # Se junta las claves en una cadena separada por comas
+    print(f"Legajos existentes: {legajos_formateados}")
     flag = True
     menu_legajo_eliminar = "Ingrese el legajo que quiere eliminar: " #Ingresar el legajo
     menu_continuar = "\n1 Desea continuar eliminando alumnos. \n2 No desea continuar eliminando alumnos \nPor favor, elegir una opción: "
     while flag == True:
         flag_2 = True
         while flag_2 == True:
-            legajo_eliminar = input(menu_legajo_eliminar) #Legajo que se quiere eliminar
+            legajo_eliminar = input(menu_legajo_eliminar) #Mismo menu que arriba
             while validar_num(legajo_eliminar) == False:
                 legajo_eliminar = input(menu_legajo_eliminar)
-                
-            indice = posicion(int(legajo_eliminar), matriz_notas_usar) #Saco en qué posicion esta el legajo en la lista
-            if indice == []:
-                print("No se ha podido encontrar ese legajo, ingrese otro.") #No se pudo encontrar el legajo
+            try: #Manejo de excepciones por si la clave no existe en el diccionario
+                indice = posicion(int(legajo_eliminar), matriz_alumnos) #Saco la posición del legajo en la lista de alumnos dentro de una lista
+                matriz_alumnos.pop(indice[0]) #como "indice" es una lista, entonces me fijo en la posición 0 para sacar el índice como entero, y luego borrar esa posicion
+                if int(legajo_eliminar) in matriz_legajos_notas:
+                    matriz_legajos_notas.pop(int(legajo_eliminar))
+            except KeyError or IndexError: #En caso de que el legajo no exista en la matriz de alumnos
+                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datos.")
             else:
-                flag_2 = False #Si se pudo encontrar.
-
-        ingreso_alumnos.pop(indice[0])
-        matriz_notas_usar.pop(indice[0]) #"indice" es una lista, entonces me fijo en la posición 0 para sacar el índice como entero, y luego borrar esa posicion
+                print("Base de datos de alumnos actualizada")
+                flag_2 = False
         print()
         lin = (input(menu_continuar)) #Mismo menú, pero modularizado.
         while seguir_texto(lin) == False: #Pregunta si quiere seguir eliminando.
@@ -66,7 +68,7 @@ def eliminar_alumno(matriz_legajos_notas):
         if int (lin) == 2: #No quiere seguir, sale de este apartado.
             flag = False
                             #En caso de ingresar 1, sigue eliminando.
-    return matriz_notas_usar ####################### USAR "del" para eliminar un elemento de un diccionario
+    return matriz_alumnos, matriz_legajos_notas
 
 def mostrar_calificacion_grupal (matriz_legajos_notas):
     print()        
