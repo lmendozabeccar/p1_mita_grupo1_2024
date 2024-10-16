@@ -122,8 +122,25 @@ print(producto) (Salida: 24)
 En el otro archivo, import nombre_de_archivo (solo el nombre)
 Una vez importado se puede usar, por ejemplo: nombre_de_archivo.suma() 
 
-#####DICCIONARIOS
+###DICCIONARIOS
 for key in diccionario:
     print(f'{key}: {diccionario[key]}') --> recorrer un diccionario
 
+### Desarrollo y test unitarios
+assert e instalacion de pytest
+
+###Archivos
+Que son: Conjunto de elementos llamados registros, todos del mismo tipo de dato. Cada uno de estos datos se denomina campo
+Se almacenan en un dispositivo auxiliar no volatil para preservar la informacion. Así sea un disco
+#ABRIR ARCHIVO
+open(file, mode="r") "r"=read, "w"=write, "a"=append(agregado)
+se agrega "encoding="UTF-8"
+file.close() --> siempre al final para cerrar el archivo, usar manejo de excepciones
+#Metodos de escritura
+.write(cadena)
+.writelines(lista de cadenas) 
+
 '''
+'''with open(r"C:\Users\Usuario\p1_mita_grupo1_2024\archivostxt\pasos_git", mode="r") as archivo:
+    for i in range(0, 10):
+        archivo.write(str(i*2-1))'''
