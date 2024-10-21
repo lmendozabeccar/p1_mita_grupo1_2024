@@ -1,29 +1,31 @@
-from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, cuenta_existente_register
-from MATRICES.matriz_alumnos import ingreso_alumnos
-from MATRICES.matriz_profesor import ingreso_profes
-def registro(listaalumnos, listaprofesor):
-    flag = True
+#Archivo de prueba para practicar codigo sin necesidad de modificar el original.
+from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, cuenta_existente_login
+usuario = "nardonejuan@sistem.edu.ar"
+contraseña = "nardonejuan10"
+
+def funcion_prueba(usuario, contraseña):
     menu_registro = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
     menu_mail = "Ingresar su mail de usuario nuevo: "
     menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
     menu_contraseña = "Ingrese su contraseña: "
     menu_error = "\n1 Volver a intentar el registro. \n2 Volver al inicio \nElija un número: "
-    .with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a+", encoding="utf-8") as archivo: #mode="a+" para tener derechos de lectura y escritura.
+    with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
+        flag = True
         archivo.seek(0) #Se posiciona al principio del archivo para poder leerlo correctamente.
-        while flag == True:
+        while flag:
             inicio_registro=(input(menu_registro)) #Modularizacion menú.
             while validacion_dig (inicio_registro, 3) == False: #Valida que el numero sea entre 1 y 3
                 inicio_registro=(input(menu_registro))  
                     
-            if int(inicio_registro) ==3: #Vuelve al menú de inicio.
-                return [], [] 
+            if int(inicio_registro) == 3: #Vuelve al menú de inicio.
+                return -1
             print()
             #Validación Mail.
             user=str(input(menu_mail)) #Modularización de menú
             while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.
                 user=str(input(menu_mail))   
                             
-            if cuenta_existente_register (ingreso_alumnos,ingreso_profes,user) != False: #Se fija si hay una cuenta existente, en caso que sea True, entra . 
+            respuesta = cuenta_existente_login(user, False) != False #Se fija si hay una cuenta existente, en caso que sea True, entra . 
                 if int (inicio_registro)==1: #Si se registra como alumno
                     nom=str(input(menu_nombre))
                     while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
@@ -57,4 +59,8 @@ def registro(listaalumnos, listaprofesor):
 
                 if int(inicio_usuario_exist) == 2: #Vuelve al menú de inicio, en caso de elegir la opción 2.
                     return [], []       
-    return listaalumnos, listaprofesor
+    return #ver
+            
+            
+
+print(funcion_prueba(usuario, contraseña))

@@ -11,8 +11,8 @@ def menu_de_inicio():
     titulo = "¡Bienvenidos a nuestra Gestion Academica!"
     print(titulo.title().center(80))
 
-    matriz_a_register, matriz_p_register = [], [] #Se inicializan las matrices de est y prof vacías para que luego sean modificadas por el registro
     matriz_legajos_notas = {} #Se inicializa el diccionario de notas vacía
+    
     while flag == True:
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
         inicio= input(menu) #Menú de inicio.

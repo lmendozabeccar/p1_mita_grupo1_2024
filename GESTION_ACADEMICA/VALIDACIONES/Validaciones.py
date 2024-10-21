@@ -48,21 +48,54 @@ def validacionmail (mail):
         print('\nIngresar @sistem.edu.ar junto con el nombre de usuario, con un mínimo de tres caracteres antes del "@"\n')
         return False
 #Verificar si la cuenta existe o no en el sistema
-def cuenta_existente_login (list_alumnos,list_profesores,user,contraseña):
-    i=0
-    a=0
-    while i<len(list_alumnos):
-        if user==list_alumnos[i][1] and contraseña==list_alumnos[i][2]: 
-            print("\nIngreso correcto al apartado alumnos.\n")
-            return 1, list_alumnos[i][0] 
-        i+=1
-    j = 0
-    while j<len(list_profesores):
-        if user==list_profesores[j][0] and contraseña==list_profesores[j][1]:
-            print("\nIngreso correcto al apartado profesores.\n")
-            return 2, list_profesores[j][0]
-        j += 1
-    return 3,a
+def cuenta_existente_login (user,contraseña):
+    with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
+        flag = True
+        encontrado = True
+        tipo_usuario = 0
+        while flag:
+            linea = archivo.readline()
+            if linea == "":
+                flag = False
+                encontrado = False
+            else:
+                linea = linea.strip()
+                lista = linea.split(";")
+                if contraseña == False: #Para el registro
+                    if lista[1] == user:
+                        print("Usuario ya existente, ingrese otro.")
+                        return -1
+                    else:
+                        return 1
+                else:
+                    if lista[1] == user and lista[2] == contraseña: #Para el login
+                        if lista[0] == "0000": #El profesor tiene legajo 0000
+                            print("Ingreso correcto al apartado profesores.")
+                            tipo_usuario = 2
+                            legajo = -1
+                            flag = False
+                        else:
+                            print("Ingreso correcto al apartado alumnos.")
+                            tipo_usuario = 1
+                            legajo = lista[0]
+                            flag = False
+        if encontrado == False:
+            print("Usuario no encontrado.")
+        return tipo_usuario, legajo
+'''i=0
+a=0
+while i<len(list_alumnos):
+    if user==list_alumnos[i][1] and contraseña==list_alumnos[i][2]: 
+        print("\nIngreso correcto al apartado alumnos.\n")
+        return 1, list_alumnos[i][0] 
+    i+=1
+j = 0
+while j<len(list_profesores):
+    if user==list_profesores[j][0] and contraseña==list_profesores[j][1]:
+        print("\nIngreso correcto al apartado profesores.\n")
+        return 2, list_profesores[j][0]
+    j += 1
+return 3,a'''
 
 #Verificar si existe un USUARIO registrado anteriormente.
 def cuenta_existente_register (listaalumnos,listaprofes,usuario):
@@ -79,7 +112,7 @@ def cuenta_existente_register (listaalumnos,listaprofes,usuario):
         j += 1    
 
 #Si se sigue o no con las opciones.    
-def seguir_texto (text):
+def seguir_texto (text): ### REMPLAZAR por funcion validacion_dig() ######################################
     patron = "^[1-2]$"
     while re.match(patron,text) == None:
         print("\nPor favor, ingresar un numero válido.\n")
