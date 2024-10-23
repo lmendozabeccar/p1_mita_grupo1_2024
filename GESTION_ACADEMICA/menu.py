@@ -1,5 +1,4 @@
 from loading.login import logeandose
-from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_alumnos import ingreso_alumnos
 from MATRICES.matriz_profesor import ingreso_profes
 from REGISTRO.Register import registro
@@ -15,10 +14,17 @@ def menu_de_inicio():
     
     while flag == True:
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
-        inicio= input(menu) #Menú de inicio.
-        while validacion_dig (inicio, 3)== False: #Validacion que sea un numero entre 1 y 3
-            inicio=input(menu)
-                                           
+        while True:
+            try:
+                inicio = int(input(menu)) #Menú de inicio.
+            except ValueError:
+                print("Error. Debe ingresar un número")
+            else:
+                if inicio >= 1 and inicio <= 3:
+                    break
+                else:
+                    print("Debe ingresar un número dentro de las opciones")
+
         if int (inicio)==1: #Se entra al inicio de sesión.
             matriz_alumnos_act, matriz_legajos_notas_act = logeandose (matriz_legajos_notas, matriz_a_register, matriz_p_register)
             if matriz_legajos_notas_act == True:
