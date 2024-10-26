@@ -20,21 +20,19 @@ def menu_de_inicio():
             inicio=input(menu)
                                            
         if int (inicio)==1: #Se entra al inicio de sesión.
-            matriz_alumnos_act, matriz_legajos_notas_act = logeandose (matriz_legajos_notas, matriz_a_register, matriz_p_register)
+            matriz_legajos_notas_act = logeandose (matriz_legajos_notas)
             if matriz_legajos_notas_act == True:
-                flag = False
-            elif matriz_legajos_notas_act == False:
-                return 1
-            else:
+                return True
+            elif matriz_legajos_notas_act != True and matriz_legajos_notas_act != False:
                 matriz_legajos_notas = matriz_legajos_notas_act #Se le asignan las nuevas matrices actualizadas
-                matriz_a_register = matriz_alumnos_act
-                
+
         elif int (inicio) == 2: #Se entra al registro.
             print("¡Registrate!")
-            matriz_a_register, matriz_p_register = registro(ingreso_alumnos,ingreso_profes) #Se asignan las dos nuevas matrices formadas
+            registro() #Se asignan las dos nuevas matrices formadas
         else:
             print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
-            flag = False       
+            flag = False    
+    return True   
                
 if __name__ == "__main__":     
     menu_de_inicio() 

@@ -19,7 +19,7 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
             legajo_actualizar = input(menu_legajo) #Mismo menu que arriba
             while validar_num(legajo_actualizar) == False:
                 legajo_actualizar = input(menu_legajo)
-            if int(legajo_actualizar) not in matriz_legajos_notas: #Valida que el legajo exista en la matriz de notas
+            if legajo_actualizar not in matriz_legajos_notas: #Valida que el legajo exista en la matriz de notas
                 print("No se ha podido encontrar ese legajo, ingrese otro.") #No se pudo encontrar el legajo
             else:
                 flag_2 = False #Si se pudo encontrar.
@@ -37,9 +37,10 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
             #En caso de ingresar 1, sigue actualizando alumnos.
     return matriz_legajos_notas
 
-def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
+def eliminar_alumno(matriz_legajos_notas):
     print()
-    legajos_formateados = ", ".join(str(subfila[0]) for subfila in matriz_alumnos) # Se junta las claves en una cadena separada por comas
+    legajos = matriz_legajos_notas.keys()
+    legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
     print(f"Legajos existentes: {legajos_formateados}")
     flag = True
     menu_legajo_eliminar = "Ingrese el legajo que quiere eliminar: " #Ingresar el legajo
@@ -47,21 +48,13 @@ def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
     while flag == True:
         flag_2 = True
         while flag_2 == True:
-            if len(matriz_alumnos) == 0: #Si no hay alumnos en la matriz, no se puede eliminar
-                print("No hay alumnos en la base de datos.")
-                flag_2 = False
             legajo_eliminar = input(menu_legajo_eliminar) #Mismo menu que arriba
             while validar_num(legajo_eliminar) == False:
                 legajo_eliminar = input(menu_legajo_eliminar)
             try: #Manejo de excepciones por si la clave no existe en el diccionario
-                indice = posicion(int(legajo_eliminar), matriz_alumnos) #Saco la posición del legajo en la lista de alumnos dentro de una lista
-                matriz_alumnos.pop(indice[0]) #como "indice" es una lista, entonces me fijo en la posición 0 para sacar el índice como entero, y luego borrar esa posicion
-                if int(legajo_eliminar) in matriz_legajos_notas:
-                    matriz_legajos_notas.pop(int(legajo_eliminar))
+                matriz_legajos_notas.pop(legajo_eliminar)
             except KeyError: #En caso de que el legajo no exista en la matriz de alumnos
-                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datos.")
-            except IndexError: 
-                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datos.")
+                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datoss.")
             else:
                 print("Base de datos de alumnos actualizada")
                 flag_2 = False
@@ -70,10 +63,10 @@ def eliminar_alumno(matriz_alumnos, matriz_legajos_notas):
         while seguir_texto(lin) == False: #Pregunta si quiere seguir eliminando.
             lin = (input(menu_continuar))
         print()
-        if int (lin) == 2: #No quiere seguir, sale de este apartado.
+        if int (lin) == 2 or len(matriz_legajos_notas) == 0: # Si no quiere seguir o el diccionario se quedó sin legajos, sale de este apartado.
             flag = False
                             #En caso de ingresar 1, sigue eliminando.
-    return matriz_alumnos, matriz_legajos_notas
+    return matriz_legajos_notas
 
 def mostrar_calificacion_grupal (matriz_legajos_notas):
     print()        
@@ -87,7 +80,7 @@ def mostrar_calificacion_grupal (matriz_legajos_notas):
         
 def mostrar_calificacion_individual (matriz_legajos_notas):
     print()
-    flag = 0
+    flag = False
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
     print(f"Legajos inscriptos: {legajos_formateados}")
@@ -95,14 +88,14 @@ def mostrar_calificacion_individual (matriz_legajos_notas):
     legajo= input(menu_legajo) #Menú de arriba, modularizado.
     while validar_num(legajo) == False:
         legajo = input(menu_legajo)
-    if int(legajo) in matriz_legajos_notas:
-        flag = 1
-    while flag == 0:
+    if legajo in matriz_legajos_notas:
+        flag = True
+    while flag == False:
         print("No se pudo encontrar el legajo ingresado, por favor, volver a intentarlo.")
         legajo= input(menu_legajo)
         while validar_num(legajo) == False:
             legajo = input(menu_legajo)
-        if int(legajo) in matriz_legajos_notas:
-            flag = 1 #No existe el legajo antes ingresado, pide otro y vuelve a validar.
+        if legajo in matriz_legajos_notas:
+            flag = True #No existe el legajo antes ingresado, pide otro y vuelve a validar.
     print()
     mostrar_notas(matriz_legajos_notas, legajo)

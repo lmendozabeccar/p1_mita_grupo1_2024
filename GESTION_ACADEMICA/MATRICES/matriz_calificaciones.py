@@ -1,7 +1,6 @@
 def mostrar_notas (matriz_legajos_notas, legajo):
     #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
     #todos -1, quiere decir que no tiene ninguna nota cargada
-    legajo = int(legajo)
     if legajo not in matriz_legajos_notas:
         print("Para ver sus calificaciones, primero debe anotarse a una")
         return 0

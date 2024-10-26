@@ -24,8 +24,8 @@ def estudiantes(matriz_legajos_notas, legajo):
         
         elif respuesta_est == 3:
             print("Volviendo al menú principal.") #Vuelve al menú principal.
-            return (False, matriz_legajos_notas)
+            return matriz_legajos_notas
                     
         elif respuesta_est == 4:
             print("Saliendo de la aplicación") #Sale de la aplicación.
-            return (True, matriz_legajos_notas)
+            return True

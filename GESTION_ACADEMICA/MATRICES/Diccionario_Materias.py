@@ -64,7 +64,6 @@ def agregar_materias(matriz_legajos_notas, legajo):
 
 def actualizar_notas (matriz_legajos_notas, legajo):
     flag = 0
-    legajo = int(legajo)
     cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
     print()
     dic_materias_inscriptas = {}

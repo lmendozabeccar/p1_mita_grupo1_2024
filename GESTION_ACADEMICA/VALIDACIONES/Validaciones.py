@@ -37,7 +37,7 @@ def validar_num (car):
 def validacion_dig (texto, numero_opciones):                  
     patron = f"^[1-{numero_opciones}]$" #Tiene que empezar y terminar con 1 digito
     while re.match(patron,texto) == None:
-        print("\nPor favor, ingresar un numero válido.n\n")
+        print("\nPor favor, ingresar un numero válido.\n")
         return False 
     
 #Validación del Mail.
@@ -47,26 +47,28 @@ def validacionmail (mail):
     if len(busq) == 0:
         print('\nIngresar @sistem.edu.ar junto con el nombre de usuario, con un mínimo de tres caracteres antes del "@"\n')
         return False
+    else:
+        return True
 #Verificar si la cuenta existe o no en el sistema
-def cuenta_existente_login (user,contraseña):
+def validacion_cuenta_existente (user,contraseña):
     with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
         flag = True
         encontrado = True
         tipo_usuario = 0
         while flag:
             linea = archivo.readline()
-            if linea == "":
+            if linea == "": # EL ARCHIVO DE TEXTO DEBE TENER MAXIMO UNA LINEA VACÍA AL FINAL
                 flag = False
                 encontrado = False
             else:
                 linea = linea.strip()
                 lista = linea.split(";")
                 if contraseña == False: #Para el registro
+                    if lista[0] != "0000":
+                        legajo = lista[0]
                     if lista[1] == user:
                         print("Usuario ya existente, ingrese otro.")
-                        return -1
-                    else:
-                        return 1
+                        return 0, False
                 else:
                     if lista[1] == user and lista[2] == contraseña: #Para el login
                         if lista[0] == "0000": #El profesor tiene legajo 0000
@@ -79,9 +81,12 @@ def cuenta_existente_login (user,contraseña):
                             tipo_usuario = 1
                             legajo = lista[0]
                             flag = False
-        if encontrado == False:
+        if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
             print("Usuario no encontrado.")
-        return tipo_usuario, legajo
+        elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
+            return legajo, True
+        else: #Si se encontró en el login
+            return tipo_usuario, legajo
 '''i=0
 a=0
 while i<len(list_alumnos):
