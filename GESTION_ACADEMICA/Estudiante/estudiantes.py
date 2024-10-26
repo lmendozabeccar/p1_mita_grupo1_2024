@@ -1,6 +1,6 @@
 from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
-from MATRICES.Diccionario_Materias import agregar_materias
+from MATRICES.diccionario_materias import agregar_materias
 
 def estudiantes(matriz_legajos_notas, legajo): 
     flag_estudiantes = True
