@@ -26,7 +26,7 @@ def menu_de_inicio():
                     print("Debe ingresar un número dentro de las opciones")
 
         if int (inicio)==1: #Se entra al inicio de sesión.
-            matriz_legajos_notas_act = logeandose (matriz_legajos_notas)
+            matriz_legajos_notas_act = logeandose(matriz_legajos_notas)
             if matriz_legajos_notas_act == True:
                 return True
             elif matriz_legajos_notas_act != True and matriz_legajos_notas_act != False:
@@ -39,7 +39,6 @@ def menu_de_inicio():
             print("Saliendo..") #Opción 3 del menú principal, se sale de programa.
             flag = False    
     return True   
-               
 if __name__ == "__main__":     
     menu_de_inicio() 
 

@@ -1,3 +1,13 @@
+def suma(notas): 
+    if len(notas) == 0:
+        return 0
+    else:
+        return notas[0] + suma(notas[1:])
+def contar(nota):
+    if len(nota) == 0:
+        return 0
+    else:
+        return 1 + contar(nota[1:])
 def mostrar_notas (matriz_legajos_notas, legajo):
     #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
     #todos -1, quiere decir que no tiene ninguna nota cargada
@@ -7,14 +17,13 @@ def mostrar_notas (matriz_legajos_notas, legajo):
     else:
         sublista_cursa = matriz_legajos_notas[legajo]["cursa"]
         sublista_notas = matriz_legajos_notas[legajo]["notas"]
-        suma,cont = 0,0
         # Convertir el -1 en un guion para cada valor de la fila
         notas_formateadas = ["-" if valor == -1 else valor for valor in sublista_notas]
         for i in range(len(notas_formateadas)): 
             if notas_formateadas[i] != "-":
-                suma += notas_formateadas[i]
-                cont += 1
-        if suma == 0 or cont == 0:
+                sumas = suma(notas_formateadas)
+                contador = contar(notas_formateadas) 
+        if sumas == 0 or contador == 0:
             print("\nNo hay notas cargadas en este legajo.")
         else:
             # Imprimir la lista con formato de f-strings
@@ -25,5 +34,6 @@ def mostrar_notas (matriz_legajos_notas, legajo):
                 if nota != "-":
                     if nota>=0 and nota<=3:
                         print(f"Cursa {cursa}, Nota: {nota} (recursa)")
-            print(f"Promedio: {suma/cont:.2f}") #Maximo dos decimales
-            
+            print(f"Promedio: {sumas/contador:.2f}") #Maximo dos decimales
+
+

@@ -51,7 +51,7 @@ def validacionmail (mail):
         return True
 #Verificar si la cuenta existe o no en el sistema
 def validacion_cuenta_existente (user,contraseña):
-    with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
+    with open(r"C:\Users\santi\OneDrive\Documents\GitHub\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
         flag = True
         encontrado = True
         tipo_usuario = 0
