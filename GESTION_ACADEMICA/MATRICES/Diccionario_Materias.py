@@ -1,13 +1,10 @@
+import json
 from VALIDACIONES.Validaciones import validacion_dig, validar_nota
 
 # Diccionario de materias
-materias_dic = {
-    "1": "Álgebra",
-    "2": "Sistemas",
-    "3": "Desarrollo",
-    "4": "Inglés",
-    "5": "Programación"
-}
+def materiasJSON():
+    with open(r'C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'r', encoding='UTF-8') as arch:
+        return json.load(arch)
 
 def agregar_materias(matriz_legajos_notas, legajo):
     if legajo in matriz_legajos_notas:
@@ -18,6 +15,7 @@ def agregar_materias(matriz_legajos_notas, legajo):
         cursa_sublista = []
         existe = 0
     print()
+    materias_dic = materiasJSON()
     flag = 0
     menu_materia = "Ingrese qué materia cursa: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: "
     menu_agregar_materia = "¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
