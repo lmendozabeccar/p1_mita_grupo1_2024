@@ -3,8 +3,8 @@ from VALIDACIONES.Validaciones import validacion_dig, validar_nota
 
 # Diccionario de materias
 def materiasJSON():
-    with open(r'C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'r', encoding='UTF-8') as arch:
-        return json.load(arch)
+    with open(r'C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'r', encoding='UTF-8') as materias:
+        return json.load(materias)
 
 def agregar_materias(matriz_legajos_notas, legajo):
     if legajo in matriz_legajos_notas:
