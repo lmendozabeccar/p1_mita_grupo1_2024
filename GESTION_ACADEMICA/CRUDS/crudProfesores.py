@@ -1,11 +1,13 @@
+import json
 from VALIDACIONES.Validaciones import seguir_texto, validar_num
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import actualizar_notas
-
+from Base_de_datos.funciones_json import devolverjson, guardarjson
 posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
-
-def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del registro
+    
+def actualizar_notas_alumno(): #Matriz notas proveniente del registro
     print()
+    matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
     print(f"Legajos inscriptos: {legajos_formateados}")
@@ -26,7 +28,7 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
         print()
         
         matriz_legajos_notas_act = actualizar_notas(matriz_legajos_notas, legajo_actualizar) #Encontro el legajo, y va a actualizar las materias
-        matriz_legajos_notas = matriz_legajos_notas_act
+        guardarjson(matriz_legajos_notas_act)
         
         lin = (input(menu_agregar_notas)) #Menu2, si desea continuar actualizando alumnos, pero modularizado.
         while seguir_texto(lin) == False: #Valida que variable lin sea = a 1 o 2
@@ -37,8 +39,9 @@ def actualizar_notas_alumno(matriz_legajos_notas): #Matriz notas proveniente del
             #En caso de ingresar 1, sigue actualizando alumnos.
     return matriz_legajos_notas
 
-def eliminar_alumno(matriz_legajos_notas):
+def eliminar_alumno():
     print()
+    matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
     print(f"Legajos existentes: {legajos_formateados}")
@@ -56,6 +59,7 @@ def eliminar_alumno(matriz_legajos_notas):
             except KeyError: #En caso de que el legajo no exista en la matriz de alumnos
                 print(f"Error: El legajo {legajo_eliminar} no existe en la base de datoss.")
             else:
+                guardarjson(matriz_legajos_notas)
                 print("Base de datos de alumnos actualizada")
                 flag_2 = False
         print()
@@ -68,9 +72,10 @@ def eliminar_alumno(matriz_legajos_notas):
                             #En caso de ingresar 1, sigue eliminando.
     return matriz_legajos_notas
 
-def mostrar_calificacion_grupal (matriz_legajos_notas):
+def mostrar_calificacion_grupal ():
     print()        
     # Imprimir la lista con formato de f-strings
+    matriz_legajos_notas = devolverjson()
     for legajo, info in matriz_legajos_notas.items(): #Se obtienen dos elementos por separado, la llave "legajo" y una lista de tuplas con dos elementos: "cursa" y "notas"
         print("-"*26)
         print(f"Legajo: {legajo}")
@@ -78,9 +83,10 @@ def mostrar_calificacion_grupal (matriz_legajos_notas):
             nota = "-" if nota == -1 else nota
             print(f"Cursa {cursa}, Nota: {nota}")
         
-def mostrar_calificacion_individual (matriz_legajos_notas):
+def mostrar_calificacion_individual ():
     print()
     flag = False
+    matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
     print(f"Legajos inscriptos: {legajos_formateados}")

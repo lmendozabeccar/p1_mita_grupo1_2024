@@ -10,7 +10,7 @@ def user ():
     password=str(input("Ingresar contraseña: "))
     return username,password
 
-def logeandose(matriz_legajos_notas):
+def logeandose():
     usuario,contra = user() #Pide usuario y contraseña
     flag=False
     cont=0 #Intentos
@@ -21,19 +21,19 @@ def logeandose(matriz_legajos_notas):
         num, legajo = validacion_cuenta_existente(usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
-            matriz_legajos_notas_act = estudiantes(matriz_legajos_notas, legajo)
-            if matriz_legajos_notas_act == True:
+            valor = estudiantes(legajo)
+            if valor == True:
                 return True
             else:
-                return matriz_legajos_notas_act
+                return False
                 
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
-            matriz_legajos_notas_act = profesores(matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
-            if matriz_legajos_notas_act == True:
+            valor = profesores() #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
+            if valor == True:
                 return True
             else:
-                return matriz_legajos_notas_act
+                return False
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:

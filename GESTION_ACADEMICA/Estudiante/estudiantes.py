@@ -1,8 +1,9 @@
 from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import agregar_materias
+from Base_de_datos.funciones_json import devolverjson, guardarjson
 
-def estudiantes(matriz_legajos_notas, legajo): 
+def estudiantes(legajo): 
     flag_estudiantes = True
     #Agregar función para eliminar la inscripción de una materia, a la vez de indicar si recursa una materia en caso de que se saque un 2
     menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal. \n4 Salir de la aplicación.  \nIngrese el numero para la operación que desee: "
@@ -13,18 +14,18 @@ def estudiantes(matriz_legajos_notas, legajo):
         
         respuesta_est = int(respuesta_est) 
         if respuesta_est == 1:
-            matriz_legajos_notas_act = agregar_materias (matriz_legajos_notas, legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
-            matriz_legajos_notas = matriz_legajos_notas_act
+            agregar_materias (legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
         if respuesta_est == 2:
-            if matriz_legajos_notas == {}:
+            matriz_legajos_notas = devolverjson()
+            if len(matriz_legajos_notas) == 0:
                 print("\nNo está cargada ninguna nota")   
             else:
-                mostrar_notas(matriz_legajos_notas, legajo)
+                mostrar_notas(legajo)
         
         elif respuesta_est == 3:
             print("Volviendo al menú principal.") #Vuelve al menú principal.
-            return matriz_legajos_notas
+            return False
                     
         elif respuesta_est == 4:
             print("Saliendo de la aplicación") #Sale de la aplicación.

@@ -1,12 +1,14 @@
 import json
 from VALIDACIONES.Validaciones import validacion_dig, validar_nota
-
 # Diccionario de materias
-def materiasJSON():
-    with open(r'C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'r', encoding='UTF-8') as materias:
-        return json.load(materias)
-
-def agregar_materias(matriz_legajos_notas, legajo):
+materias_dic = {
+    "1": "Álgebra",
+    "2": "Sistemas",
+    "3": "Desarrollo",
+    "4": "Inglés",
+    "5": "Programación"
+    }
+def agregar_materias(legajo):
     if legajo in matriz_legajos_notas:
         notas_sublista = matriz_legajos_notas[legajo]["notas"]
         existe = 1
@@ -15,7 +17,6 @@ def agregar_materias(matriz_legajos_notas, legajo):
         cursa_sublista = []
         existe = 0
     print()
-    materias_dic = materiasJSON()
     flag = 0
     menu_materia = "Ingrese qué materia cursa: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion \nPor favor, elegir un número de acuerdo a su materia: "
     menu_agregar_materia = "¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
@@ -31,34 +32,47 @@ def agregar_materias(matriz_legajos_notas, legajo):
             print()
         
         materia = input(menu_materia)
-        while validacion_dig (materia, 5)== False: #Valida que sea un numero del 1 al 5
-            materia = input(menu_materia)
-            
-        materia_nombre = materias_dic.get(materia) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)
-        if materia_nombre in cursa_sublista:
-            print("\nUsted ya esta cursando esa materia")
-        else:
-            if existe == 0:
-                matriz_legajos_notas[legajo] = {
-                    "cursa": [materia_nombre],
-                    "notas": [-1]
-                }
-                existe = 1
-                print(f"\nLa materia {materia_nombre} fue agregada.")
+        with open(r'C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'w', encoding='UTF-8') as archivo_json:
+            while validacion_dig (materia, 5)== False: #Valida que sea un numero del 1 al 5
+                materia = input(menu_materia)
+            materia_nombre = materias_dic.get(materia) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)
+            if materia_nombre in cursa_sublista:
+                print("\nUsted ya esta cursando esa materia")
             else:
-                matriz_legajos_notas[legajo]["cursa"].append(materia_nombre) #Si hago esta linea de una y el legajo no esta registrado en la matriz de notas, entonces el programa se rompe, por eso se inventó la flag "existe"
-                matriz_legajos_notas[legajo]["notas"].append(-1)
-                print(f"\nLa materia {materia_nombre} fue agregada.") #Aviso al usuario.
-                print()
-                
-            # Preguntar si el usuario desea agregar otra materia
-            continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
-            while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
+                if existe == 0:
+                    """
+                    matriz_legajos_notas[legajo] = {
+                        "cursa": [materia_nombre],
+                        "notas": [-1]
+                    }
+                    existe = 1
+                    
+                    """
+                    json.dump({
+                        legajo: {"cursa": [materia_nombre],
+                        "notas": [-1]}
+                    }, archivo_json)
+                    print(f"\nLa materia {materia_nombre} fue agregada.")
+                    
+                else:
+                    """
+                    matriz_legajos_notas[legajo]["cursa"].append(materia_nombre) #Si hago esta linea de una y el legajo no esta registrado en la matriz de notas, entonces el programa se rompe, por eso se inventó la flag "existe"
+                    matriz_legajos_notas[legajo]["notas"].append(-1)
+                    print(f"\nLa materia {materia_nombre} fue agregada.") #Aviso al usuario.
+                    print()
+                    """
+                    matriz_legajos_notas = json.load(archivo_json)
+                    matriz_legajos_notas[legajo]["cursa"].append(materia_nombre)
+                    matriz_legajos_notas[legajo]["notas"].append(-1)
+                    json.dump(matriz_legajos_notas)
+                # Preguntar si el usuario desea agregar otra materia
                 continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
-            if int(continuar) == 2:
-                flag = 1 
+                while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
+                    continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
+                if int(continuar) == 2:
+                    flag = 1 
                 #Ingresa 2, sale del apartado y vuelve atras.
-    return matriz_legajos_notas
+    return 1
 
 def actualizar_notas (matriz_legajos_notas, legajo):
     flag = 0
