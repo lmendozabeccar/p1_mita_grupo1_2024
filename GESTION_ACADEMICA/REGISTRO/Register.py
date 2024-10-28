@@ -6,7 +6,7 @@ def registro():
     menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
     menu_contraseña = "Ingrese su contraseña: "
     menu_error = "\n1 Volver a intentar el registro. \n2 Volver al inicio \nElija un número: "
-    with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
+    with open(r"C:\Users\santi\Downloads\p1_mita_grupo1_2024\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
         flag = True
         while flag:
             inicio_registro=(input(menu_registro)) #Modularizacion menú.

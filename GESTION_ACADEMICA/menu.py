@@ -10,8 +10,6 @@ def menu_de_inicio():
     titulo = "¡Bienvenidos a nuestra Gestion Academica!"
     print(titulo.title().center(80))
 
-    matriz_legajos_notas = {} #Se inicializa el diccionario de notas vacía
-    
     while flag == True:
         menu = "\n1 Iniciar sesión.\n2 Registrarse\n3 Salir \nElija un número: "
         while True:
@@ -26,11 +24,9 @@ def menu_de_inicio():
                     print("Debe ingresar un número dentro de las opciones")
 
         if int (inicio)==1: #Se entra al inicio de sesión.
-            matriz_legajos_notas_act = logeandose(matriz_legajos_notas)
-            if matriz_legajos_notas_act == True:
+            valor = logeandose()
+            if valor == True:
                 return True
-            elif matriz_legajos_notas_act != True and matriz_legajos_notas_act != False:
-                matriz_legajos_notas = matriz_legajos_notas_act #Se le asignan las nuevas matrices actualizadas
 
         elif int (inicio) == 2: #Se entra al registro.
             print("¡Registrate!")
