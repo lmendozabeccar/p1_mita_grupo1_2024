@@ -24,7 +24,7 @@ def estudiantes(legajo):
                 matriz_legajos_notas = {}
                 print("\nNo está cargada ninguna nota")   
             else:
-                mostrar_notas(legajo)
+                mostrar_notas(matriz_legajos_notas,legajo)
         
         elif respuesta_est == 3:
             print("Volviendo al menú principal.") #Vuelve al menú principal.
