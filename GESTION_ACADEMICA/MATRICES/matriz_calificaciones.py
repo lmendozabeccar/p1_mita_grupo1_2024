@@ -1,5 +1,6 @@
 import json
 from Base_de_datos.funciones_json import devolverjson, guardarjson
+from VALIDACIONES.Validaciones import validacion_dig, validar_nota
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
     if len(notas) == 0:
@@ -14,6 +15,7 @@ def contar(nota):
         return 1 + contar(nota[1:])
 
 def mostrar_notas (matriz_legajos_notas,legajo):
+    recursa = True
     sumas, contador = 0, 0     
     print(matriz_legajos_notas)
     #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
@@ -41,8 +43,13 @@ def mostrar_notas (matriz_legajos_notas,legajo):
                 print(f"Cursa {cursa}, Nota: {nota}")
                 if nota != "-":
                     if nota>=0 and nota<=3:
+                        recursa = False
                         print(f"Cursa {cursa}, Nota: {nota} (RECURSA)")
             print(f"Promedio: {sumas/contador:.2f}") #Maximo dos decimales
-    return 1
+            
+                    
+                     
+            
+   
 
 

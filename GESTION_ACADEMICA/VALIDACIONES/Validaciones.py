@@ -33,12 +33,15 @@ def validar_num (car):
         print("\nPor favor, ingresar un número.\n")
     return car.isnumeric()
 
-#Validacion de que los numeros esten bien. Valida que la respuesta sea "1" o "2",etc respectivamente
-def validacion_dig (texto, numero_opciones):                  
-    patron = f"^[1-{numero_opciones}]$" #Tiene que empezar y terminar con 1 digito
-    while re.match(patron,texto) == None:
-        print("\nPor favor, ingresar un numero válido.\n")
-        return False 
+def validacion_dig(texto, numero_opciones):
+    if numero_opciones <= 9:
+        patron = f"^[1-{numero_opciones}]$"  # Tiene que empezar y terminar con 1 dígito
+    else:
+        patron = f"^([1-9]|1[0-{numero_opciones % 10}])$"  # Maneja opciones de 1 a 19
+    while re.match(patron, texto) is None:
+        print("\nPor favor, ingresar un número válido.\n")
+        return False
+    return True
     
 #Validación del Mail.
 def validacionmail (mail):

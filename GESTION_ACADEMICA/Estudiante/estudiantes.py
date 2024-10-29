@@ -18,11 +18,9 @@ def estudiantes(legajo):
             agregar_materias (legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
         if respuesta_est == 2:
-            try:
-                matriz_legajos_notas = devolverjson()  # Valida el diccionario notas para ver si existe o no
-            except (FileNotFoundError, json.JSONDecodeError, TypeError):
-                matriz_legajos_notas = {}
-                print("\nNo está cargada ninguna nota")   
+            matriz_legajos_notas = devolverjson()
+            if len(matriz_legajos_notas)== 0:
+                print("\nNo hay ninguna nota cargada")
             else:
                 mostrar_notas(matriz_legajos_notas,legajo)
         
