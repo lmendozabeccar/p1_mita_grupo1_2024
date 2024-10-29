@@ -37,7 +37,7 @@ def actualizar_notas_alumno(): #Matriz notas proveniente del registro
         if int (lin) == 2: #No quiere seguir actualizando alumnos.
             flag = False
             #En caso de ingresar 1, sigue actualizando alumnos.
-    return matriz_legajos_notas
+    return True
 
 def eliminar_alumno():
     print()
@@ -70,7 +70,7 @@ def eliminar_alumno():
         if int (lin) == 2 or len(matriz_legajos_notas) == 0: # Si no quiere seguir o el diccionario se quedó sin legajos, sale de este apartado.
             flag = False
                             #En caso de ingresar 1, sigue eliminando.
-    return matriz_legajos_notas
+    return True
 
 def mostrar_calificacion_grupal ():
     print()        
@@ -82,6 +82,7 @@ def mostrar_calificacion_grupal ():
         for cursa, nota in zip(info["cursa"], info["notas"]): #Zip JUNTA la materia cursada con su RESPECTIVA nota (junta las dos sublistas)
             nota = "-" if nota == -1 else nota
             print(f"Cursa {cursa}, Nota: {nota}")
+    return True
         
 def mostrar_calificacion_individual ():
     print()
@@ -104,4 +105,5 @@ def mostrar_calificacion_individual ():
         if legajo in matriz_legajos_notas:
             flag = True #No existe el legajo antes ingresado, pide otro y vuelve a validar.
     print()
-    mostrar_notas(matriz_legajos_notas, legajo)
+    mostrar_notas(matriz_legajos_notas,legajo)
+    return True

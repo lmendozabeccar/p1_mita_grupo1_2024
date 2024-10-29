@@ -1,3 +1,4 @@
+import json
 from Base_de_datos.funciones_json import devolverjson, guardarjson
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
@@ -12,7 +13,9 @@ def contar(nota):
     else:
         return 1 + contar(nota[1:])
 
-def mostrar_notas (legajo):
+def mostrar_notas (matriz_legajos_notas,legajo):
+    sumas, contador = 0, 0     
+    print(matriz_legajos_notas)
     #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
     #todos -1, quiere decir que no tiene ninguna nota cargada
     matriz_legajos_notas = devolverjson()
@@ -28,7 +31,7 @@ def mostrar_notas (legajo):
             if notas_formateadas[i] != "-":
                 sumas = suma(notas_formateadas)
                 contador = contar(notas_formateadas) 
-        if sumas == 0 or contador == 0:
+        if  sumas == 0 and contador == 0:
             print("\nNo hay notas cargadas en este legajo.")
         else:
             # Imprimir la lista con formato de f-strings

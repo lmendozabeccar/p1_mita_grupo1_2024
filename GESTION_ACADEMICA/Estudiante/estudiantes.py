@@ -1,3 +1,4 @@
+import json
 from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import agregar_materias
@@ -17,8 +18,10 @@ def estudiantes(legajo):
             agregar_materias (legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
         if respuesta_est == 2:
-            matriz_legajos_notas = devolverjson()
-            if len(matriz_legajos_notas) == 0:
+            try:
+                matriz_legajos_notas = devolverjson()  # Valida el diccionario notas para ver si existe o no
+            except (FileNotFoundError, json.JSONDecodeError, TypeError):
+                matriz_legajos_notas = {}
                 print("\nNo está cargada ninguna nota")   
             else:
                 mostrar_notas(legajo)
