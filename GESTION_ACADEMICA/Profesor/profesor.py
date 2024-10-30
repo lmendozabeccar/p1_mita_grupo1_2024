@@ -27,7 +27,7 @@ def profesores():
  
         elif respuesta_prof == 3:
             if devolverjson()== {}:
-                print("\nNo hay ninguna nota cargada")
+                print("\nEl alumno no está inscripto a ninguna materia.")
             else:
                 actualizar_notas_alumno() #Puede cambiar las notas de un alumno YA EXISTENTE. Devuelve la matriz actualizada.
             

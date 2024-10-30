@@ -3,7 +3,6 @@ from VALIDACIONES.Validaciones import seguir_texto, validar_num
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import actualizar_notas
 from Base_de_datos.funciones_json import devolverjson, guardarjson
-posicion = lambda legajo, lista: [i for i in range(len(lista)) if lista[i][0] == legajo] #Saco en que posicion de la lista está el respecivo legajo
     
 def actualizar_notas_alumno(): #Matriz notas proveniente del registro
     print()
