@@ -59,14 +59,14 @@ def validacion_cuenta_existente (user,contraseña):
         encontrado = True
         tipo_usuario = 0
         while flag:
-            linea = archivo.readline()
+            linea = archivo.readline() #linea por linea del archivo de texto
             if linea == "": # EL ARCHIVO DE TEXTO DEBE TENER MAXIMO UNA LINEA VACÍA AL FINAL
                 flag = False
                 encontrado = False
             else:
-                linea = linea.strip()
-                lista = linea.split(";")
-                if contraseña == False: #Para el registro
+                linea = linea.strip() #elimina los espacios en blanco al inicio y al final
+                lista = linea.split(";") #divide la línea en una lista de elementos usando ; como delimitador.
+                if contraseña == False: #Si se está registrando, es false, si es un login, es la contraseña ingresada x el usuario.
                     if lista[0] != "0000":
                         legajo = lista[0]
                     if lista[1] == user:
