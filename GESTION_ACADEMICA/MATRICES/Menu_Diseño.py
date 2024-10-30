@@ -1,3 +1,4 @@
+
 def mostrar_usuarios ():
     archivo_path = r'GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt'
 

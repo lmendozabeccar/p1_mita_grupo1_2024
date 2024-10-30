@@ -4,14 +4,15 @@ from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import agregar_materias
 from Base_de_datos.funciones_json import devolverjson, guardarjson
 from CRUDS.eliminar_usuario import eliminar_mail
+from Estudiante.modificar import modificaruser
 
 def estudiantes(legajo, email): 
     flag_estudiantes = True
     #Agregar función para eliminar la inscripción de una materia, a la vez de indicar si recursa una materia en caso de que se saque un 2
-    menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal.\n4 Salir de la aplicación.\n5 Eliminar tu cuenta. \nIngrese el numero para la operación que desee: "
+    menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Volver al menú principal.\n4 Salir de la aplicación.\n5 Eliminar tu cuenta.\n6.Modificar su cuenta\nIngrese el numero para la operación que desee: "
     while flag_estudiantes == True:    
         respuesta_est = input(menu_estudiantes) #Menú modularizado.
-        while validacion_dig (respuesta_est, 5) == False: #Validacion numero entre 1 y 4 
+        while validacion_dig (respuesta_est, 6) == False: #Validacion numero entre 1 y 6
             respuesta_est = input(menu_estudiantes)
         
         respuesta_est = int(respuesta_est) 
@@ -39,3 +40,5 @@ def estudiantes(legajo, email):
                 eliminar_mail(email)
 
             return False
+        elif respuesta_est == 6:
+            modificaruser()

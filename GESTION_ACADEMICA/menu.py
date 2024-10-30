@@ -2,7 +2,7 @@ from loading.login import logeandose
 from REGISTRO.Register import registro
 from MATRICES.Menu_Diseño import mostrar_usuarios
 print()
-mostrar_usuarios()
+"""mostrar_usuarios()"""
 print()
 #Alumnos ya registrados en el sistema.
 #Menú de inicio.
