@@ -1,27 +1,31 @@
-try:
-    archivo = open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt","r")
-except:
-    print("No se pudo abrir el archivo.")
-else:
-    lineas=archivo.readlines()
-    for linea in lineas:
-        lindividual = linea.strip().split(';')
-        """"""
-        recorte_usuarios = [[legajo, mail[:10], contraseña[:10], nombre[:15]] for legajo, mail, contraseña, nombre in lindividual]
-        orden_usuarios = sorted(recorte_usuarios, key=lambda x: (x[3], -int(x[0])))
+def mostrar_usuarios ():
+    archivo_path = r'GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt'
 
-    # Asignación para poder mostrar las listas con encabezados.
-    username = "Username"
-    passw = "Password"
-    nombre = "Nombre"
-    legajo = "Legajo"
+    # Lista para almacenar cada usuario como una sublista
+    usuarios = []
 
+    # Abre el archivo y lee línea por línea
+    with open(archivo_path, 'r', encoding="UTF-8") as archivo:
+        while True:
+            linea = archivo.readline()  # Lee una línea del archivo
+            if not linea:  # Si la línea está vacía, se alcanzó el final del archivo
+                break
 
-    # Imprimir la lista con formato de f-strings
-    print()
-    print("Lista de usuarios ya registrados en el sistema, ordenados en forma alfábetica por su nombre.")
-    print("En caso de coincidir nombre de algún alumno, se muestra ordenado por legajo descendente.")
-    print(f"|{legajo:^10}||{username:^10}||{passw:^10}||{nombre:^15}|")  # Mostrar encabezados, con restricciones.
-    print("*" * 53)
-    for legajo, mail, contraseña, nombre in orden_usuarios:
-        print(f"|{legajo:^10}||{mail:^10}||{contraseña:^10}||{nombre:^15}|")  # Mostrar información, con restricciones.
+            elementos = linea.strip().split(';')
+            
+            legajo, email, contraseña, nombre = elementos
+            usuarios.append([legajo, email, contraseña, nombre])
+
+    # Ordena por nombre, y luego x legajo.
+    usuarios_ordenados = sorted(usuarios, key=lambda x: (x[3], x[0]))
+
+    # Imprime los encabezados
+    print(f"|{'Legajo':^6}||{'Mail':^30}||{'Constraseña':^15}||{'Nombre':^20}|")
+
+    # Línea separadora
+    print("-" * 78)
+
+    # Imprime los usuarios ordenados
+    for usuario in usuarios_ordenados:
+        legajo, email, contraseña, nombre = usuario
+        print(f"|{legajo:^6}||{email:^30}||{contraseña:^15}||{nombre:^20}|")

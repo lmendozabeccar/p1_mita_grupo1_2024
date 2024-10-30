@@ -10,5 +10,5 @@
 1009;lautipadin@sistem.edu.ar;lautipadin01;Padin Lautaro
 0000;nardonejuan@sistem.edu.ar;nardonejuan10;Nardone Juan
 0000;ramiroleiva@sistem.edu.ar;ramiroleiva10;Leiva Ramiro
-0000;daquino@sistem.edu.ar;daquino10;Daquino Nicolás1010;
+0000;daquino@sistem.edu.ar;daquino10;Daquino Nicolás
 1010;tiziano@sistem.edu.ar;Hola1234;Tiziano Fasce
