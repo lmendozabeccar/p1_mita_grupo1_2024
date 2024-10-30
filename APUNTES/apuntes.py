@@ -140,7 +140,22 @@ file.close() --> siempre al final para cerrar el archivo, usar manejo de excepci
 .write(cadena)
 .writelines(lista de cadenas) 
 
+###Archivos JSON
+Todas las claves son convertidas a strings
+#Metodos:
+json.dumps(<objeto>) --> Convierte un objeto python a formato JSON y almacenarlos en una variable tipo string (serializacion)
+json.dump(<objeto>, <archivo>) --> A diferencia de dumps(), no devuelve un archivo sino que graba el objeto JSON en un archivo
+json.dump(<archivo>) --> Permite leer un archivo JSON y convertirlo a objeto en Python
+
+###Recursividad
 '''
 '''with open(r"C:\Users\Usuario\p1_mita_grupo1_2024\archivostxt\pasos_git", mode="r") as archivo:
     for i in range(0, 10):
-        archivo.write(str(i*2-1))'''
+        archivo.write(str(i*2-1))
+
+*Que el usuario pueda modificar sus datos (Contraseña y Nombre)       
+*Eliminar su propio usuario en archivo de texto
+*Solucionar problema con recursividad y calculo del promedio si es que hay algunas materias con nota
+*triple comillas para documentar las funciones, que hace la funcion, que recibe y que devuelve (o imprime)
+*Al cargar las notas, cargar el número de la materia en lugar del nombre
+'''

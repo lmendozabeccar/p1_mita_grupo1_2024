@@ -5,7 +5,7 @@ from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validacion
 #from MATRICES.matriz_profesor import ingreso_profes
 
 #Pedir usuario y contraseña
-def user ():
+def user():
     username=str(input("Ingresar su mail de usuario: "))
     password=str(input("Ingresar contraseña: "))
     return username,password
@@ -18,10 +18,10 @@ def logeandose():
         while validacionmail(usuario) == False and cont<5: #Se valida el mail
             usuario,contra = user()
         
-        num, legajo = validacion_cuenta_existente(usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
+        num, legajo, email = validacion_cuenta_existente(usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
-            valor = estudiantes(legajo)
+            valor = estudiantes(legajo, email)
             if valor == True:
                 return True
             else:
@@ -29,7 +29,7 @@ def logeandose():
                 
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
-            valor = profesores() #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
+            valor = profesores(email) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
             if valor == True:
                 return True
             else:

@@ -33,7 +33,7 @@ def agregar_materias(legajo):
     menu_materia = "Ingrese qué materia cursa: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n6.Estadística\n7.Física\n8.Cálculo\n9.Redes\n10.Marketing\nPor favor, elegir un número de acuerdo a su materia: "
     menu_agregar_materia = "¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
     
-    with open(r'C:\Users\santi\OneDrive\Documents\GitHub\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\materias.json', 'w', encoding='UTF-8') as archivo_json:
+    with open(r'GESTION_ACADEMICA\Base_de_datos\materias.json', 'w', encoding='UTF-8') as archivo_json:
         while flag == 0:
             print("b",matriz_legajos_notas)
             print("b",legajo)

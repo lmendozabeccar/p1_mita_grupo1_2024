@@ -54,7 +54,7 @@ def validacionmail (mail):
         return True
 #Verificar si la cuenta existe o no en el sistema
 def validacion_cuenta_existente (user,contraseña):
-    with open(r"C:\Users\santi\OneDrive\Documents\GitHub\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
+    with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
         flag = True
         encontrado = True
         tipo_usuario = 0
@@ -78,18 +78,20 @@ def validacion_cuenta_existente (user,contraseña):
                             print("Ingreso correcto al apartado profesores.")
                             tipo_usuario = 2
                             legajo = -1
+                            email = lista[1]
                             flag = False
                         else:
                             print("Ingreso correcto al apartado alumnos.")
                             tipo_usuario = 1
                             legajo = lista[0]
+                            email = lista[1]
                             flag = False
         if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
             print("Usuario no encontrado.")
         elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
             return legajo, True
         else: #Si se encontró en el login
-            return tipo_usuario, legajo
+            return tipo_usuario, legajo, email
 '''i=0
 a=0
 while i<len(list_alumnos):

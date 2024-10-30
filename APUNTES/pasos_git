@@ -17,3 +17,4 @@ Antes de comenzar a trabajar --> git pull (Va a cargar lo que está en Github a 
 Cuando agregas archivos --> git add . 
 Cuando modificas el archivo --> git commit -a -m "comentario" (Los cambios se van a guardar en la PC de forma local, no en el repositorio de Github. Lo mismo para el git add .) 
 Una vez finalizado todos los cambios --> git push -u origin main (Va a guardar todo lo modificado en la nube de Github)
+
