@@ -17,10 +17,10 @@ def eliminar_mail(email):
             for linea in lineas_actualizadas:
                 archivo_escritura.write(linea)
         if len(lineas) == len(lineas_actualizadas):
-            print("Email no encontrado.")
+            print("\nEmail no encontrado.")
     except:
-        print("Hubo un error al eliminar tu cuenta, inténtelo de vuelta en unos minutos...")
+        print("\nHubo un error al eliminar tu cuenta, inténtelo de vuelta en unos minutos...")
         return False
     else:
-        print("Cuenta eliminada con éxito.")
+        print("\nCuenta eliminada con éxito.")
         return True

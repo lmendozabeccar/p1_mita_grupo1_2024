@@ -19,7 +19,7 @@ def estudiantes(legajo, email):
         while validacion_dig (respuesta_est, 6) == False: #Validacion numero entre 1 y 6
             respuesta_est = input(menu_estudiantes)
         
-        respuesta_est = int(respuesta_est) 
+        respuesta_est = int(respuesta_est) #Se pasa el string a entero
         if respuesta_est == 1:
             agregar_materias (legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
                 
@@ -31,8 +31,8 @@ def estudiantes(legajo, email):
                 mostrar_notas(matriz_legajos_notas,legajo)
         
         elif respuesta_est == 3:
-            seguro = int(input("Está seguro que desea eliminar su cuenta?\n1. Si\n2. No\n"))
-            if seguro == 1:
+            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\n")
+            if seguro == "1":
                 eliminar_mail(email)
 
             return False                    
@@ -40,9 +40,9 @@ def estudiantes(legajo, email):
             modificaruser()
         
         elif respuesta_est == 5:
-            print("Volviendo al menú principal.") #Vuelve al menú principal.
+            print("\nVolviendo al menú principal.") #Vuelve al menú principal.
             return False
 
         elif respuesta_est == 6:
-            print("Saliendo de la aplicación") #Sale de la aplicación.
+            print("\nSaliendo de la aplicación") #Sale de la aplicación.
             return True

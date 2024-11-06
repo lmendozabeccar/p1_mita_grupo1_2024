@@ -30,13 +30,11 @@ def agregar_materias(legajo):
         existe = 0
     print()
     flag = 0
-    menu_materia = "Ingrese qué materia cursa: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n6.Estadística\n7.Física\n8.Cálculo\n9.Redes\n10.Marketing\nPor favor, elegir un número de acuerdo a su materia: "
-    menu_agregar_materia = "¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
+    menu_materia = "\nIngrese qué materia cursa: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n6.Estadística\n7.Física\n8.Cálculo\n9.Redes\n10.Marketing\nPor favor, elegir un número de acuerdo a su materia: "
+    menu_agregar_materia = "\n¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
     
     with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", 'w', encoding='UTF-8') as archivo_json:
         while flag == 0:
-            print("b",matriz_legajos_notas)
-            print("b",legajo)
             if existe == 1:
                 cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
                 notas_sublista = matriz_legajos_notas[legajo]["notas"]
@@ -59,8 +57,6 @@ def agregar_materias(legajo):
                         "cursa": [materia_nombre],
                         "notas": [-1]
                     }
-                    print("a",matriz_legajos_notas)
-                    print("a",legajo)
                     existe = 1
                     print(f"\nLa materia {materia_nombre} fue agregada.")
                 else:

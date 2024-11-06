@@ -47,7 +47,7 @@ def logeandose():
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:
-                print("No se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.\n")
+                print("\nNo se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.")
                 menu_error = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
                 inicio_login=(input(menu_error)) #Menu de arriba, modularizado       
                 #Validación de letra.
@@ -60,6 +60,6 @@ def logeandose():
                    flag = True
                    return False
             else:
-                print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
+                print("\nNumerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
                 return True
                 #En caso de llegar al maximo de intentos (cinco), sale y vuelve al menú

@@ -127,7 +127,8 @@ def validacion_cuenta_existente (user,contraseña):
                             email = lista[1]
                             flag = False
         if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
-            print("Usuario no encontrado.")
+            print("\nUsuario no encontrado.")
+            return 0,user,contraseña
         elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
             return legajo, True
         else: #Si se encontró en el login
