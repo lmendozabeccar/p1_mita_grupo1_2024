@@ -4,6 +4,12 @@ from MATRICES.Diccionario_Materias import actualizar_notas
 from Base_de_datos.funciones_json import devolverjson, guardarjson
     
 def actualizar_notas_alumno(): #Matriz notas proveniente del registro
+    """
+    pre: no recibe ningun dato, se lo llama desde una opcion del profesor.
+    pos: no retorna nada, actualiza las notas en otra funcion (en diccionario materias), y las guarda en otra
+    funcion (guardarjson)
+    """
+
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
@@ -37,6 +43,10 @@ def actualizar_notas_alumno(): #Matriz notas proveniente del registro
     return True
 
 def eliminar_alumno():
+    """
+    pre: no recibe ningun dato, se lo llama desde el apartado de profesores.
+    pos: no retorna nada, se encarga de eliminar al alumno elegido por el profesor."""
+
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
@@ -69,6 +79,10 @@ def eliminar_alumno():
     return True
 
 def mostrar_calificacion_grupal ():
+    """
+    pre: no recibe ningun dato, se lo llama desde el apartado de profesores.
+    pos: muestra las calificaciones de los alumnos inscriptos en sus respectivas materias.
+    """
     print()        
     # Imprimir la lista con formato de f-strings
     matriz_legajos_notas = devolverjson()
@@ -81,6 +95,11 @@ def mostrar_calificacion_grupal ():
     return True
         
 def mostrar_calificacion_individual ():
+    """
+    pre: no recibe ningun dato, se lo llama desde el apartado de profesores.
+    pos: muestra las notas de un alumno en particular, elegido por el profesor por legajo (esto lo hace a traves
+    de la funcion mostrar_notas)
+    """
     flag = False
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()

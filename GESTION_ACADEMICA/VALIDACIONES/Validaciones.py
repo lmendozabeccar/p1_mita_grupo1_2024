@@ -87,12 +87,10 @@ def validacionmail (mail):
     else:
         return True
 #Verificar si la cuenta existe o no en el sistema
-def validacion_cuenta_existente (user,contraseña):
-    
+def validacion_cuenta_existente (user,contraseña):  
     """
     pre: recibe un mail de usuario y una contraseña (en caso de estar registrandose la contraseña es "False")
-    pos: retorna False, en caso de que el usuario se encuentre ya ingresado en el sistema 
-    CONTINUAR ##########################################################################################
+    pos: retorna False o True, dependiendo que el mail y la contraseña sea o no validado.
     """
     with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
         flag = True
