@@ -15,6 +15,10 @@ materias_dic = {
     "10": "Marketing"
     }
 def agregar_materias(legajo):
+    """
+    pre: recibe el legajo del alumno el cual quiere inscribirse a las materias.
+    pos: agrega la materias y su nota (-1) a la matriz de notas, en el respectivo legajo del alumno.
+    """
     try:
         matriz_legajos_notas = devolverjson()  # Valida el diccionario notas para ver si existe o no
     except (FileNotFoundError, json.JSONDecodeError, TypeError): #Errores que se presentan si el JSON está vacío
@@ -80,6 +84,10 @@ def agregar_materias(legajo):
     return True
 
 def actualizar_notas (matriz_legajos_notas, legajo):
+    """
+    pre: recibe la matriz de notas y el legajo el cual que quiere actualizar.
+    pos: retorna la matriz de notas, pero actualizadas por el profesor.
+    """
     flag = 0
     cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
     print()

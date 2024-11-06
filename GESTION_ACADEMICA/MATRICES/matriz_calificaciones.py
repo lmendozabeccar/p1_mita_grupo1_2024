@@ -3,8 +3,8 @@ from Base_de_datos.funciones_json import devolverjson
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
     """
-    pre: 
-    pos:
+    pre: recibe la nota que tuvo el alumno 
+    pos: se encarga de sumar las notas del alumno.
     """
     if len(notas) == 0:
         return 0
@@ -12,12 +12,20 @@ def suma(notas):
         return notas[0] + suma(notas[1:])
     
 def contar(nota):
+    """
+    pre: recibe la nota que tuvo el alumno.
+    pos: se encarga de contar cada nota, para despues hacer el promedio.
+    """
     if len(nota) == 0:
         return 0
     else:
         return 1 + contar(nota[1:])
 
 def mostrar_notas (matriz_legajos_notas,legajo):
+    """
+    pre: recibe la matriz de notas, con el respectivo legajo a mostrar.
+    pos: muestra todas las notas agregadas del alumno, con su respectiva materia y su promedio final.
+    """
     recursa = True
     sumas, contador = 0, 0     
     print(matriz_legajos_notas)
@@ -49,10 +57,3 @@ def mostrar_notas (matriz_legajos_notas,legajo):
                         recursa = False
                         print(f"Cursa {cursa}, Nota: {nota} (RECURSA)")
             print(f"Promedio: {sumas/contador:.2f}") #Maximo dos decimales
-            
-                    
-                     
-            
-   
-
-
