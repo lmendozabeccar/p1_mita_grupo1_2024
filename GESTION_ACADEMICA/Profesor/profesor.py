@@ -4,6 +4,12 @@ from Base_de_datos.funciones_json import devolverjson
 from CRUDS.eliminar_usuario import eliminar_mail
 
 def profesores(email):
+    """
+    pre: recibe el mail del profesor el cual realizó el login.
+    pos: retorna True, en caso de salir de la aplicación, por lo contrario, retorna False, en caso de eliminar 
+    la cuenta o volver al menú principal.
+    """
+    
     flag_profes = True
     menu_profesor="Qué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar/Actualizar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\n7 Eliminar tu cuenta.\nIngrese el numero para la operación que desee: "
     while flag_profes == True:

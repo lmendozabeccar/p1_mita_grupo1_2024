@@ -1,6 +1,12 @@
 from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, validacion_cuenta_existente
 
 def registro():
+    """
+    pre: el usuario en el menú de inicio, ingreso la opción 2 y fue redirigido a este menú, el menú de registro.
+    pos: retorna True en caso de que el registro sea correcto y válido, en caso contrario, retorna False. 
+    """
+    
+    
     menu_registro = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
     menu_mail = "Ingresar su mail de usuario nuevo: "
     menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "

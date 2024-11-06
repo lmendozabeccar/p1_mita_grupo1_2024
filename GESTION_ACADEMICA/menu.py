@@ -2,11 +2,19 @@ from loading.login import logeandose
 from REGISTRO.Register import registro
 from MATRICES.Menu_Diseño import mostrar_usuarios
 print()
-"""mostrar_usuarios()"""
+print("Sistema de Evaluación Académica")
+
+mostrar_usuarios()
 print()
 #Alumnos ya registrados en el sistema.
 #Menú de inicio.
 def menu_de_inicio():
+    """
+    pre: la función no recibe ningún dato, es el inicio del programa.
+    pos: de acuerdo a las necesidades del usuario, puede redireccionarse a la función de login, a la de registro
+    o a la de salir de la aplicación.
+    """
+    
     flag = True
     titulo = "¡Bienvenidos a nuestra Gestion Academica!"
     print(titulo.title().center(80))

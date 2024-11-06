@@ -1,5 +1,5 @@
 import json
-from VALIDACIONES.Validaciones import seguir_texto, validar_num
+from VALIDACIONES.Validaciones import validar_num, validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import actualizar_notas
 from Base_de_datos.funciones_json import devolverjson, guardarjson
@@ -30,7 +30,7 @@ def actualizar_notas_alumno(): #Matriz notas proveniente del registro
         guardarjson(matriz_legajos_notas_act)
         
         lin = (input(menu_agregar_notas)) #Menu2, si desea continuar actualizando alumnos, pero modularizado.
-        while seguir_texto(lin) == False: #Valida que variable lin sea = a 1 o 2
+        while validacion_dig(lin,2) == False: #Valida que variable lin sea = a 1 o 2
             lin = (input(menu_agregar_notas)) #Menu2, si desea continuar actualizando alumnos, pero modularizado.
             
         if int (lin) == 2: #No quiere seguir actualizando alumnos.
@@ -63,7 +63,7 @@ def eliminar_alumno():
                 flag_2 = False
         print()
         lin = (input(menu_continuar)) #Mismo menú, pero modularizado.
-        while seguir_texto(lin) == False: #Pregunta si quiere seguir eliminando.
+        while validacion_dig(lin,2) == False: #Pregunta si quiere seguir eliminando.
             lin = (input(menu_continuar))
         print()
         if int (lin) == 2 or len(matriz_legajos_notas) == 0: # Si no quiere seguir o el diccionario se quedó sin legajos, sale de este apartado.

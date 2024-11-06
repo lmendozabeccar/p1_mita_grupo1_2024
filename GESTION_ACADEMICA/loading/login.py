@@ -6,11 +6,21 @@ from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validacion
 
 #Pedir usuario y contraseña
 def user():
+    """
+    pre: no recibe ningún dato.
+    pos: devuelve un mail y una contraseña, ambos ingresados por el usuario.
+    """
     username=str(input("Ingresar su mail de usuario: "))
     password=str(input("Ingresar contraseña: "))
     return username,password
 
 def logeandose():
+    """
+    pre: el usuario en el menú de inicio, ingreso la opción 1 y fue redirigido a este menú, el menú de login. 
+    pos: tiene varios caminos, en caso de coincidir el nombre de usuario se logea (ya sea apartado de profesores
+    o de alumnos). En caso de no coincidir sigue preguntando con un máximo de 5 intentos.
+    En caso de pretender volver al menú principal o superar el máximo de intentos, se vuelve al menú de inicio.
+    """
     usuario,contra = user() #Pide usuario y contraseña
     flag=False
     cont=0 #Intentos

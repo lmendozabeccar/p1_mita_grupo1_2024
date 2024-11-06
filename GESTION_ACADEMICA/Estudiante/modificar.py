@@ -1,5 +1,9 @@
 from VALIDACIONES.Validaciones import validacionmail, validar_mayus_nombre, validar_contraseña
 def modificaruser():
+    """
+    pre: no recibe ningun dato, viene desde el apartado de estudiantes a la hora de solicitar modificar su usuario.
+    pos: una vez modificados todos los datos (y validados), escribe en el archivo de texto los nuevos cambios.
+    """
     while True:
         try:
             with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", "r", encoding="UTF-8" ) as archivo:

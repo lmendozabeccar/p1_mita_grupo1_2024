@@ -1,4 +1,9 @@
 def eliminar_mail(email):
+    """
+    pre: recibe el mail de usuario que se quiere eliminar.
+    pos: retorna True en caso de que se elimine la cuenta con éxito.
+         retorna False en caso que no se pueda eliminar por algún motivo.
+    """
     # Abrimos el archivo en modo lectura
     try:
         with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", 'r', encoding="UTF-8") as archivo_lectura:
