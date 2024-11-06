@@ -28,7 +28,7 @@ def estudiantes(legajo, email):
             if len(matriz_legajos_notas)== 0:
                 print("\nNo hay ninguna nota cargada")
             else:
-                mostrar_notas(matriz_legajos_notas,legajo)
+                mostrar_notas(matriz_legajos_notas,legajo,"alumno")
         
         elif respuesta_est == 3:
             seguro = int(input("Está seguro que desea eliminar su cuenta?\n1. Si\n2. No\n"))
