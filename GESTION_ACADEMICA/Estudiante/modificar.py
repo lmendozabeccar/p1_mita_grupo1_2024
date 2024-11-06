@@ -4,6 +4,7 @@ def modificaruser():
     pre: no recibe ningun dato, viene desde el apartado de estudiantes a la hora de solicitar modificar su usuario.
     pos: una vez modificados todos los datos (y validados), escribe en el archivo de texto los nuevos cambios.
     """
+    legajo = input("\nIngrese su legajo: ").strip()
     while True:
         try:
             with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", "r", encoding="UTF-8" ) as archivo:
@@ -13,12 +14,11 @@ def modificaruser():
             return
             
         else:
-            legajo = input("\nIngrese su legajo: ").strip()
             legajo_encontrado = False  
             for i in range(len(linea)):
                 parte = linea[i].strip().split(";")
                 if parte[0] == legajo:
-                    modificar = int(input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4Todo\nModificar: "))
+                    modificar = int(input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nModificar: "))
                     if modificar == 1 or modificar == 4:
                         email = input("\nIngrese su email nuevo: ")
                         if validacionmail(email) == False:
