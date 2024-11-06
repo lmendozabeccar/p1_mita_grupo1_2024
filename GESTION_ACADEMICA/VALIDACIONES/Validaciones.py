@@ -132,7 +132,7 @@ def validacion_cuenta_existente (user,contraseña):
         else: #Si se encontró en el login
             return tipo_usuario, legajo, email
 
-#Validación de nota, entre 0 y 10 y con 
+#Validación de nota, entre 0 y 10
 def validar_nota (car):
     """
     pre: la función recibe la nota ingresada por el profesor, a la hora de calificar al alumno.
