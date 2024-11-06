@@ -153,9 +153,6 @@ json.dump(<archivo>) --> Permite leer un archivo JSON y convertirlo a objeto en 
     for i in range(0, 10):
         archivo.write(str(i*2-1))
 
-*Que el usuario pueda modificar sus datos (Contraseña y Nombre)       
-*Eliminar su propio usuario en archivo de texto
 *Solucionar problema con recursividad y calculo del promedio si es que hay algunas materias con nota
-*triple comillas para documentar las funciones, que hace la funcion, que recibe y que devuelve (o imprime)
 *Al cargar las notas, cargar el número de la materia en lugar del nombre
 '''

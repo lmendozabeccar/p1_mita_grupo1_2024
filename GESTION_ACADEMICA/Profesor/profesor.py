@@ -11,7 +11,7 @@ def profesores(email):
     """
     
     flag_profes = True
-    menu_profesor="Qué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar/Actualizar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\n7 Eliminar tu cuenta.\nIngrese el numero para la operación que desee: "
+    menu_profesor="\nQué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar/Actualizar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\n7 Eliminar tu cuenta.\nIngrese el numero para la operación que desee: "
     while flag_profes == True:
         print()
         respuesta_prof = input(menu_profesor) #Modularizacion de menu.
@@ -45,15 +45,15 @@ def profesores(email):
                 eliminar_alumno()#Elimina alumnos y devuelve la matriz actualizada. 
  
         elif respuesta_prof == 5:
-            print("Volviendo al menú principal.") #Vuelve al menú
+            print("\nVolviendo al menú principal.") #Vuelve al menú
             return False
 
         elif respuesta_prof == 6:
-            print("Saliendo..")#Sale de la aplicación.
+            print("\nSaliendo..")#Sale de la aplicación.
             return True
 
         elif respuesta_prof == 7:
-            seguro = int(input("Está seguro que desea eliminar su cuenta?\n1. Si\n2. No\n"))
-            if seguro == 1:
+            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\n")
+            if seguro == "1":
                 eliminar_mail(email)
             return False

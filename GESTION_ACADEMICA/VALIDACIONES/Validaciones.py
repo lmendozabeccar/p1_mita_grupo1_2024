@@ -40,7 +40,7 @@ def validar_contraseña (contra):
     return True
 
 #Validacion letras.
-def validar_num (car):    
+def validar_num(car):    
     """
     pre: recibe un legajo.
     pos: retorna False, en caso de que existan letras en la cadena, retorna True, en caso de que no existan letras
@@ -125,14 +125,14 @@ def validacion_cuenta_existente (user,contraseña):
                             email = lista[1]
                             flag = False
         if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
-            print("Usuario no encontrado.")
-            return 0, user, contraseña
+            print("\nUsuario no encontrado.")
+            return 0,user,contraseña
         elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
             return legajo, True
         else: #Si se encontró en el login
             return tipo_usuario, legajo, email
 
-#Validación de nota, entre 0 y 10 y con 
+#Validación de nota, entre 0 y 10
 def validar_nota (car):
     """
     pre: la función recibe la nota ingresada por el profesor, a la hora de calificar al alumno.

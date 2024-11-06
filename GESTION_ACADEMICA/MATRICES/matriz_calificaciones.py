@@ -1,6 +1,10 @@
 import json
 from Base_de_datos.funciones_json import devolverjson
+<<<<<<< HEAD
 from VALIDACIONES.Validaciones import validacion_dig
+=======
+
+>>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
     """
@@ -12,15 +16,15 @@ def suma(notas):
     else:
         return notas[0] + suma(notas[1:])
     
-def contar(nota):
+def contar(notas):
     """
     pre: recibe la nota que tuvo el alumno.
     pos: se encarga de contar cada nota, para despues hacer el promedio.
     """
-    if len(nota) == 0:
+    if len(notas) == 0:
         return 0
     else:
-        return 1 + contar(nota[1:])
+        return 1 + contar(notas[1:])
 
 def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
     """
@@ -29,29 +33,26 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
     """
     print()
     sumas, contador = 0, 0     
-    print(matriz_legajos_notas)
-    #Si la suma de la lista (en la columna 2 y en su respectiva fila) son 
-    #todos -1, quiere decir que no tiene ninguna nota cargada
     matriz_legajos_notas = devolverjson()
     if legajo not in matriz_legajos_notas:
-        print("Para ver sus calificaciones, primero debe anotarse a una")
+        print("\nPara ver sus calificaciones, primero debe anotarse a una")
         return 0
     else:
         sublista_cursa = matriz_legajos_notas[legajo]["cursa"]
         sublista_notas = matriz_legajos_notas[legajo]["notas"]
         # Convertir el -1 en un guion para cada valor de la fila
         notas_formateadas = ["-" if valor == -1 else valor for valor in sublista_notas]
-        for i in range(len(notas_formateadas)): 
-            if notas_formateadas[i] != "-":
-                sumas = suma(notas_formateadas)
-                contador = contar(notas_formateadas) 
+        notas_sin_guion = [num for num in notas_formateadas if str(num).isnumeric() == True]
+        sumas = suma(notas_sin_guion)
+        contador = contar(notas_sin_guion) 
         if  sumas == 0 and contador == 0:
             print("\nNo hay notas cargadas en este legajo.")
         else:
             # Imprimir la lista con formato de f-strings
-            print(f"Legajo: {legajo}")
+            print(f"\nLegajo: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
+<<<<<<< HEAD
                 print(f"Cursa la materia {cursa}, y obtuviste una nota de: {nota}")
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
             if tipo_usuario == "alumno":
@@ -79,3 +80,12 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
                                 print("No existe")
                     i += 1
     return matriz_legajos_notas
+=======
+                print(f"Cursa {cursa}, Nota: {nota}")
+                if nota != "-":
+                    if nota>=0 and nota<=3:
+                        recursa = False
+                        print(f"\nCursa {cursa}, Nota: {nota} (RECURSA)")
+            print(f"\nPromedio: {sumas/contador:.2f}") #Maximo dos decimales
+
+>>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d

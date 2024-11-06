@@ -1,4 +1,3 @@
-import json
 from VALIDACIONES.Validaciones import validar_num, validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import actualizar_notas
@@ -10,13 +9,13 @@ def actualizar_notas_alumno(): #Matriz notas proveniente del registro
     pos: no retorna nada, actualiza las notas en otra funcion (en diccionario materias), y las guarda en otra
     funcion (guardarjson)
     """
-    print()
+
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
-    print(f"Legajos inscriptos: {legajos_formateados}")
+    print(f"\nLegajos inscriptos: {legajos_formateados}")
     flag = True
-    menu_legajo = "Ingrese el legajo del cual quiere agregar/actualizar notas: " #Ingresar el legajo
+    menu_legajo = "\nIngrese el legajo del cual quiere agregar/actualizar notas: " #Ingresar el legajo
     menu_agregar_notas = "\n1 Desea continuar agregando notas. \n2 No desea continuar agregando notas. \nPor favor, elegir una opción: "
     while flag == True:
         print()
@@ -26,7 +25,7 @@ def actualizar_notas_alumno(): #Matriz notas proveniente del registro
             while validar_num(legajo_actualizar) == False:
                 legajo_actualizar = input(menu_legajo)
             if legajo_actualizar not in matriz_legajos_notas: #Valida que el legajo exista en la matriz de notas
-                print("No se ha podido encontrar ese legajo, ingrese otro.") #No se pudo encontrar el legajo
+                print("\nNo se ha podido encontrar ese legajo, ingrese otro.") #No se pudo encontrar el legajo
             else:
                 flag_2 = False #Si se pudo encontrar.
         print()
@@ -47,13 +46,13 @@ def eliminar_alumno():
     """
     pre: no recibe ningun dato, se lo llama desde el apartado de profesores.
     pos: no retorna nada, se encarga de eliminar al alumno elegido por el profesor."""
-    print()
+
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
-    print(f"Legajos existentes: {legajos_formateados}")
+    print(f"\nLegajos existentes: {legajos_formateados}")
     flag = True
-    menu_legajo_eliminar = "Ingrese el legajo que quiere eliminar: " #Ingresar el legajo
+    menu_legajo_eliminar = "\nIngrese el legajo que quiere eliminar: " #Ingresar el legajo
     menu_continuar = "\n1 Desea continuar eliminando alumnos. \n2 No desea continuar eliminando alumnos \nPor favor, elegir una opción: "
     while flag == True:
         flag_2 = True
@@ -64,10 +63,10 @@ def eliminar_alumno():
             try: #Manejo de excepciones por si la clave no existe en el diccionario
                 matriz_legajos_notas.pop(legajo_eliminar)
             except KeyError: #En caso de que el legajo no exista en la matriz de alumnos
-                print(f"Error: El legajo {legajo_eliminar} no existe en la base de datoss.")
+                print(f"\nError: El legajo {legajo_eliminar} no existe en la base de datos.")
             else:
                 guardarjson(matriz_legajos_notas)
-                print("Base de datos de alumnos actualizada")
+                print("\nBase de datos de alumnos actualizada")
                 flag_2 = False
         print()
         lin = (input(menu_continuar)) #Mismo menú, pero modularizado.
@@ -101,25 +100,28 @@ def mostrar_calificacion_individual ():
     pos: muestra las notas de un alumno en particular, elegido por el profesor por legajo (esto lo hace a traves
     de la funcion mostrar_notas)
     """
-    print()
     flag = False
     matriz_legajos_notas = devolverjson()
     legajos = matriz_legajos_notas.keys()
     legajos_formateados = ", ".join(str(legajo) for legajo in legajos) # Se junta las claves en una cadena separada por comas
-    print(f"Legajos inscriptos: {legajos_formateados}")
-    menu_legajo = "Ingresar el legajo del alumno del cual quiere ver la calificación: " #Legajo individual.
+    print(f"\nLegajos inscriptos: {legajos_formateados}")
+    menu_legajo = "\nIngresar el legajo del alumno del cual quiere ver la calificación: " #Legajo individual.
     legajo= input(menu_legajo) #Menú de arriba, modularizado.
     while validar_num(legajo) == False:
         legajo = input(menu_legajo)
     if legajo in matriz_legajos_notas:
         flag = True
     while flag == False:
-        print("No se pudo encontrar el legajo ingresado, por favor, volver a intentarlo.")
+        print("\nNo se pudo encontrar el legajo ingresado, por favor, volver a intentarlo.")
         legajo= input(menu_legajo)
         while validar_num(legajo) == False:
             legajo = input(menu_legajo)
         if legajo in matriz_legajos_notas:
             flag = True #No existe el legajo antes ingresado, pide otro y vuelve a validar.
+<<<<<<< HEAD
     print()
     mostrar_notas(matriz_legajos_notas,legajo,"profesor")
+=======
+    mostrar_notas(matriz_legajos_notas,legajo)
+>>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d
     return True
