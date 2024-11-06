@@ -1,10 +1,7 @@
 import json
-from Base_de_datos.funciones_json import devolverjson
-<<<<<<< HEAD
+from Base_de_datos.funciones_json import devolverjson, guardarjson
 from VALIDACIONES.Validaciones import validacion_dig
-=======
 
->>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
     """
@@ -52,13 +49,13 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
             print(f"\nLegajo: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
-<<<<<<< HEAD
+
                 print(f"Cursa la materia {cursa}, y obtuviste una nota de: {nota}")
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
             if tipo_usuario == "alumno":
                 i=0
                 while len(sublista_cursa)>i:
-                    if sublista_notas[i]<=3:
+                    if sublista_notas[i]>= 0 and sublista_notas[i]<=3:
                         print()
                         print(f"Lamentablemente, debes recursar la materia",sublista_cursa[i])
                         menu_recursa = "\n1 Desea cursar nuevamente la materia.\n2 Desea abandonar la materia. \nPor favor, elegir una opción: "
@@ -69,10 +66,11 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
                         if recursa == "1":
                             print("Buena suerte para el próximo cuatrimestre.")
                             matriz_legajos_notas[legajo]["notas"][indice] = -1
-
+                            guardarjson(matriz_legajos_notas)
                         elif recursa == "2":                            
                             matriz_legajos_notas[legajo]['cursa'].pop(indice)
                             matriz_legajos_notas[legajo]['notas'].pop(indice)
+                            guardarjson(matriz_legajos_notas)
                             print("Abandonaste la materia.")
                             
                             i -= 1                      
@@ -80,12 +78,4 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
                                 print("No existe")
                     i += 1
     return matriz_legajos_notas
-=======
-                print(f"Cursa {cursa}, Nota: {nota}")
-                if nota != "-":
-                    if nota>=0 and nota<=3:
-                        recursa = False
-                        print(f"\nCursa {cursa}, Nota: {nota} (RECURSA)")
-            print(f"\nPromedio: {sumas/contador:.2f}") #Maximo dos decimales
 
->>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d

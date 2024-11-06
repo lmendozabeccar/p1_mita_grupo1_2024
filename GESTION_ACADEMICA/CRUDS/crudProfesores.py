@@ -118,10 +118,7 @@ def mostrar_calificacion_individual ():
             legajo = input(menu_legajo)
         if legajo in matriz_legajos_notas:
             flag = True #No existe el legajo antes ingresado, pide otro y vuelve a validar.
-<<<<<<< HEAD
+
     print()
     mostrar_notas(matriz_legajos_notas,legajo,"profesor")
-=======
-    mostrar_notas(matriz_legajos_notas,legajo)
->>>>>>> 73c2286cf81a14e830d87f4b5c723471e27da72d
     return True
