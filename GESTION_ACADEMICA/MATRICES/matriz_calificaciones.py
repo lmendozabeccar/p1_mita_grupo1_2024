@@ -1,5 +1,6 @@
 import json
 from Base_de_datos.funciones_json import devolverjson
+
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
     """
@@ -11,15 +12,15 @@ def suma(notas):
     else:
         return notas[0] + suma(notas[1:])
     
-def contar(nota):
+def contar(notas):
     """
     pre: recibe la nota que tuvo el alumno.
     pos: se encarga de contar cada nota, para despues hacer el promedio.
     """
-    if len(nota) == 0:
+    if len(notas) == 0:
         return 0
     else:
-        return 1 + contar(nota[1:])
+        return 1 + contar(notas[1:])
 
 def mostrar_notas (matriz_legajos_notas,legajo):
     """
@@ -37,10 +38,9 @@ def mostrar_notas (matriz_legajos_notas,legajo):
         sublista_notas = matriz_legajos_notas[legajo]["notas"]
         # Convertir el -1 en un guion para cada valor de la fila
         notas_formateadas = ["-" if valor == -1 else valor for valor in sublista_notas]
-        for i in range(len(notas_formateadas)): 
-            if notas_formateadas[i] != "-": #Se suma y se cuentan las notas si la nota no es -1 (nota no registrada)
-                sumas = suma(notas_formateadas)
-                contador = contar(notas_formateadas) 
+        notas_sin_guion = [num for num in notas_formateadas if str(num).isnumeric() == True]
+        sumas = suma(notas_sin_guion)
+        contador = contar(notas_sin_guion) 
         if  sumas == 0 and contador == 0:
             print("\nNo hay notas cargadas en este legajo.")
         else:
@@ -48,7 +48,7 @@ def mostrar_notas (matriz_legajos_notas,legajo):
             print(f"\nLegajo: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
-                print(f"\nCursa {cursa}, Nota: {nota}")
+                print(f"Cursa {cursa}, Nota: {nota}")
                 if nota != "-":
                     if nota>=0 and nota<=3:
                         recursa = False

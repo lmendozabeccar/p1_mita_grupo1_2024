@@ -40,7 +40,7 @@ def validar_contraseña (contra):
     return True
 
 #Validacion letras.
-def validar_num (car):    
+def validar_num(car):    
     """
     pre: recibe un legajo.
     pos: retorna False, en caso de que existan letras en la cadena, retorna True, en caso de que no existan letras
