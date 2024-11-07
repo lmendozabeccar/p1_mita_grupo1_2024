@@ -40,11 +40,8 @@ def menu_de_inicio():
             print("\n¡Registrate!")
             registro() #Se asignan las dos nuevas matrices formadas
         else:
-            print("\nSaliendo..") #Opción 3 del menú principal, se sale de programa.
+            print("\nSaliendo de la aplicación...") #Opción 3 del menú principal, se sale de programa.
             flag = False    
     return True   
 if __name__ == "__main__":     
     menu_de_inicio() 
-
-print(f"\nFin de proceso")
-    

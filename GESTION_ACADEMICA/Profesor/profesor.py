@@ -1,7 +1,7 @@
 from CRUDS.crudProfesores import  *
 from VALIDACIONES.Validaciones import validacion_dig
 from Base_de_datos.funciones_json import devolverjson
-from CRUDS.eliminar_usuario import eliminar_mail
+from CRUDS.eliminar_modificar import eliminar_mail, modificaruser
 
 def profesores(email):
     """
@@ -11,11 +11,11 @@ def profesores(email):
     """
     
     flag_profes = True
-    menu_profesor="\nQué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar/Actualizar notas. \n4 Eliminar alumno. \n5 Volver al menú principal. \n6 Salir de la aplicación.\n7 Eliminar tu cuenta.\nIngrese el numero para la operación que desee: "
+    menu_profesor="\nQué desea realizar? \n1 Mostrar calificación individual. \n2 Mostrar calificación de todos los alumnos inscriptos.\n3 Agregar/Actualizar notas. \n4 Eliminar alumno. \n5 Modificar cuenta. \n6 Eliminar cuenta. \n7 Volver al menú principal.\n8 Salir de la aplicación.\nIngrese el numero para la operación que desee: "
     while flag_profes == True:
-        print()
+       
         respuesta_prof = input(menu_profesor) #Modularizacion de menu.
-        while validacion_dig (respuesta_prof, 7)== False: #Valida que el numero sea entre 1 y 6
+        while validacion_dig (respuesta_prof, 8)== False: #Valida que el numero sea entre 1 y 6
             respuesta_prof = input(menu_profesor)
         respuesta_prof = int(respuesta_prof)
 
@@ -45,15 +45,21 @@ def profesores(email):
                 eliminar_alumno()#Elimina alumnos y devuelve la matriz actualizada. 
  
         elif respuesta_prof == 5:
-            print("\nVolviendo al menú principal.") #Vuelve al menú
-            return False
-
+            modificaruser(email)
+            
         elif respuesta_prof == 6:
-            print("\nSaliendo..")#Sale de la aplicación.
-            return True
-
-        elif respuesta_prof == 7:
-            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\n")
+            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\nElegir una opción: ")
             if seguro == "1":
                 eliminar_mail(email)
+                return False
+            else:
+                print("\nVolviendo al menú principal...") #Vuelve al menú
+                
+
+        elif respuesta_prof == 7:
+            print("\nVolviendo al menú principal...") #Vuelve al menú
             return False
+
+        elif respuesta_prof == 8:
+            print("\nSaliendo...")#Sale de la aplicación.
+            return True

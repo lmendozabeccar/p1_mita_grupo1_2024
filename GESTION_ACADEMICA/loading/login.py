@@ -10,7 +10,7 @@ def user():
     pre: no recibe ningún dato.
     pos: devuelve un mail y una contraseña, ambos ingresados por el usuario.
     """
-    username=str(input("Ingresar su mail de usuario: "))
+    username=str(input("\nIngresar su mail de usuario: "))
     password=str(input("Ingresar contraseña: "))
     return username,password
 

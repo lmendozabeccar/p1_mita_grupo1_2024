@@ -28,7 +28,7 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
     pre: recibe la matriz de notas, con el respectivo legajo a mostrar.
     pos: muestra todas las notas agregadas del alumno, con su respectiva materia y su promedio final.
     """
-    print()
+
     sumas, contador = 0, 0     
     matriz_legajos_notas = devolverjson()
     if legajo not in matriz_legajos_notas:
@@ -46,17 +46,17 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
             print("\nNo hay notas cargadas en este legajo.")
         else:
             # Imprimir la lista con formato de f-strings
-            print(f"\nLegajo: {legajo}")
+            print(f"\nLegajo número: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
 
-                print(f"Cursa la materia {cursa}, y obtuviste una nota de: {nota}")
+                print(f"Cursa la materia {cursa} y obtuviste una nota de: {nota}")
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
             if tipo_usuario == "alumno":
                 i=0
                 while len(sublista_cursa)>i:
                     if sublista_notas[i]>= 0 and sublista_notas[i]<=3:
-                        print()
+                    
                         print(f"Lamentablemente, debes recursar la materia",sublista_cursa[i])
                         menu_recursa = "\n1 Desea cursar nuevamente la materia.\n2 Desea abandonar la materia. \nPor favor, elegir una opción: "
                         recursa = input(menu_recursa)
@@ -77,5 +77,6 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
                         else:
                                 print("No existe")
                     i += 1
+    print("\nVolviendo al menú principal...")          
     return matriz_legajos_notas
 

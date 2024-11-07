@@ -9,8 +9,8 @@ def registro():
     
     menu_registro = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
     menu_mail = "\nIngresar su mail de usuario nuevo: "
-    menu_nombre = "\nIngresar su nombre y apellido, ambas comenzando con mayúsculas: "
-    menu_contraseña = "\nIngrese su contraseña: "
+    menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
+    menu_contraseña = "Ingrese su contraseña: "
     menu_error = "\n1 Volver a intentar el registro. \n2 Volver al inicio \nElija un número: "
     with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
         flag = True
@@ -22,7 +22,7 @@ def registro():
             if int(inicio_registro) == 3: #Vuelve al menú de inicio.
                 return -1
             else:
-                print()
+              
                 #Validación Mail.
                 user=str(input(menu_mail)) #Modularización de menú
                 while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.

@@ -3,8 +3,7 @@ from VALIDACIONES.Validaciones import validacion_dig
 from MATRICES.matriz_calificaciones import mostrar_notas
 from MATRICES.Diccionario_Materias import agregar_materias
 from Base_de_datos.funciones_json import devolverjson
-from CRUDS.eliminar_usuario import eliminar_mail
-from Estudiante.modificar import modificaruser
+from CRUDS.eliminar_modificar import eliminar_mail, modificaruser
 
 def estudiantes(legajo, email):
     """
@@ -13,7 +12,7 @@ def estudiantes(legajo, email):
     """
     flag_estudiantes = True
     #Agregar función para eliminar la inscripción de una materia, a la vez de indicar si recursa una materia en caso de que se saque un 2
-    menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio\n3 Eliminar tu cuenta..\n4 Modificar su cuenta.\n5 Volver al menú principal.\n6.Salir de la aplicación. \nIngrese el numero para la operación que desee: "
+    menu_estudiantes="\nQué desea realizar ahora? \n1 Inscribirse en las materias correspondientes.\n2 Ver sus calificaciones y su promedio.\n3 Eliminar tu cuenta.\n4 Modificar su cuenta.\n5 Volver al menú principal.\n6.Salir de la aplicación. \nIngrese el numero para la operación que desee: "
     while flag_estudiantes == True:    
         respuesta_est = input(menu_estudiantes) #Menú modularizado.
         while validacion_dig (respuesta_est, 6) == False: #Validacion numero entre 1 y 6
@@ -31,18 +30,19 @@ def estudiantes(legajo, email):
                 mostrar_notas(matriz_legajos_notas,legajo,"alumno")
         
         elif respuesta_est == 3:
-            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\n")
+            seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\nPor favor, elegir una opción: ")
             if seguro == "1":
                 eliminar_mail(email)
-
-            return False                    
+                return False                    
+            else:
+                print("\nVolviendo al menú principal...")     
         elif respuesta_est == 4:
-            modificaruser()
+            modificaruser(email)
         
         elif respuesta_est == 5:
-            print("\nVolviendo al menú principal.") #Vuelve al menú principal.
+            print("\nVolviendo al menú principal...") #Vuelve al menú principal.
             return False
 
         elif respuesta_est == 6:
-            print("\nSaliendo de la aplicación") #Sale de la aplicación.
+            print("\nSaliendo de la aplicación...") #Sale de la aplicación.
             return True

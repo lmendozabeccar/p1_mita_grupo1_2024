@@ -23,7 +23,7 @@ def mostrar_usuarios ():
 
     # Ordena por nombre, y luego x legajo.
     usuarios_ordenados = sorted(usuarios, key=lambda x: (x[3], x[0]))
-    print()
+    
     print("\nLista de usuarios, con su respectivo legajo, mail, contraseña y nombre.")
     # Imprime los encabezados
     print(f"|{'Legajo':^6}||{'Mail':^30}||{'Constraseña':^15}||{'Nombre':^20}|")
