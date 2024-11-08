@@ -77,11 +77,8 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
                             guardarjson(matriz_legajos_notas)
                             print("\nAbandonaste la materia.")
                             materias -= 1                      
-                        else:
-                                print("No existe")
-                    print(materias)
-                    materias = materias + 1
-
+                    finally:
+                        materias = int(materias) + 1
     print("\nVolviendo al menú principal...")          
     return matriz_legajos_notas
 
