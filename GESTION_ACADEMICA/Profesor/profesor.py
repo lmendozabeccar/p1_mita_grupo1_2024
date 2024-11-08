@@ -49,6 +49,9 @@ def profesores(email):
             
         elif respuesta_prof == 6:
             seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\nElegir una opción: ")
+            while validacion_dig(seguro,2) == False:
+                seguro = input("\nEstá seguro que desea eliminar su cuenta?\n1. Si\n2. No\nElegir una opción: ")
+
             if seguro == "1":
                 eliminar_mail(email)
                 return False

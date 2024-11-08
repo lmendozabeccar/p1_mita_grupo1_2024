@@ -1,3 +1,4 @@
+from VALIDACIONES.Validaciones import validacion_dig
 def eliminar_mail(email):
     """
     pre: recibe el mail de usuario que se quiere eliminar.
@@ -47,20 +48,24 @@ def modificaruser(mai):
             for i in range(len(linea)):
                 parte = linea[i].strip().split(";")
                 if parte[1] == mai:
-                    modificar = int(input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nElegir una opción: "))
-                    if modificar == 1:
+                    modificar = (input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nElegir una opción: "))
+                    while validacion_dig (modificar,4) == False:
+                        modificar = (input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nElegir una opción: "))
+
+
+                    if modificar == "1":
                         email = input(menu_mail)
                         if validacionmail(email) == False:
                             email = input(menu_mail)
                         parte[1] = email
 
-                    elif modificar == 2:
+                    elif modificar == "2":
                         contraseña=input(menu_contraseña)
                         if validar_contraseña(contraseña) == False:
                             contraseña=input(menu_contraseña)
                         parte[2] = contraseña
 
-                    elif modificar == 3:
+                    elif modificar == "3":
                         nom = input(menu_nombre)
                         if validar_mayus_nombre(nom) == False:
                             nom = input(menu_nombre)
@@ -90,6 +95,9 @@ def modificaruser(mai):
             else:
                 print("\nLegajo no encontrado")
             otravez = input("¿Quiere modificar algo más?\n1. Sí\n2. No\nElegir una opción: ").strip()
+            while validacion_dig(otravez,2) == False:
+                otravez = input("¿Quiere modificar algo más?\n1. Sí\n2. No\nElegir una opción: ").strip()
+                
             if otravez != "1":
                 print("\nVolviendo al menú principal...")
                 break   
