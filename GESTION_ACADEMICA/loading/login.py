@@ -5,12 +5,22 @@ from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validacion
 #from MATRICES.matriz_profesor import ingreso_profes
 
 #Pedir usuario y contraseña
-def user ():
-    username=str(input("Ingresar su mail de usuario: "))
+def user():
+    """
+    pre: no recibe ningún dato.
+    pos: devuelve un mail y una contraseña, ambos ingresados por el usuario.
+    """
+    username=str(input("\nIngresar su mail de usuario: "))
     password=str(input("Ingresar contraseña: "))
     return username,password
 
-def logeandose(matriz_legajos_notas):
+def logeandose():
+    """
+    pre: el usuario en el menú de inicio, ingreso la opción 1 y fue redirigido a este menú, el menú de login. 
+    pos: tiene varios caminos, en caso de coincidir el nombre de usuario se logea (ya sea apartado de profesores
+    o de alumnos). En caso de no coincidir sigue preguntando con un máximo de 5 intentos.
+    En caso de pretender volver al menú principal o superar el máximo de intentos, se vuelve al menú de inicio.
+    """
     usuario,contra = user() #Pide usuario y contraseña
     flag=False
     cont=0 #Intentos
@@ -18,26 +28,26 @@ def logeandose(matriz_legajos_notas):
         while validacionmail(usuario) == False and cont<5: #Se valida el mail
             usuario,contra = user()
         
-        num, legajo = validacion_cuenta_existente(usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
+        num, legajo, email = validacion_cuenta_existente(usuario,contra) #Se fija si existe una cuenta (estudiante o profesor), con ese nombre de usuario.
         if num == 1: #Existe un estudiante con ese nombre de usuario.
             flag=True
-            matriz_legajos_notas_act = estudiantes(matriz_legajos_notas, legajo)
-            if matriz_legajos_notas_act == True:
+            valor = estudiantes(legajo, email)
+            if valor == True:
                 return True
             else:
-                return matriz_legajos_notas_act
+                return False
                 
         elif num == 2: #Existe un profesor con ese nombre de usuario.
             flag = True
-            matriz_legajos_notas_act = profesores(matriz_legajos_notas) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
-            if matriz_legajos_notas_act == True:
+            valor = profesores(email) #Le asigno a una matriz las notas actualizadas provenientes del crud de profesores
+            if valor == True:
                 return True
             else:
-                return matriz_legajos_notas_act
+                return False
         else:  #En caso de no encontrar el usuario, vuelve a preguntar con un maximo de 5 intentos.
             cont += 1
             if cont<5:
-                print("No se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.\n")
+                print("\nNo se pudo acceder a una cuenta ya existente, por favor volver a intentarlo.")
                 menu_error = "\n1 Volver a intentarlo.\n2 Volver al menú principal.\nElija un número: "
                 inicio_login=(input(menu_error)) #Menu de arriba, modularizado       
                 #Validación de letra.
@@ -50,6 +60,6 @@ def logeandose(matriz_legajos_notas):
                    flag = True
                    return False
             else:
-                print("Numerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
+                print("\nNumerosos intentos fallidos, reintentar nuevamente en unos minutos.") 
                 return True
                 #En caso de llegar al maximo de intentos (cinco), sale y vuelve al menú

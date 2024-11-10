@@ -1,6 +1,13 @@
 import re
 #Verificar mayúsculas correspondientes a la hora de ingresar nombre (registro). 
 def validar_mayus_nombre (nombre):
+    
+    """
+    pre: recibe un nombre y un apellido, ingresado por el usuario a la hora del registro.
+    pos: devuelve False, en caso de que existan números o en caso de que el nombre/apellido no comiencen con 
+    mayúscula. En caso de devolver False, se piden nuevamente los datos.
+    """
+    
     busq = re.findall ("[0-9]+",nombre) 
     if len(busq) != 0:
         print("\nPor favor, no ingresar números en su nombre y apellido.\n") 
@@ -12,6 +19,13 @@ def validar_mayus_nombre (nombre):
     
 #Verificar que la contraseña cumpla con requisitos. 
 def validar_contraseña (contra):
+    
+    """
+    pre: recibe la contraseña nueva, ingresada por el usuario a la hora del registro.
+    pos: devuelve False, en caso de que no cumpla con los requisitos (8 caracteres, sin espacios en blanco, al 
+    menos una mayúscula, una minúscula y un número). En caso de devolver False, se piden nuevamente los datos.
+    """
+    
     if len(contra)<8: #Minimo ocho caracteres
         print("\nContraseña inválida, por favor ingresar al menos 8 caracteres.\n")
         return False
@@ -25,16 +39,28 @@ def validar_contraseña (contra):
         return False
     return True
 
-#E.R --> + Va a devolver al secuencia de caracteres.
-
 #Validacion letras.
-def validar_num (car):    
+def validar_num(car):    
+    """
+    pre: recibe un legajo.
+    pos: retorna False, en caso de que existan letras en la cadena, retorna True, en caso de que no existan letras
+    en el legajo.
+    """
+    
     if car.isnumeric()==False: #Si la cadena tiene numeros, devuelve True
         print("\nPor favor, ingresar un número.\n")
     return car.isnumeric()
 
 #Validacion de que los numeros esten bien. Valida que la respuesta sea "1" o "2",etc respectivamente   
 def validacion_dig(texto, numero_opciones):
+    
+    """
+    pre: recibe la respuesta del uusario a la hora que le pregunta cual de todas las opciones del menú quiere 
+    utilizar como primer parámetro, y como segundo parámetro la cantidad de opciones que puede elegir.
+    pos: la funcion retorna True, en caso de que el usuario haya ingresado un número válido, y retorna 
+    False, en caso que no lo sea.
+    """
+
     if numero_opciones <= 9:
         patron = f"^[1-{numero_opciones}]$"  # Tiene que empezar y terminar con 1 dígito
     else:
@@ -50,8 +76,17 @@ def validacion_dig(texto, numero_opciones):
         print("\nPor favor, ingresar un numero válido.\n")
         return False
     '''
+
 #Validación del Mail.
 def validacionmail (mail):
+    
+    """
+    pre: recibe un mail ingresado por el usuario.
+    pos: retorna False en caso de que no se cumplan con los requisitos pedidos (minimo de tres caracteres 
+    antes del "@", además de su respectiva forma) y vuelve a solicitar el ingreso del mail. En caso de cumplir 
+    con los requisitos, retorna True.
+    """
+
     patron = r"[a-zA-Z0-9]{3,}@sistem+\.edu+\.ar" # R String --> Para que tome las secuencias de escape bien (Daba un warning)
     busq = re.findall (patron, mail)
     if len(busq) == 0:
@@ -60,20 +95,24 @@ def validacionmail (mail):
     else:
         return True
 #Verificar si la cuenta existe o no en el sistema
-def validacion_cuenta_existente (user,contraseña):
-    with open(r"C:\Users\santi\OneDrive\Documents\GitHub\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
+def validacion_cuenta_existente (user,contraseña):  
+    """
+    pre: recibe un mail de usuario y una contraseña (en caso de estar registrandose la contraseña es "False")
+    pos: retorna False o True, dependiendo que el mail y la contraseña sea o no validado.
+    """
+    with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
         flag = True
         encontrado = True
         tipo_usuario = 0
         while flag:
-            linea = archivo.readline()
+            linea = archivo.readline() #linea por linea del archivo de texto
             if linea == "": # EL ARCHIVO DE TEXTO DEBE TENER MAXIMO UNA LINEA VACÍA AL FINAL
                 flag = False
                 encontrado = False
             else:
-                linea = linea.strip()
-                lista = linea.split(";")
-                if contraseña == False: #Para el registro
+                linea = linea.strip() #elimina los espacios en blanco al inicio y al final
+                lista = linea.split(";") #divide la línea en una lista de elementos usando ; como delimitador.
+                if contraseña == False: #Si se está registrando, es false, si es un login, es la contraseña ingresada x el usuario.
                     if lista[0] != "0000":
                         legajo = lista[0]
                     if lista[1] == user:
@@ -85,63 +124,27 @@ def validacion_cuenta_existente (user,contraseña):
                             print("Ingreso correcto al apartado profesores.")
                             tipo_usuario = 2
                             legajo = -1
+                            email = lista[1]
                             flag = False
                         else:
                             print("Ingreso correcto al apartado alumnos.")
                             tipo_usuario = 1
                             legajo = lista[0]
+                            email = lista[1]
                             flag = False
         if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
-            print("Usuario no encontrado.")
+            return 0,user,contraseña
         elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
             return legajo, True
         else: #Si se encontró en el login
-            return tipo_usuario, legajo
-'''i=0
-a=0
-while i<len(list_alumnos):
-    if user==list_alumnos[i][1] and contraseña==list_alumnos[i][2]: 
-        print("\nIngreso correcto al apartado alumnos.\n")
-        return 1, list_alumnos[i][0] 
-    i+=1
-j = 0
-while j<len(list_profesores):
-    if user==list_profesores[j][0] and contraseña==list_profesores[j][1]:
-        print("\nIngreso correcto al apartado profesores.\n")
-        return 2, list_profesores[j][0]
-    j += 1
-return 3,a'''
+            return tipo_usuario, legajo, email
 
-#Verificar si existe un USUARIO registrado anteriormente.
-def cuenta_existente_register (listaalumnos,listaprofes,usuario):
-    i,j=0,0    
-    while i<len(listaalumnos):
-        if usuario==listaalumnos[i][1]: 
-            print("\nUsuario ya existente.\n")
-            return False
-        i += 1
-    while j<len(listaprofes):
-        if  usuario==listaprofes[j][0]:
-            print("\nUsuario ya existente.\n")
-            return False
-        j += 1    
-
-#Si se sigue o no con las opciones.    
-
-#Validacion legajo.
-def validar_legajo (lista, pos):
-    i=0
-    posicion_alumno = -1
-    while i<len(lista) and posicion_alumno == -1:
-        if  int(pos) == lista[i][0]:
-            posicion_alumno = i
-            return posicion_alumno                
-        i += 1
-    return posicion_alumno
-#R STRING --> PARA QUE PYTHON INTERPRETE LOS CARACTERES DE ESCAPE, COMO \s
-
-#Validación de nota, entre 0 y 10 y con 
 def validar_nota (car):
+    """
+    pre: la función recibe la nota ingresada por el profesor, a la hora de calificar al alumno.
+    pos: en caso de no coincidir con el patrón, devuelve False y le pide al profesor que ingrese una nota 
+    válida. En caso de coincidir, no devuelve nada y el programa sigue con normalidad.
+    """
     patron = r"^(10(\.0)?|[0-9](\.\d)?)$" # ()? Quiere decir que es opcional que haya un punto y un 0, | es operador OR
     nota_valida= re.match(patron,car)
     if nota_valida == None:

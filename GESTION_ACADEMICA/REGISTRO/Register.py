@@ -1,12 +1,18 @@
 from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, validacion_cuenta_existente
 
 def registro():
+    """
+    pre: el usuario en el menú de inicio, ingreso la opción 2 y fue redirigido a este menú, el menú de registro.
+    pos: retorna True en caso de que el registro sea correcto y válido, en caso contrario, retorna False. 
+    """
+    
+    
     menu_registro = "\n1 Registro como alumno.\n2 Registro como profesor.\n3 Volver atrás.\nElija un número: "
-    menu_mail = "Ingresar su mail de usuario nuevo: "
+    menu_mail = "\nIngresar su mail de usuario nuevo: "
     menu_nombre = "Ingresar su nombre y apellido, ambas comenzando con mayúsculas: "
     menu_contraseña = "Ingrese su contraseña: "
     menu_error = "\n1 Volver a intentar el registro. \n2 Volver al inicio \nElija un número: "
-    with open(r"D:\p1_mita_grupo1_2024\GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
+    with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="a", encoding="utf-8") as archivo:
         flag = True
         while flag:
             inicio_registro=(input(menu_registro)) #Modularizacion menú.
@@ -16,7 +22,7 @@ def registro():
             if int(inicio_registro) == 3: #Vuelve al menú de inicio.
                 return -1
             else:
-                print()
+              
                 #Validación Mail.
                 user=str(input(menu_mail)) #Modularización de menú
                 while validacionmail(user) == False: #Validacion que el mail tenga las pautas necesarias.
@@ -35,19 +41,20 @@ def registro():
                         legajo = int(legajo)
                         legajo+=1 #Legajo = ultimo legajo + 1
                         archivo.write(f"{legajo};{user};{pas};{nom}\n") #Append en el archivo de texto.
-                        print("Registro exitoso como alumno, ahora inicie sesión")
+                        print("\nRegistro exitoso como alumno, ahora inicie sesión")
                         flag = False                 
                             
                     if int (inicio_registro)==2: #Si se registra como profesor
                         nom=str(input(menu_nombre))
                         while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
                             nom=str(input(menu_nombre)) 
+                            
                         pas=str(input(menu_contraseña))
                         while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
                             pas=str(input(menu_contraseña))         
                                                
                         archivo.write(f"0000;{user};{pas};{nom}\n")
-                        print("Registro exitoso como profesor, ahora inicie sesión")
+                        print("\nRegistro exitoso como profesor, ahora inicie sesión")
                         flag = False                
                                 
                 else: #En caso de usuario ya existente.
