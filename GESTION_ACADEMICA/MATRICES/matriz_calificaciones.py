@@ -50,35 +50,38 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
             print(f"\nLegajo número: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
-
                 print(f"Cursa la materia {cursa} y obtuviste una nota de: {nota}")
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
+            
             if tipo_usuario == "alumno":
-                materias= int
+                materias = int 
                 materias = 0
                 while len(sublista_cursa)>materias:
                     try:
-                        assert (aprobado_desaprobado(sublista_notas[materias])) == True, "En caso que el alumno deba recursar"
+                        assert (aprobado_desaprobado(sublista_notas[materias])) == True, "En caso que el alumno deba recursar" #El string es el mensaje de error si el assert falla
                     except AssertionError:  
-                                         
                         print(f"Lamentablemente, debes recursar la materia",sublista_cursa[materias])
                         menu_recursa = "\n1 Desea cursar nuevamente la materia.\n2 Desea abandonar la materia. \nPor favor, elegir una opción: "
+                        
                         recursa = input(menu_recursa)
                         while validacion_dig (recursa, 2)==False: #Valida que sea un numero del 1 al 10
                             recursa = input(menu_recursa)
-                        indice = matriz_legajos_notas[legajo]['cursa'].index(sublista_cursa[materias])
+                            
+                        indice = matriz_legajos_notas[legajo]['cursa'].index(sublista_cursa[materias]) #Devuelve en que posición esta el elemento en la lista
                         if recursa == "1":
                             print("\nBuena suerte para el próximo cuatrimestre.")
-                            matriz_legajos_notas[legajo]["notas"][indice] = -1
+                            matriz_legajos_notas[legajo]["notas"][indice] = -1 #Se le asigna -1 como nota no cargada
                             guardarjson(matriz_legajos_notas)
+                            
                         elif recursa == "2":                            
                             matriz_legajos_notas[legajo]['cursa'].pop(indice)
-                            matriz_legajos_notas[legajo]['notas'].pop(indice)
+                            matriz_legajos_notas[legajo]['notas'].pop(indice) #Se elimina la materia con su respectiva nota
                             guardarjson(matriz_legajos_notas)
                             print("\nAbandonaste la materia.")
                             materias -= 1                      
                     finally:
                         materias = int(materias) + 1
+                        
     print("\nVolviendo al menú principal...")          
     return matriz_legajos_notas
 

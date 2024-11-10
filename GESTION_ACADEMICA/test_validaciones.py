@@ -15,6 +15,7 @@ def test_validar_mayus_nombre():
     # def validar_mayus_nombre (nombre)
     assert validar_mayus_nombre("Cheng Li") == True
     assert validar_mayus_nombre("Felipe daquino") == False
+    assert validar_mayus_nombre("FelipeDaquino") == False
 
 def test_validar_nota():
     # def validar_nota (nota)

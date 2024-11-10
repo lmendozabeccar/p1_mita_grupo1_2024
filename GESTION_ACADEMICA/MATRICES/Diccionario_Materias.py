@@ -26,21 +26,21 @@ def agregar_materias(legajo):
         
     if legajo in matriz_legajos_notas:
         notas_sublista = matriz_legajos_notas[legajo]["notas"]
-        existe = 1
+        existe = True
         print("Usted está cursando estas materias",matriz_legajos_notas[legajo]["cursa"])
 
     else:
         notas_sublista = []
         cursa_sublista = []
-        existe = 0
+        existe = False
         print("No está cursando ninguna materia todavía.")
-    flag = 0
+    flag = True
     menu_materia = "\nIngrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n6.Estadística\n7.Física\n8.Cálculo\n9.Redes\n10.Marketing\nPor favor, elegir un número de acuerdo a su materia: "
     menu_agregar_materia = "\n¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
     
     with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", 'w', encoding='UTF-8') as archivo_json:
-        while flag == 0:
-            if existe == 1:
+        while flag == True:
+            if existe == True:
                 cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
                 notas_sublista = matriz_legajos_notas[legajo]["notas"]
                 if sum(notas_sublista) == -10:
@@ -57,12 +57,12 @@ def agregar_materias(legajo):
             if materia_nombre in cursa_sublista:
                 print("\nUsted ya esta cursando esa materia")
             else:
-                if existe == 0:
+                if existe == False:
                     matriz_legajos_notas[legajo] = {
                         "cursa": [materia_nombre],
                         "notas": [-1]
                     }
-                    existe = 1
+                    existe = True
                     print(f"\nLa materia {materia_nombre} fue agregada.")
                 else:
                     matriz_legajos_notas[legajo]["cursa"].append(materia_nombre) #Si hago esta linea de una y el legajo no esta registrado en la matriz de notas, entonces el programa se rompe, por eso se inventó la flag "existe"
@@ -75,7 +75,7 @@ def agregar_materias(legajo):
                 while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
                     continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
                 if int(continuar) == 2:
-                    flag = 1 
+                    flag = False
                     #Ingresa 2, sale del apartado y vuelve atras.
         guardarjson(matriz_legajos_notas)
     print("\nVolviendo al menú principal...")          
@@ -86,7 +86,7 @@ def actualizar_notas (matriz_legajos_notas, legajo):
     pre: recibe la matriz de notas y el legajo el cual que quiere actualizar.
     pos: retorna la matriz de notas, pero actualizadas por el profesor.
     """
-    flag = 0
+    flag = True
     cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
     dic_materias_inscriptas = {}
     contador = 1
@@ -100,7 +100,7 @@ def actualizar_notas (matriz_legajos_notas, legajo):
     menu_nota = materias_formateadas + "Por favor, elegir un número de acuerdo a su materia: "
     menu_agregar_nota = "¿Desea agregar la nota de otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
     menu_calificacion = "Ingresar nota de la respectiva materia: "
-    while flag == 0:
+    while flag == True:
         materia = input(menu_nota)
         while validacion_dig(materia, 10)== False: #Valida que sea un numero del 1 al 5
             materia = input(menu_nota)
@@ -119,7 +119,7 @@ def actualizar_notas (matriz_legajos_notas, legajo):
                 while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
                     continuar = input(menu_agregar_nota) #Modularizacion de menú anterior.
                 if int(continuar) == 2:
-                    flag = 1                  #Ingresa 2, sale del apartado y vuelve atras.
+                    flag = False                  #Ingresa 2, sale del apartado y vuelve atras.
         else:
             print("El alumno no cursa esa materia")
     return matriz_legajos_notas
