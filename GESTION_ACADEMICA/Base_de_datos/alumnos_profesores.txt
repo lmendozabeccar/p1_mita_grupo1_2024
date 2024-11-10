@@ -1,4 +1,4 @@
-1000;nicovera@sistem.edu.ar;Nicovera01;Nicolas Vera
+1000;nicovera@sistem.edu.ar;nicovera01;Nicolas Vera
 1001;tomiweins@sistem.edu.ar;tomiweins01;Weinstelbaum Tomás
 1002;smatras@sistem.edu.ar;santimatra01;Matra Santino
 1003;lucasmendo@sistem.edu.ar;lucasmendo01;Mendoza Lucas

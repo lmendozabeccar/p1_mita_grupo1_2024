@@ -16,6 +16,7 @@ def validar_mayus_nombre (nombre):
     if len(busq2) == 0:
         print("\nIngresar mayúsculas al comienzo del nombre y del apellido.\n")
         return False
+    return True
     
 #Verificar que la contraseña cumpla con requisitos. 
 def validar_contraseña (contra):
@@ -33,7 +34,11 @@ def validar_contraseña (contra):
     if len(busq) != 0: #Que no haya espacios en blanco
         print("\nPor favor, no ingresar espacios en blanco a la hora de ingresar su contraseña.\n")
         return False        
-    busq2 = re.findall ("[A-Z]+[a-z]+[0-9]+",contra)
+    
+    #(?= ... ) es un lookahead assertion, verifica que la cadena cumpla con las condiciones dentro de los paréntesis
+    # .* : Representa "cero o más caracteres de cualquier tipo"
+    #Ejemplo: (?=.*[0-9]) busca que haya al menos un número en la cadena, sin importar el orden en que aparezca.
+    busq2 = re.findall ("(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])",contra)
     if len(busq2) == 0: #Contraseña segura
         print("\nSu contraseña no pudo ser validada. Por favor ingresar al menos una mayúscula, una minúscula y un número.\n")
         return False
@@ -43,7 +48,7 @@ def validar_contraseña (contra):
 def validar_num(car):    
     """
     pre: recibe un legajo.
-    pos: retorna False, en caso de que existan letras en la cadena, retorna True, en caso de que no existan letras
+    pos: retorna False en caso de que existan letras en la cadena, retorna True en caso de que no existan letras
     en el legajo.
     """
     
@@ -95,7 +100,7 @@ def validacionmail (mail):
     else:
         return True
 #Verificar si la cuenta existe o no en el sistema
-def validacion_cuenta_existente (user,contraseña):  
+def validacion_cuenta_existente (user, contraseña):  
     """
     pre: recibe un mail de usuario y una contraseña (en caso de estar registrandose la contraseña es "False")
     pos: retorna False o True, dependiendo que el mail y la contraseña sea o no validado.
@@ -145,8 +150,10 @@ def validar_nota (car):
     pos: en caso de no coincidir con el patrón, devuelve False y le pide al profesor que ingrese una nota 
     válida. En caso de coincidir, no devuelve nada y el programa sigue con normalidad.
     """
-    patron = r"^(10(\.0)?|[0-9](\.\d)?)$" # ()? Quiere decir que es opcional que haya un punto y un 0, | es operador OR
+    patron = r"^(10(\.0)?|[1-9](\.\d)?)$" # ()? Quiere decir que es opcional que haya un punto y un 0, | es operador OR
     nota_valida= re.match(patron,car)
     if nota_valida == None:
         print("\nNota incorrecta, por favor ingresar una nota válida.\n")
         return False    
+    else: 
+        return True
