@@ -27,7 +27,7 @@ def agregar_materias(legajo):
     if legajo in matriz_legajos_notas:
         notas_sublista = matriz_legajos_notas[legajo]["notas"]
         existe = True
-        print("Usted está cursando estas materias",matriz_legajos_notas[legajo]["cursa"])
+        print("\nUsted está cursando estas materias",matriz_legajos_notas[legajo]["cursa"])
 
     else:
         notas_sublista = []
@@ -43,7 +43,7 @@ def agregar_materias(legajo):
             if existe == True:
                 cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
                 notas_sublista = matriz_legajos_notas[legajo]["notas"]
-                if sum(notas_sublista) == -10:
+                if len(notas_sublista) == 10:
             
                     print("\nEl alumno ya está inscripto en las 10 materias.")
                     return matriz_legajos_notas

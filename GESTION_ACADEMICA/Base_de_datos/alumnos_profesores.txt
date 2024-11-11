@@ -1,15 +1,14 @@
-1000;nicovera@sistem.edu.ar;nicovera01;Nicolas Vera
 1001;tomiweins@sistem.edu.ar;tomiweins01;Weinstelbaum Tomás
 1002;smatras@sistem.edu.ar;santimatra01;Matra Santino
 1003;lucasmendo@sistem.edu.ar;lucasmendo01;Mendoza Lucas
 1004;silvifalcon@sistem.edu.ar;silvifalcon01;Falcón Silvina
-1005;alevera@sistem.edu.ar;alevera01;Vera Alejandro
+1005;alevera@sistem.edu.ar;Alevera01;Alejandro Vera
 1006;malecristaldi@sistem.edu.ar;malecristaldi01;Cristaldi Malena
 1007;lucaspagli@sistem.edu.ar;lucaspagli01;Paglilla Lucas
 1008;fabrisuccar@sistem.edu.ar;fabrisuccar01;Succar Fabricio
 1009;lautipadin@sistem.edu.ar;lautipadin01;Padin Lautaro
 0000;nardonejuan@sistem.edu.ar;nardonejuan10;Nardone Juan
 0000;ramiroleiva@sistem.edu.ar;ramiroleiva10;Leiva Ramiro
-0000;daquino@sistem.edu.ar;Daquino10;Daquino Daquino
+0000;daquino@sistem.edu.ar;Daquino10;Nicolas Daquino
 1010;tiziano@sistem.edu.ar;Hola1234;Tiziano Fasce
 1011;alejandro@sistem.edu.ar;Nicolas01;Ale Veraa
