@@ -40,7 +40,7 @@ def registro():
 
                         legajo = int(legajo)
                         legajo+=1 #Legajo = ultimo legajo + 1
-                        archivo.write(f"{legajo};{user};{pas};{nom}\n") #Append en el archivo de texto.
+                        archivo.write(f"\n{legajo};{user};{pas};{nom}") #Append en el archivo de texto.
                         print("\nRegistro exitoso como alumno, ahora inicie sesión")
                         flag = False                 
                             
