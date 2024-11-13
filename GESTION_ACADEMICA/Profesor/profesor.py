@@ -54,6 +54,7 @@ def profesores(email):
 
             if seguro == "1":
                 eliminar_mail(email)
+                print("\nVolviendo al menú principal...") 
                 return False
             else:
                 print("\nVolviendo al menú principal...") #Vuelve al menú
@@ -64,5 +65,5 @@ def profesores(email):
             return False
 
         elif respuesta_prof == 8:
-            print("\nSaliendo...")#Sale de la aplicación.
+            print("\nSaliendo de la aplicación...")#Sale de la aplicación.
             return True

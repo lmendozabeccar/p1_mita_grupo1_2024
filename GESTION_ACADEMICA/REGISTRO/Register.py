@@ -39,11 +39,24 @@ def registro():
                             while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
                                 pas=str(input(menu_contraseña))       
 
-                            legajo = int(legajo)
-                            legajo+=1 #Legajo = ultimo legajo + 1
-                            archivo.write(f"{legajo};{user};{pas};{nom}\n") #Append en el archivo de texto.
-                            print("\nRegistro exitoso como alumno, ahora inicie sesión")
-                            flag = False                 
+                        legajo = int(legajo)
+                        legajo+=1 #Legajo = ultimo legajo + 1
+                        archivo.write(f"\n{legajo};{user};{pas};{nom}") #Append en el archivo de texto.
+                        print("\nRegistro exitoso como alumno, ahora inicie sesión")
+                        flag = False                 
+                            
+                    if int (inicio_registro)==2: #Si se registra como profesor
+                        nom=str(input(menu_nombre))
+                        while validar_mayus_nombre(nom) == False: #Valida que el nombre y el apellido comience con mayuscula.
+                            nom=str(input(menu_nombre)) 
+                            
+                        pas=str(input(menu_contraseña))
+                        while validar_contraseña (pas) == False: #Valida que la contraseña tenga, al menos, una mayuscula, una minuscula y un numero, sin espacios en blanco.
+                            pas=str(input(menu_contraseña))         
+                                               
+                        archivo.write(f"0000;{user};{pas};{nom}\n")
+                        print("\nRegistro exitoso como profesor, ahora inicie sesión")
+                        flag = False                
                                 
                         if int (inicio_registro)==2: #Si se registra como profesor
                             nom=str(input(menu_nombre))

@@ -87,7 +87,7 @@ def mostrar_calificacion_grupal ():
             if nota == -1:
                 print(f"El alumno cursa la materia {cursa}, pero aún no tiene una nota cargada.")
             else:
-                print(f"\nDicho alumno cursa la materia {cursa}, obtuvo una nota de: {nota}")
+                print(f"El alumno cursa la materia {cursa} y obtuvo una nota de: {nota}")
     print("\nVolviendo al menú principal...")
     return True
         

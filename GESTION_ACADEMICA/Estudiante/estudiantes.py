@@ -36,8 +36,10 @@ def estudiantes(legajo, email):
 
             if seguro == "1":
                 eliminar_mail(email)
-                return False                       
-                
+                print("\nVolviendo al menú principal...") 
+                return False
+            else:
+                print("\nVolviendo al menú principal...")     
         elif respuesta_est == 4:
             modificaruser(email)
         
