@@ -105,44 +105,48 @@ def validacion_cuenta_existente (user, contraseña):
     pre: recibe un mail de usuario y una contraseña (en caso de estar registrandose la contraseña es "False")
     pos: retorna False o True, dependiendo que el mail y la contraseña sea o no validado.
     """
-    with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
-        flag = True
-        encontrado = True
-        tipo_usuario = 0
-        while flag:
-            linea = archivo.readline() #linea por linea del archivo de texto
-            if linea == "": # EL ARCHIVO DE TEXTO DEBE TENER MAXIMO UNA LINEA VACÍA AL FINAL
-                flag = False
-                encontrado = False
-            else:
-                linea = linea.strip() #elimina los espacios en blanco al inicio y al final
-                lista = linea.split(";") #divide la línea en una lista de elementos usando ; como delimitador.
-                if contraseña == False: #Si se está registrando, es false, si es un login, es la contraseña ingresada x el usuario.
-                    if lista[0] != "0000":
-                        legajo = lista[0]
-                    if lista[1] == user:
-                        print("Usuario ya existente, ingrese otro.")
-                        return 0, False
+    try:
+        with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", mode="r", encoding="utf-8") as archivo:
+            flag = True
+            encontrado = True
+            tipo_usuario = 0
+            while flag:
+                linea = archivo.readline() #linea por linea del archivo de texto
+                if linea == "": # EL ARCHIVO DE TEXTO DEBE TENER MAXIMO UNA LINEA VACÍA AL FINAL
+                    flag = False
+                    encontrado = False
                 else:
-                    if lista[1] == user and lista[2] == contraseña: #Para el login
-                        if lista[0] == "0000": #El profesor tiene legajo 0000
-                            print("Ingreso correcto al apartado profesores.")
-                            tipo_usuario = 2
-                            legajo = -1
-                            email = lista[1]
-                            flag = False
-                        else:
-                            print("Ingreso correcto al apartado alumnos.")
-                            tipo_usuario = 1
+                    linea = linea.strip() #elimina los espacios en blanco al inicio y al final
+                    lista = linea.split(";") #divide la línea en una lista de elementos usando ; como delimitador.
+                    if contraseña == False: #Si se está registrando, es false, si es un login, es la contraseña ingresada x el usuario.
+                        if lista[0] != "0000":
                             legajo = lista[0]
-                            email = lista[1]
-                            flag = False
-        if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
-            return 0,user,contraseña
-        elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
-            return legajo, True
-        else: #Si se encontró en el login
-            return tipo_usuario, legajo, email
+                        if lista[1] == user:
+                            print("Usuario ya existente, ingrese otro.")
+                            return 0, False
+                    else:
+                        if lista[1] == user and lista[2] == contraseña: #Para el login
+                            if lista[0] == "0000": #El profesor tiene legajo 0000
+                                print("Ingreso correcto al apartado profesores.")
+                                tipo_usuario = 2
+                                legajo = -1
+                                email = lista[1]
+                                flag = False
+                            else:
+                                print("Ingreso correcto al apartado alumnos.")
+                                tipo_usuario = 1
+                                legajo = lista[0]
+                                email = lista[1]
+                                flag = False
+            if encontrado == False and contraseña != False: #Si el usuario no se encontró en el login
+                return 0,user,contraseña
+            elif encontrado == False and contraseña == False: #Si el usuario no se encontró en el registro
+                return legajo, True
+            else: #Si se encontró en el login
+                return tipo_usuario, legajo, email
+    except:
+        print("\nNo se ha podido cargar la base de datos.")
+        return False
 
 def validar_nota (car):
     """

@@ -20,7 +20,7 @@ def estudiantes(legajo, email):
         
         respuesta_est = int(respuesta_est) #Se pasa el string a entero
         if respuesta_est == 1:
-            agregar_materias (legajo) #Agrega las materias que quiere, y le pone una nota aleatoria.
+            agregar_materias (legajo) # Se inscribe en las materias correspondientes.
                 
         elif respuesta_est == 2:
             matriz_legajos_notas = devolverjson()
@@ -36,9 +36,8 @@ def estudiantes(legajo, email):
 
             if seguro == "1":
                 eliminar_mail(email)
-                return False                    
-            else:
-                print("\nVolviendo al menú principal...")     
+                return False                       
+                
         elif respuesta_est == 4:
             modificaruser(email)
         

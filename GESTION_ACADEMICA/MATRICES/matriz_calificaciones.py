@@ -50,7 +50,7 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
             print(f"\nLegajo número: {legajo}")
             for cursa, nota in zip(sublista_cursa, sublista_notas): #Junta las dos sublistas de las materias cursadas con su respectiva nota en una nueva matriz
                 nota = "-" if nota == -1 else nota
-                print(f"Cursa la materia {cursa} y obtuviste una nota de: {nota}")
+                print(f"Cursa {cursa}. Nota: {nota}")
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
             
             if tipo_usuario == "alumno":

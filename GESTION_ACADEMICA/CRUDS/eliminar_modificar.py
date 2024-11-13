@@ -52,7 +52,6 @@ def modificaruser(mai):
                     while validacion_dig (modificar,4) == False:
                         modificar = (input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nElegir una opción: "))
 
-
                     if modificar == "1":
                         email = input(menu_mail)
                         if validacionmail(email) == False:
@@ -89,9 +88,12 @@ def modificaruser(mai):
                     legajo_encontrado = True
                     break
             if legajo_encontrado:
-                with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", "w", encoding="UTF-8") as archi:
-                    archi.writelines(linea)
-                    print("\nModificacion Aceptada")
+                try:
+                    with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", "w", encoding="UTF-8") as archi:
+                        archi.writelines(linea)
+                        print("\nModificacion Aceptada")
+                except:
+                    print("\nNo se pudo modificar el archivo ya que éste no se pudo abrir")
             else:
                 print("\nLegajo no encontrado")
             otravez = input("¿Quiere modificar algo más?\n1. Sí\n2. No\nElegir una opción: ").strip()

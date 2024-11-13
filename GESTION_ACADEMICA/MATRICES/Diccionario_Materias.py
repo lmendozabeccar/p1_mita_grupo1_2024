@@ -27,8 +27,7 @@ def agregar_materias(legajo):
     if legajo in matriz_legajos_notas:
         notas_sublista = matriz_legajos_notas[legajo]["notas"]
         existe = True
-        print("Usted está cursando estas materias",matriz_legajos_notas[legajo]["cursa"])
-
+        print(f"Usted está cursando estas materias:\n{", ".join(matriz_legajos_notas[legajo]["cursa"])}")
     else:
         notas_sublista = []
         cursa_sublista = []
@@ -37,17 +36,17 @@ def agregar_materias(legajo):
     flag = True
     menu_materia = "\nIngrese qué materia desea cursar: \n1.Algebra\n2.Sistemas\n3.Desarrollo Web\n4.Ingles\n5.Programacion\n6.Estadística\n7.Física\n8.Cálculo\n9.Redes\n10.Marketing\nPor favor, elegir un número de acuerdo a su materia: "
     menu_agregar_materia = "\n¿Desea agregar otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
-    
-    with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", 'w', encoding='UTF-8') as archivo_json:
+    if len(notas_sublista) == 10:
+        print("\nUsted ya está inscripto en las 10 materias.")
+        return True
+    else:
         while flag == True:
             if existe == True:
                 cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
                 notas_sublista = matriz_legajos_notas[legajo]["notas"]
-                if sum(notas_sublista) == -10:
-            
+                if len(notas_sublista) == 10:
                     print("\nEl alumno ya está inscripto en las 10 materias.")
-                    return matriz_legajos_notas
-        
+                    break # No queda de otra que aplicar break, porque si no, el programa se rompe
             
             materia = input(menu_materia)
             while validacion_dig (materia, 10)==False: #Valida que sea un numero del 1 al 10
@@ -57,7 +56,7 @@ def agregar_materias(legajo):
             if materia_nombre in cursa_sublista:
                 print("\nUsted ya esta cursando esa materia")
             else:
-                if existe == False:
+                if existe == False: #Si el alumno no existe, se crea una nueva llave en el diccionario
                     matriz_legajos_notas[legajo] = {
                         "cursa": [materia_nombre],
                         "notas": [-1]
@@ -69,7 +68,6 @@ def agregar_materias(legajo):
                     matriz_legajos_notas[legajo]["notas"].append(-1)
                     print(f"\nLa materia {materia_nombre} fue agregada.") #Aviso al usuario.
             
-                    
                 # Preguntar si el usuario desea agregar otra materia
                 continuar = input(menu_agregar_materia) #Modularizacion de menú anterior.
                 while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
@@ -78,8 +76,8 @@ def agregar_materias(legajo):
                     flag = False
                     #Ingresa 2, sale del apartado y vuelve atras.
         guardarjson(matriz_legajos_notas)
-    print("\nVolviendo al menú principal...")          
-    return True
+        print("\nVolviendo al menú principal...")          
+        return True
 
 def actualizar_notas (matriz_legajos_notas, legajo):
     """

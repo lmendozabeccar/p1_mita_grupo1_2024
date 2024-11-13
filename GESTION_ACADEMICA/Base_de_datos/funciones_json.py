@@ -8,13 +8,17 @@ def loadjson():
     archivo = r"GESTION_ACADEMICA\Base_de_datos\materias.json"
     with open(archivo, "r", encoding="UTF-8") as archivobd:
             return json.load(archivobd)
+
 def guardarjson(objeto):
     """
     pre: recibe la matriz de notas del alumno.
     pos: retorna y escribe en el json lo recibido.
     """
-    with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", "w", encoding="UTF-8") as guardjson:
-        return json.dump(objeto, guardjson, ensure_ascii=False) #Se escapan o no no los caracteres ASCII, 
+    try:
+        with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", "w", encoding="UTF-8") as guardjson:
+            return json.dump(objeto, guardjson, ensure_ascii=False) #Se escapan o no no los caracteres ASCII, para que se vean o no los acentos.
+    except:
+        print("\nNo se encontró el archivo de base de datos.")
 
 def devolverjson():
     """
