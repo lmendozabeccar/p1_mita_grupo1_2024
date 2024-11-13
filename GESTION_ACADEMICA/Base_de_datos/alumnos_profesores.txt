@@ -12,3 +12,4 @@
 0000;daquino@sistem.edu.ar;Daquino10;Nicolas Daquino
 1010;tiziano@sistem.edu.ar;Hola1234;Tiziano Fasce
 1011;alejandro@sistem.edu.ar;Nicolas01;Ale Veraa
+1012;rodo@sistem.edu.ar;Rodo123123;Rodo Rodo
