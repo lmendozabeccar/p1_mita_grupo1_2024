@@ -40,4 +40,4 @@ def test_validar_contraseña():
     assert validar_contraseña("123123pEpito") == True
     assert validar_contraseña("   Pepito123123   ") == False
     assert validar_contraseña("pepito123123") == False
-    assert validar_contraseña("Pepi123") == False
+    assert validar_contraseña("Pepi123") == True #La contraseña es incorrecta, para que el pytest tire al menos un mensaje de error.

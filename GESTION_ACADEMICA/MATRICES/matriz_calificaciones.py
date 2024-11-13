@@ -1,7 +1,6 @@
 import json
 from Base_de_datos.funciones_json import devolverjson, guardarjson
-from VALIDACIONES.Validaciones import validacion_dig
-from VALIDACIONES.test_main import aprobado_desaprobado
+from VALIDACIONES.Validaciones import validacion_dig, aprobado_desaprobado
 
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 
@@ -54,7 +53,6 @@ def mostrar_notas (matriz_legajos_notas,legajo,tipo_usuario):
             print(f"El promedio del alumno fue de: {sumas/contador:.2f}") #Maximo dos decimales
             
             if tipo_usuario == "alumno":
-                materias = int 
                 materias = 0
                 while len(sublista_cursa)>materias:
                     try:
