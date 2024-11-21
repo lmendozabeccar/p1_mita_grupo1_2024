@@ -19,7 +19,7 @@ def eliminar_mail(email):
                 archivo_escritura.write(linea)
         if len(lineas) == len(lineas_actualizadas):
             print("\nEmail no encontrado.")
-    except:
+    except  (FileNotFoundError, TypeError, PermissionError):
         print("\nHubo un error al eliminar tu cuenta, inténtelo de vuelta en unos minutos...")
         return False
     else:
@@ -92,7 +92,7 @@ def modificaruser(mai):
                     with open(r"GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt", "w", encoding="UTF-8") as archi:
                         archi.writelines(linea)
                         print("\nModificacion Aceptada")
-                except:
+                except (FileNotFoundError, TypeError, PermissionError):
                     print("\nNo se pudo modificar el archivo ya que éste no se pudo abrir")
             else:
                 print("\nLegajo no encontrado")

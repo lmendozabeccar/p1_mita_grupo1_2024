@@ -17,7 +17,7 @@ def guardarjson(objeto):
     try:
         with open(r"GESTION_ACADEMICA\Base_de_datos\materias.json", "w", encoding="UTF-8") as guardjson:
             return json.dump(objeto, guardjson, ensure_ascii=False) #Se escapan o no no los caracteres ASCII, para que se vean o no los acentos.
-    except:
+    except (FileNotFoundError, TypeError, PermissionError):
         print("\nNo se encontró el archivo de base de datos.")
 
 def devolverjson():

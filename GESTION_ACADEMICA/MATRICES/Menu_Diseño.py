@@ -21,7 +21,7 @@ def mostrar_usuarios ():
                 
                 legajo, email, contraseña, nombre = elementos
                 usuarios.append([legajo, email, contraseña, nombre])
-    except:
+    except (IndexError, ValueError, FileNotFoundError, PermissionError):
         print("\nNo se ha podido cargar el archivo.")
     else:
     # Ordena por nombre, y luego x legajo.

@@ -65,7 +65,7 @@ def registro():
 
                         if int(inicio_usuario_exist) == 2: #Vuelve al menú de inicio, en caso de elegir la opción 2.
                             return False       
-    except:
+    except (FileNotFoundError, PermissionError, TypeError):
         print("\nHubo un error en el registro, inténtelo de vuelta en unos minutos...")
         return False
     return True

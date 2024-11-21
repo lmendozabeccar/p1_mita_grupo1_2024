@@ -144,7 +144,7 @@ def validacion_cuenta_existente (user, contraseña):
                 return legajo, True
             else: #Si se encontró en el login
                 return tipo_usuario, legajo, email
-    except:
+    except FileNotFoundError:
         print("\nNo se ha podido cargar la base de datos.")
         return False
 
