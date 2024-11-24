@@ -1,7 +1,7 @@
-from CRUDS.crudProfesores import  *
-from VALIDACIONES.Validaciones import validacion_dig
-from Base_de_datos.funciones_json import devolverjson
-from CRUDS.eliminar_modificar import eliminar_mail, modificaruser
+from CRUD.crud_profesores import  *
+from VALIDACIONES.validaciones import validacion_dig
+from BASE_DE_DATOS.funciones_json import devolverjson
+from CRUD.eliminar_modificar_usuario import eliminar_mail, modificaruser
 
 def profesores(email):
     """
@@ -36,13 +36,13 @@ def profesores(email):
             if len(devolverjson()) == 0:
                 print("\nNo hay ninguna nota cargada")
             else:
-                actualizar_notas_alumno() #Puede cambiar las notas de un alumno YA EXISTENTE. Devuelve la matriz actualizada.
+                menu_actualizar_notas() #Puede cambiar las notas de un alumno YA EXISTENTE. La modificación es guardada en el archivo JSON.
             
         elif respuesta_prof == 4:
             if len(devolverjson()) == 0:
                 print("\nNo hay ninguna nota cargada")
             else:
-                eliminar_alumno()#Elimina alumnos y devuelve la matriz actualizada. 
+                eliminar_alumno()#Elimina alumnos
  
         elif respuesta_prof == 5:
             modificaruser(email)

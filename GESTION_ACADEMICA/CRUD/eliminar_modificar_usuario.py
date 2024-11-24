@@ -1,4 +1,5 @@
-from VALIDACIONES.Validaciones import validacion_dig
+from VALIDACIONES.validaciones import validacion_dig, validacionmail, validar_mayus_nombre, validar_contraseña
+
 def eliminar_mail(email):
     """
     pre: recibe el mail de usuario que se quiere eliminar.
@@ -26,7 +27,6 @@ def eliminar_mail(email):
         print("\nCuenta eliminada con éxito.")
         return True
     
-from VALIDACIONES.Validaciones import validacionmail, validar_mayus_nombre, validar_contraseña
 def modificaruser(mai):
     """
     pre: recibe el mail perteneciente al usuario que quiera modificar sus datos.

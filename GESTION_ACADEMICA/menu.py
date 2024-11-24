@@ -1,6 +1,6 @@
-from loading.login import logeandose
-from REGISTRO.Register import registro
-from MATRICES.Menu_Diseño import mostrar_usuarios
+from INICIO_SESION.inicio_sesion import logeandose
+from REGISTRO.registro import registro
+from OPERACIONES.diseño_inicio import mostrar_usuarios
 print("\nSistema de Evaluación Académica\n")
 
 mostrar_usuarios()

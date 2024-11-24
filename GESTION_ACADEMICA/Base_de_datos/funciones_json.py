@@ -19,6 +19,8 @@ def guardarjson(objeto):
             return json.dump(objeto, guardjson, ensure_ascii=False) #Se escapan o no no los caracteres ASCII, para que se vean o no los acentos.
     except (FileNotFoundError, TypeError, PermissionError):
         print("\nNo se encontró el archivo de base de datos.")
+    except Exception as e:
+        print(f"\nError inesperado: {e}")
 
 def devolverjson():
     """

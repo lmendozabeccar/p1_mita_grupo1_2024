@@ -1,6 +1,6 @@
 import json
-from VALIDACIONES.Validaciones import validacion_dig, validar_nota
-from Base_de_datos.funciones_json import devolverjson, guardarjson
+from VALIDACIONES.validaciones import validacion_dig, validar_nota
+from BASE_DE_DATOS.funciones_json import devolverjson, guardarjson
 # Diccionario de materias
 materias_dic = {
     "1": "Álgebra",
@@ -14,6 +14,7 @@ materias_dic = {
     "9": "Redes",
     "10": "Marketing"
     }
+
 def agregar_materias(legajo):
     """
     pre: recibe el legajo del alumno el cual quiere inscribirse a las materias.
@@ -78,46 +79,3 @@ def agregar_materias(legajo):
         guardarjson(matriz_legajos_notas)
         print("\nVolviendo al menú principal...")          
         return True
-
-def actualizar_notas (matriz_legajos_notas, legajo):
-    """
-    pre: recibe la matriz de notas y el legajo el cual que quiere actualizar.
-    pos: retorna la matriz de notas, pero actualizadas por el profesor.
-    """
-    flag = True
-    cursa_sublista = matriz_legajos_notas[legajo]["cursa"]
-    dic_materias_inscriptas = {}
-    contador = 1
-    materias_formateadas = ""
-    print()
-    for materia in cursa_sublista: #Preparo qué materias mostrar segun a qué materias está inscripto el alumno
-        materias_formateadas += f"{contador}. {materia}\n"
-        dic_materias_inscriptas[contador] = materia #Creo un nuevo diccionario según que cursa el alumno
-        contador += 1 
-        
-    menu_nota = materias_formateadas + "Por favor, elegir un número de acuerdo a su materia: "
-    menu_agregar_nota = "¿Desea agregar la nota de otra materia? \n1 Sí. \n2 No. \nPor favor elegir una opción: "
-    menu_calificacion = "Ingresar nota de la respectiva materia: "
-    while flag == True:
-        materia = input(menu_nota)
-        while validacion_dig(materia, 10)== False: #Valida que sea un numero del 1 al 5
-            materia = input(menu_nota)
-
-        materia_nombre = dic_materias_inscriptas.get(int(materia)) #Busca el valor asociado a la clave materia, en el diccionario (y devuelve el respectivo valor)
-        if materia_nombre in cursa_sublista:
-                calificacion = input(menu_calificacion)
-                while validar_nota(calificacion) == False:
-                    calificacion = input(menu_calificacion)
-                
-                posicion = cursa_sublista.index(materia_nombre) # .index() me devuelve en qué posicion está el elemento en la lista
-                matriz_legajos_notas[legajo]["notas"][posicion] = int(calificacion)
-                print(f"\nLa materia {materia_nombre} fue agregada con una calificación de {calificacion}.\n") #Aviso al usuario.
-                # Preguntar si el usuario desea agregar otra materia
-                continuar = input(menu_agregar_nota) #Modularizacion de menú anterior.
-                while validacion_dig(continuar, 2)== False: #Valida que ingrese 1 o 2.
-                    continuar = input(menu_agregar_nota) #Modularizacion de menú anterior.
-                if int(continuar) == 2:
-                    flag = False                  #Ingresa 2, sale del apartado y vuelve atras.
-        else:
-            print("El alumno no cursa esa materia")
-    return matriz_legajos_notas

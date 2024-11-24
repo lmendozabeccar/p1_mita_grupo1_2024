@@ -1,6 +1,6 @@
-from Estudiante.estudiantes import estudiantes
-from Profesor.profesor import profesores
-from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validacion_cuenta_existente
+from ESTUDIANTE.estudiantes import estudiantes
+from PROFESOR.profesor import profesores
+from VALIDACIONES.validaciones import validacion_dig, validacionmail, validacion_cuenta_existente
 #from MATRICES.matriz_alumnos import ingreso_alumnos
 #from MATRICES.matriz_profesor import ingreso_profes
 

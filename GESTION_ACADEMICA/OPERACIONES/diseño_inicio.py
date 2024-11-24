@@ -1,8 +1,7 @@
-
 def mostrar_usuarios ():
     """
     pre: no recibe ningun dato la función.
-    pos: se encarga de mostrar los datos de los usuarios, ya sean profesores o alumnos.
+    pos: se encarga de mostrar los datos de los usuarios cuando inicia el programa, ya sean profesores o alumnos.
     """
     archivo_path = r'GESTION_ACADEMICA\Base_de_datos\alumnos_profesores.txt'
 
