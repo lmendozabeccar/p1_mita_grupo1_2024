@@ -1,4 +1,4 @@
-from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_mayus_nombre, validar_nota, validar_num, validar_contraseña
+from VALIDACIONES.validacionesalidaciones import validacion_dig, validacionmail, validar_mayus_nombre, validar_nota, validar_num, validar_contraseña
 
 def test_validacion_dig():
     # def validacion_dig(texto, numero_opciones)

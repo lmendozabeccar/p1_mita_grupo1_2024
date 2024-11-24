@@ -15,7 +15,7 @@ def profesores(email):
     while flag_profes == True:
        
         respuesta_prof = input(menu_profesor) #Modularizacion de menu.
-        while validacion_dig (respuesta_prof, 8)== False: #Valida que el numero sea entre 1 y 6
+        while validacion_dig (respuesta_prof, 8)== False: #Valida que el numero sea entre 1 y 8
             respuesta_prof = input(menu_profesor)
         respuesta_prof = int(respuesta_prof)
 

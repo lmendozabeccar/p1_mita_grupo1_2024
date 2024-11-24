@@ -24,7 +24,7 @@ def mostrar_usuarios ():
         print("\nNo se ha podido cargar el archivo.")
     else:
     # Ordena por nombre, y luego x legajo.
-        usuarios_ordenados = sorted(usuarios, key=lambda x: (x[3], x[0]))
+        usuarios_ordenados = sorted(usuarios, key=lambda x: (x[3], x[0])) #Sorted recibe una matriz, y lo ordena segun el lambda, que en este caso, ordena por nombre y luego por legajo.
         
         print("\nLista de usuarios, con su respectivo legajo, mail, contraseña y nombre.")
         # Imprime los encabezados

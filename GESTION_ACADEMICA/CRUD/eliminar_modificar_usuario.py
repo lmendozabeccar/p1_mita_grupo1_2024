@@ -45,8 +45,8 @@ def modificaruser(mai):
             menu_contraseña = "Ingrese su contraseña nueva: "
             menu_nombre = "Ingrese su nuevo apellido y su nuevo nombre: "
             legajo_encontrado = False  
-            for i in range(len(linea)):
-                parte = linea[i].strip().split(";")
+            for i in range(len(linea)): #Recorre la lista de lineas
+                parte = linea[i].strip().split(";") 
                 if parte[1] == mai:
                     modificar = (input("\n¿Que desea modificar?\n1.Email\n2.Contraseña\n3.Nombre y Apellido\n4.Todo\nElegir una opción: "))
                     while validacion_dig (modificar,4) == False:
@@ -74,10 +74,12 @@ def modificaruser(mai):
                         if validacionmail(email) == False:
                             email = input(menu_mail)
                         parte[1] = email
+                        
                         contraseña=input(menu_contraseña)
                         if validar_contraseña(contraseña) == False:
                             contraseña=input(menu_contraseña)
                         parte[2] = contraseña
+                        
                         nom = input(menu_nombre)
                         if validar_mayus_nombre(nom) == False:
                             nom = input(menu_nombre)
