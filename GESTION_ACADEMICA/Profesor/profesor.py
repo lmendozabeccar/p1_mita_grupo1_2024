@@ -1,6 +1,6 @@
 from CRUD.crud_profesores import  *
-from VALIDACIONES.validaciones import validacion_dig
-from BASE_DE_DATOS.funciones_json import devolverjson
+from VALIDACIONES.Validaciones import validacion_dig
+from Base_de_datos.funciones_json import devolverjson
 from CRUD.eliminar_modificar_usuario import eliminar_mail, modificaruser
 
 def profesores(email):

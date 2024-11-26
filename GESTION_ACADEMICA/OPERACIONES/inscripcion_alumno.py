@@ -1,6 +1,6 @@
 import json
-from VALIDACIONES.validaciones import validacion_dig, validar_nota
-from BASE_DE_DATOS.funciones_json import devolverjson, guardarjson
+from VALIDACIONES.Validaciones import validacion_dig, validar_nota
+from Base_de_datos.funciones_json import devolverjson, guardarjson
 # Diccionario de materias
 materias_dic = {
     "1": "Álgebra",

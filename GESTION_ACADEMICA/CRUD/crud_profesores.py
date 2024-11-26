@@ -1,6 +1,6 @@
-from VALIDACIONES.validaciones import validar_num, validacion_dig, validar_nota
+from VALIDACIONES.Validaciones import validar_num, validacion_dig, validar_nota
 from OPERACIONES.promedios import mostrar_notas
-from BASE_DE_DATOS.funciones_json import devolverjson, guardarjson
+from Base_de_datos.funciones_json import devolverjson, guardarjson
     
 def menu_actualizar_notas(): 
     """

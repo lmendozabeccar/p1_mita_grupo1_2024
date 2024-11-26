@@ -1,4 +1,4 @@
-from VALIDACIONES.validaciones import validacion_dig, validacionmail, validar_mayus_nombre, validar_contraseña
+from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_mayus_nombre, validar_contraseña
 
 def eliminar_mail(email):
     """

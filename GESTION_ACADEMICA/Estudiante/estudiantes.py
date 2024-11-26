@@ -1,7 +1,7 @@
-from VALIDACIONES.validaciones import validacion_dig
+from VALIDACIONES.Validaciones import validacion_dig
 from OPERACIONES.promedios import mostrar_notas
 from OPERACIONES.inscripcion_alumno import agregar_materias
-from BASE_DE_DATOS.funciones_json import devolverjson
+from Base_de_datos.funciones_json import devolverjson
 from CRUD.eliminar_modificar_usuario import eliminar_mail, modificaruser
 
 def estudiantes(legajo, email):

@@ -1,4 +1,4 @@
-from VALIDACIONES.validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, validacion_cuenta_existente
+from VALIDACIONES.Validaciones import validacion_dig, validacionmail, validar_contraseña, validar_mayus_nombre, validacion_cuenta_existente
 
 def registro():
     """

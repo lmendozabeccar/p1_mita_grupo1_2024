@@ -1,6 +1,6 @@
 import json
-from BASE_DE_DATOS.funciones_json import devolverjson, guardarjson
-from VALIDACIONES.validaciones import validacion_dig, aprobado_desaprobado
+from Base_de_datos.funciones_json import devolverjson, guardarjson
+from VALIDACIONES.Validaciones import validacion_dig, aprobado_desaprobado
 
 # Se aplica recursividad en las funciones de suma() y contar() para luego aplicarlo como tupla en la funcion mostrar_notas()
 def suma(notas): 

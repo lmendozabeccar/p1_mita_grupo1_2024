@@ -75,13 +75,6 @@ def validacion_dig(texto, numero_opciones):
         return False
     return True
 
-'''def seguir_texto (text): ### REMPLAZAR por funcion validacion_dig() ######################################
-    patron = "^[1-2]$"
-    while re.match(patron,text) == None:
-        print("\nPor favor, ingresar un numero válido.\n")
-        return False
-    '''
-
 #Validación del Mail.
 def validacionmail (mail):
     
